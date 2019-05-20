@@ -1,3 +1,9 @@
+@import './hamburger';
+@import './navbar';
+
 header {
-    color: $color-red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
