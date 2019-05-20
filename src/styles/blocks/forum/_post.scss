@@ -1,0 +1,12 @@
+.post {
+    width: 100%;
+    padding: 10px;
+    background: $color-green;
+
+    &_container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+}

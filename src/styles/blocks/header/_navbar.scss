@@ -11,7 +11,7 @@ nav {
     margin: 0;
     padding: 140px 150px 50px;
     transition: 0.4s;
-    background-color: black;
+    background: $color-blue;
     @media screen and (min-width: 800px) {
         position: static;
         display: inline-block;
@@ -44,14 +44,18 @@ nav {
                 cursor: pointer;
                 transition: 0.2s;
                 text-decoration: none;
-                color: white;
+                background: $color-black;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
                 outline: none;
                 @media screen and (min-width: 800px) {
                     color: black;
                 }
 
                 &:hover {
-                    color: white;
+                    background: $color-blue;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
                 }
             }
         }

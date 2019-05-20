@@ -1,5 +1,5 @@
-@import './hamburger';
-@import './navbar';
+@import './hamburger.scss';
+@import './navbar.scss';
 
 header {
     padding: $regular-spacing;
@@ -8,6 +8,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    background: $color-white;
 
     h1 {
         margin: 0;

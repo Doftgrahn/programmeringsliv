@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    background: linear-gradient(to right top, #f6f2ef, #f8f2f0, #f9f2f2, #faf3f4, #faf3f6);
+}
+
 body {
     overflow-x: hidden;
     margin: 0;

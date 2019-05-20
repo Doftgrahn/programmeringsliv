@@ -1,10 +1,13 @@
 import React from "react";
 
+import Post from "./Post";
+
 const Forum = () => {
     return (
-        <div>
+        <main className="forum">
             <h1>Forum</h1>
-        </div>
+            <Post />
+        </main>
     );
 };
 
