@@ -12,7 +12,7 @@ const Programmerlingsliv = () => {
         <Router>
             <Header />
             <main>
-            <ContentRouting />
+                <ContentRouting />
             </main>
             <Footer />
         </Router>
