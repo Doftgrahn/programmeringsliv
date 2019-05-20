@@ -1,9 +1,11 @@
 import React from "react";
 
+import NavLinks from "./NavLinks";
+
 const Header = () => {
     return (
         <header>
-            <p>hej</p>
+            <NavLinks />
         </header>
     );
 };
