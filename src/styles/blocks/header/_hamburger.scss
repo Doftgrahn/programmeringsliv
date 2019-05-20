@@ -12,11 +12,11 @@
     }
 
     span {
-        z-index: 100000;
+        z-index: 10;
         width: 34px;
         height: 4px;
-        background-color: black;
         display: block;
+        background: $color-black;
         margin-bottom: 8px;
         transition: 0.4s;
 
@@ -34,7 +34,7 @@
     }
 
     &.active span {
-        background-color: white;
+        background: $color-white;
 
         &:nth-child(1) {
             left: 2px;
