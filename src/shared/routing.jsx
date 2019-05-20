@@ -7,6 +7,7 @@ import AddPost from "../components/addPost/AddPost";
 import Forum from "../components/forum/Forum";
 import Chat from "../components/chat/Chat";
 import Profile from "../components/profile/Profile";
+import ForoFor from "../components/main/forOFour/ForoFour";
 
 const ContentRouting = () => {
     return (
@@ -17,6 +18,7 @@ const ContentRouting = () => {
             <Route path="/forum" component={Forum} />
             <Route path="/chat" component={Chat} />
             <Route path="/profile" component={Profile} />
+            <Route path="**" component={ForoFor} />
         </Switch>
     );
 };
