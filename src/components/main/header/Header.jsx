@@ -16,6 +16,7 @@ const Header = () => {
 
     return (
         <header>
+            <h1>ProgrammingLajf</h1>
             <NavLinks toggleOff={toggleOff} showMeny={showMeny} />
             <Hamburger toggleMeny={toggleMeny} showMeny={showMeny} />
         </header>

@@ -1,7 +1,11 @@
 import React from "react";
 
 const Forum = () => {
-    return <div>This is Forum</div>;
+    return (
+        <div>
+            <h1>Forum</h1>
+        </div>
+    );
 };
 
 export default Forum;
