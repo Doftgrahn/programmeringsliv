@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/App.scss";
 
-const App = () => {
+const Programmerlingsliv = () => {
     return (
         <div className="App">
             <h1>Hej</h1>
@@ -9,4 +9,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default Programmerlingsliv;
