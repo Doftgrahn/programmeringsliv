@@ -11,7 +11,9 @@ const Programmerlingsliv = () => {
     return (
         <Router>
             <Header />
+            <main>
             <ContentRouting />
+            </main>
             <Footer />
         </Router>
     );
