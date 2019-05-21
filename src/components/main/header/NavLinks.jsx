@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import {Link} from "react-router-dom";
 
-const NavLinks = ({toggleOff, showMeny}) => {
+const NavLinks = ({toggleOff, showMeny, user, logIn, logOut}) => {
     const [links] = useState([
         {name: "Home", to: "/home"},
         {name: "Addpost", to: "/addPost"},
@@ -16,12 +16,16 @@ const NavLinks = ({toggleOff, showMeny}) => {
             <Link className="routerLinks" to={link.to} onClick={toggleOff}>
                 {link.name}
             </Link>
+
         </li>
     ));
 
     return (
         <nav className={"navBar " + (showMeny ? "h_active" : "")}>
-            <ul>{navBar}</ul>
+            <ul>
+            {navBar}
+            {!user ? <li onClick={logIn}>Log in</li> : <li onClick={logOut}>Log out</li>}
+            </ul>
         </nav>
     );
 };

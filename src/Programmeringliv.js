@@ -1,55 +1,49 @@
 import React, {Component} from "react";
 import "./styles/main.scss";
 
+import firebase from "firebase";
+
+import {provider, auth, database} from "./shared/Firebase";
+
 import {BrowserRouter as Router} from "react-router-dom";
 
 import Header from "./components/main/header/Header";
 import Footer from "./components/main/footer/Footer";
 import ContentRouting from "./shared/routing";
 
-import withFirebaseAuth from "react-with-firebase-auth";
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from "./shared/firebaseConfig";
-
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-
 class Programmerlingsliv extends Component {
-    render() {
-        const {user, signOut, signInWithGoogle} = this.props;
+    state = {
+        user: null
+    };
 
+    logIn = () => {
+        auth()
+            .signInWithPopup(provider)
+            .then(({user}) => {
+                this.setState({user: user});
+            });
+    };
+
+    logOut = () => {
+        auth()
+            .signOut()
+            .then(() => {
+                this.setState({user: null});
+            });
+    };
+
+    render() {
+        const {user} = this.state;
         return (
             <Router>
-                <Header />
+                <Header user={user} logIn={this.logIn} logOut={this.logOut} />
                 <main>
                     <ContentRouting />
                 </main>
                 <Footer />
-                <div>
-                    {user ? (
-                        <p>Hello, {user.displayName}</p>
-                    ) : (
-                        <p>Please sign in.</p>
-                    )}
-                    {user ? (
-                        <button onClick={signOut}>Sign out</button>
-                    ) : (
-                        <button onClick={signInWithGoogle}>
-                            Sign in with Google
-                        </button>
-                    )}
-                </div>
             </Router>
         );
     }
 }
 
-const firebaseAppAuth = firebaseApp.auth();
-const providers = {
-    googleProvider: new firebase.auth.GoogleAuthProvider()
-};
-
-export default withFirebaseAuth({
-    providers,
-    firebaseAppAuth
-})(Programmerlingsliv);
+export default Programmerlingsliv;
