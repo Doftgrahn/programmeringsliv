@@ -1,3 +1,16 @@
+@import './hamburger.scss';
+@import './navbar.scss';
+
 header {
-    color: $color-red;
+    padding: $regular-spacing;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: $color-white;
+
+    h1 {
+        margin: 0;
+    }
 }

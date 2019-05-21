@@ -1,8 +1,23 @@
 /*--
 Import Parts of page here
 --*/
-@import './settings/_main';
-@import './blocks/_main';
+@import './settings/_main.scss';
+@import './blocks/_main.scss';
 /*--
 <3
 --*/
+main {
+    min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+input,
+li,
+p,
+span,
+ul {
+    color: $color-black;
+    transition: 0.4s;
+}

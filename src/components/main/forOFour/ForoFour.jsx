@@ -1,11 +1,11 @@
 import React from "react";
 
-const Profile = () => {
+const ForoFour = () => {
     return (
         <div>
-            <h1>Profile</h1>
+            <h1>404</h1>
         </div>
     );
 };
 
-export default Profile;
+export default ForoFour;

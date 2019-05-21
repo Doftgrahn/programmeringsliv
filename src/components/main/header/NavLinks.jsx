@@ -2,9 +2,10 @@ import React, {useState} from "react";
 
 import {Link} from "react-router-dom";
 
-const NavLinks = () => {
+const NavLinks = ({toggleOff, showMeny}) => {
     const [links] = useState([
         {name: "Home", to: "/home"},
+        {name: "Addpost", to: "/addPost"},
         {name: "Forum", to: "/forum"},
         {name: "Chat", to: "/chat"},
         {name: "Profile", to: "/profile"}
@@ -12,12 +13,14 @@ const NavLinks = () => {
 
     const navBar = links.map((link, index) => (
         <li key={index}>
-            <Link to={link.to}>{link.name}</Link>
+            <Link className="routerLinks" to={link.to} onClick={toggleOff}>
+                {link.name}
+            </Link>
         </li>
     ));
 
     return (
-        <nav>
+        <nav className={"navBar " + (showMeny ? "h_active" : "")}>
             <ul>{navBar}</ul>
         </nav>
     );

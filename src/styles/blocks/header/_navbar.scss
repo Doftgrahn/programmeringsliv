@@ -1,0 +1,72 @@
+nav {
+    z-index: 500;
+    overflow: hidden;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 100%;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 140px 150px 50px;
+    transition: 0.4s;
+    background: $color-blue;
+    @media screen and (min-width: 800px) {
+        position: static;
+        display: inline-block;
+        width: auto;
+        height: auto;
+        margin-right: 50px;
+        padding: 0;
+        background: none;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        @media screen and (min-width: 800px) {
+            flex-direction: row;
+        }
+
+        li {
+            font-size: 40px;
+            margin-top: 20px;
+            text-decoration: none;
+            @media screen and(min-width: 800px) {
+                font-size: 24px;
+                margin-top: auto;
+                margin-left: 20px;
+            }
+
+            .routerLinks {
+                cursor: pointer;
+                transition: 0.2s;
+                text-decoration: none;
+                background: $color-black;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                outline: none;
+                @media screen and (min-width: 800px) {
+                    color: black;
+                }
+
+                &:hover {
+                    background: $color-blue;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+.h_active {
+    z-index: 3;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    transition: 0.4s;
+}
