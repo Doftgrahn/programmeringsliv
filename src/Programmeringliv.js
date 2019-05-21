@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./styles/main.scss";
 
-import firebase from "firebase";
+//import firebase from "firebase";
 
 import {provider, auth, database} from "./shared/Firebase";
 
@@ -33,6 +33,7 @@ class Programmerlingsliv extends Component {
     };
 
     render() {
+        console.log(database);
         const {user} = this.state;
         return (
             <Router>
