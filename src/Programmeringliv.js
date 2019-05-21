@@ -36,13 +36,7 @@ class Programmerlingsliv extends Component {
         const {user} = this.state;
         return (
             <Router>
-                <Header />
-                <div>
-                    <p>hej</p>
-                    <p>{user ? `Hi, ${user.displayName}!`: 'hi!'}</p>
-                    <button onClick={this.logIn}>Log in with facebook</button>
-                    <button onClick={this.logOut}>Log out</button>
-                </div>
+                <Header user={user} logIn={this.logIn} logOut={this.logOut} />
                 <main>
                     <ContentRouting />
                 </main>
