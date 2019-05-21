@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import "./styles/main.scss";
 
-//import firebase from "firebase";
-
 import {provider, auth, database} from "./shared/Firebase";
 
 import {BrowserRouter as Router} from "react-router-dom";
@@ -39,7 +37,7 @@ class Programmerlingsliv extends Component {
             <Router>
                 <Header user={user} logIn={this.logIn} logOut={this.logOut} />
                 <main>
-                    <ContentRouting />
+                    <ContentRouting user={user} />
                 </main>
                 <Footer />
             </Router>
