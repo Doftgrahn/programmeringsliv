@@ -6,16 +6,11 @@ import firebase from "firebase";
 import {provider, auth, database} from "./shared/Firebase";
 
 import {BrowserRouter as Router} from "react-router-dom";
+
 import Header from "./components/main/header/Header";
 import Footer from "./components/main/footer/Footer";
 import ContentRouting from "./shared/routing";
 
-<<<<<<< HEAD
-
-
-class Programmerlingsliv extends Component {
-    render() {
-=======
 class Programmerlingsliv extends Component {
     state = {
         user: null
@@ -36,7 +31,6 @@ class Programmerlingsliv extends Component {
                 this.setState({user: null});
             });
     };
->>>>>>> 57714a24c08b5f4c30cfe453c17f55fbc1bfce71
 
     render() {
         const {user} = this.state;
@@ -52,8 +46,4 @@ class Programmerlingsliv extends Component {
     }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 57714a24c08b5f4c30cfe453c17f55fbc1bfce71
 export default Programmerlingsliv;
