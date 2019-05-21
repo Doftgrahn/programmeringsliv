@@ -31,6 +31,7 @@ nav {
         }
 
         li {
+            cursor: pointer;
             font-size: 40px;
             margin-top: 20px;
             text-decoration: none;
@@ -38,6 +39,12 @@ nav {
                 font-size: 24px;
                 margin-top: auto;
                 margin-left: 20px;
+            }
+
+            &:hover {
+                background: $color-blue;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
             }
 
             .routerLinks {
