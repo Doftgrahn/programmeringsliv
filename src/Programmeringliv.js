@@ -15,19 +15,15 @@ class Programmerlingsliv extends Component {
     };
 
     logIn = () => {
-        auth()
-            .signInWithPopup(provider)
-            .then(({user}) => {
-                this.setState({user: user});
-            });
+        auth.signInWithPopup(provider).then(({user}) => {
+            this.setState({user: user});
+        });
     };
 
     logOut = () => {
-        auth()
-            .signOut()
-            .then(() => {
-                this.setState({user: null});
-            });
+        auth.signOut().then(() => {
+            this.setState({user: null});
+        });
     };
 
     render() {
@@ -35,7 +31,7 @@ class Programmerlingsliv extends Component {
         return (
             <Router>
                 <Header user={user} logIn={this.logIn} logOut={this.logOut} />
-            
+
                 <main>
                     <ContentRouting user={user} />
                 </main>
