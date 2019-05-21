@@ -12,12 +12,19 @@ main {
 
 h1,
 h2,
-h3,
+h3 {
+    background: $color-black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 input,
 li,
 p,
 span,
 ul {
-    color: $color-black;
+    background: $color-black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     transition: 0.4s;
 }
