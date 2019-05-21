@@ -31,11 +31,11 @@ class Programmerlingsliv extends Component {
     };
 
     render() {
-        console.log(database);
         const {user} = this.state;
         return (
             <Router>
                 <Header user={user} logIn={this.logIn} logOut={this.logOut} />
+            
                 <main>
                     <ContentRouting user={user} />
                 </main>

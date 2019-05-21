@@ -2,15 +2,13 @@ import React from "react";
 
 import Post from "./Post";
 
-const Forum = () => {
+const Forum = ({user}) => {
     return (
         <main className="forum">
             <h1>Forum</h1>
 
-            <div>
-                
-            </div>
-            <Post />
+
+            <Post user={user} />
         </main>
     );
 };

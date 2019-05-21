@@ -1,12 +1,13 @@
-import * as firebase from "firebase/app";
+//import * as firebase from "firebase/app";
+import app from "firebase/app";
 
 import "firebase/auth";
-import "firebase/firestore";
+import "firebase/database";
 
 import firebaseConfig from "./firebaseConfig";
 
-firebase.initializeApp(firebaseConfig);
+app.initializeApp(firebaseConfig);
 
-export const auth = firebase.auth;
-export const database = firebase.firestore();
-export const provider = new firebase.auth.FacebookAuthProvider();
+export const auth = app.auth;
+export const database = app.database();
+export const provider = new app.auth.FacebookAuthProvider();

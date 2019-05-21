@@ -1,14 +1,20 @@
 import React from "react";
 
-const Post = () => {
+const Post = ({user}) => {
+    console.log(user);
     return (
         <article className="post">
-            <div className="post_container">
-                <h2>Title</h2>
-                <p>content</p>
-            </div>
+            {
+
+                 !user ? 'nothing to see' : <div className="post_container">
+                <h2>Welcolme {user.displayName}</h2>
+                <img src={user.photoURL} alt="user"/></div>
+
+
+            }
         </article>
     );
+
 };
 
 export default Post;

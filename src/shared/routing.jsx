@@ -9,15 +9,15 @@ import Chat from "../components/chat/Chat";
 import Profile from "../components/profile/Profile";
 import ForoFor from "../components/main/forOFour/ForoFour";
 
-const ContentRouting = () => {
+const ContentRouting = ({user}) => {
     return (
         <Switch>
-            <Route exact={true} path="/" component={LandingPage} />
-            <Route path="/home" component={LandingPage} />
-            <Route path="/addPost" component={AddPost} />
-            <Route path="/forum" component={Forum} />
-            <Route path="/chat" component={Chat} />
-            <Route path="/profile" component={Profile} />
+            <Route exact={true} path="/" render={() => <LandingPage user={user} />}/>
+            <Route path="/home" render={() => <LandingPage user={user} />} />
+            <Route path="/addPost" render={() => <AddPost user={user} />} />
+            <Route path="/forum" render={() => <Forum user={user} />} />
+            <Route path="/chat" render={() => <Chat user={user} />} />
+            <Route path="/profile" render={() => <Profile user={user} />} />
             <Route path="**" component={ForoFor} />
         </Switch>
     );
