@@ -1,10 +1,6 @@
 import React, {Component} from "react";
 import "./styles/main.scss";
-
-import firebase from "firebase";
-
-import {provider, auth, database} from "./shared/Firebase";
-
+import {FacebookProvider, GithubProvider, auth, database} from "./shared/Firebase";
 import {BrowserRouter as Router} from "react-router-dom";
 
 import Header from "./components/main/header/Header";
@@ -13,30 +9,47 @@ import ContentRouting from "./shared/routing";
 
 class Programmerlingsliv extends Component {
     state = {
-        user: null
+        userName: null,
+        userEmail: null,
+        userPhotoURL: null,
+        id: null
     };
-
     logIn = () => {
-        auth()
-            .signInWithPopup(provider)
+        auth
+            .signInWithPopup(GithubProvider)
             .then(({user}) => {
-                this.setState({user: user});
+                let objUser = {
+                    userName: user.displayName,
+                    userEmail: user.email,
+                    userPhotoURL: user.photoURL,
+                    id: user.uid
+                }
+                const userCollection = database.collection('Users');
+                userCollection.doc(objUser.id).set(objUser).then( docRef => {
+                    this.setState({
+                        userName: objUser.displayName,
+                        userEmail: objUser.email,
+                        userPhotoURL: objUser.photoURL,
+                        id: objUser.id
+                    });
+                });
+               
             });
     };
 
     logOut = () => {
-        auth()
+        auth
             .signOut()
             .then(() => {
-                this.setState({user: null});
+                this.setState({userName: null});
             });
     };
 
     render() {
-        const {user} = this.state;
+        const {userName} = this.state;
         return (
             <Router>
-                <Header user={user} logIn={this.logIn} logOut={this.logOut} />
+                <Header user={userName} logIn={this.logIn} logOut={this.logOut} />
                 <main>
                     <ContentRouting />
                 </main>
