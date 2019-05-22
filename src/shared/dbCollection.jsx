@@ -1,5 +1,5 @@
  const collection = {
-    user: "user",
+    user: "users",
     answer: "answer",
     post: "post",
     messages: "messages"
