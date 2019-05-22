@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import "./styles/main.scss";
-import {FacebookProvider, GithubProvider, auth, database} from "./shared/Firebase";
+import {FacebookProvider, GithubProvider, GoogleProvider, auth, database} from "./shared/Firebase";
 import {BrowserRouter as Router} from "react-router-dom";
 
 import Header from "./components/main/header/Header";
@@ -9,14 +9,16 @@ import ContentRouting from "./shared/routing";
 
 class Programmerlingsliv extends Component {
     state = {
-        userName: null,
-        userEmail: null,
-        userPhotoURL: null,
-        id: null
+        user: {
+            userName: null,
+            userEmail: null,
+            userPhotoURL: null,
+            id: null
+        }
     };
     logIn = () => {
         auth
-            .signInWithPopup(GithubProvider)
+            .signInWithPopup(GoogleProvider)
             .then(({user}) => {
                 let objUser = {
                     userName: user.displayName,
@@ -25,15 +27,16 @@ class Programmerlingsliv extends Component {
                     id: user.uid
                 }
                 const userCollection = database.collection('Users');
-                userCollection.doc(objUser.id).set(objUser).then( docRef => {
+                userCollection.doc(objUser.id).set(objUser).then(() => {
                     this.setState({
-                        userName: objUser.displayName,
-                        userEmail: objUser.email,
-                        userPhotoURL: objUser.photoURL,
-                        id: objUser.id
+                        user: {
+                            userName: objUser.userName,
+                            userEmail: objUser.userEmail,
+                            userPhotoURL: objUser.userPhotoURL,
+                            id: objUser.id
+                        }
                     });
-                });
-               
+                }); 
             });
     };
 
@@ -41,15 +44,22 @@ class Programmerlingsliv extends Component {
         auth
             .signOut()
             .then(() => {
-                this.setState({userName: null});
+                this.setState({
+                    user: {
+                        userName: null,
+                        userEmail: null,
+                        userPhotoURL: null,
+                        id: null
+                    }
+                });
             });
     };
 
     render() {
-        const {userName} = this.state;
+        const {user} = this.state;
         return (
             <Router>
-                <Header user={userName} logIn={this.logIn} logOut={this.logOut} />
+                <Header user={user} logIn={this.logIn} logOut={this.logOut} />
                 <main>
                     <ContentRouting />
                 </main>
