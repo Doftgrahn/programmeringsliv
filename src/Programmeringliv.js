@@ -29,7 +29,7 @@ class Programmerlingsliv extends Component {
             userCollection
                 .doc(objUser.id)
                 .set(objUser)
-                .then(() => console.log("workd"));
+                .then(() => console.log("works"));
         });
     };
 
