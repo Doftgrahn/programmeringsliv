@@ -10,7 +10,7 @@ const Post = ({user, forumData}) => {
 
     return (
         <article className="post">
-            <div className="post_container">
+            {!user ? '' :   <div className="post_container">
                 <div className="post_container-userInfo">
                     <img src={user.photoURL} alt="ProfilePic" />
                     <h3>{user.displayName}</h3>
@@ -22,7 +22,7 @@ const Post = ({user, forumData}) => {
                     <p class="content">{content}</p>
                     <p className="karma">Votes: {karma}</p>
                 </div>
-            </div>
+            </div>}
         </article>
     );
 };
