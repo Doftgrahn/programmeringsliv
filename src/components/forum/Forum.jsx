@@ -9,21 +9,32 @@ const Forum = ({user}) => {
     const [forum, setForum] = useState(null);
 
     useEffect(() => {
-        const userCollection = database.collection(collection.post);
+        let isSubscribed = true;
+        const userCollection = database.collection("Posts");
         userCollection.onSnapshot(snapshot => {
-            console.log("we got forum");
-            let list = [];
-            snapshot.forEach(doc => {
-                list.push(doc);
-            });
-            setForum(list);
+            if (isSubscribed) {
+                let list = [];
+                snapshot.forEach(doc => {
+                    list.push(doc.data());
+                });
+                setForum(list);
+            }
         });
+
+        return () => (isSubscribed = false);
     }, []);
+
+    let posts;
+    if (forum) {
+        posts = forum.map(post => (
+            <Post key={post} user={user} forumData={post} />
+        ));
+    }
 
     return (
         <main className="forum">
-            <h1>Forum</h1>
-            <Post user={user} />
+            <h1>Hello {user.displayName}</h1>
+            <div>{!forum ? <p>Loading..</p> : posts}</div>
         </main>
     );
 };
