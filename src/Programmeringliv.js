@@ -1,13 +1,8 @@
 import React, {Component} from "react";
 import "./styles/main.scss";
 
-import {
-    FacebookProvider,
-    GithubProvider,
-    GoogleProvider,
-    auth,
-    database
-} from "./shared/Firebase";
+import {providers, auth, database} from "./shared/Firebase";
+import collection from "./shared/dbCollection";
 import {BrowserRouter as Router} from "react-router-dom";
 
 import Header from "./components/main/header/Header";
@@ -25,14 +20,16 @@ class Programmerlingsliv extends Component {
     };
 
     logIn = () => {
-        auth.signInWithPopup(FacebookProvider).then(({user}) => {
+
+        auth.signInWithPopup(providers.FacebookProvider).then(({user}) => {
+
             let objUser = {
                 userName: user.displayName,
                 userEmail: user.email,
                 userPhotoURL: user.photoURL,
                 id: user.uid
             };
-            const userCollection = database.collection("Users");
+            const userCollection = database.collection(collection.user);
             userCollection
                 .doc(objUser.id)
                 .set(objUser)
