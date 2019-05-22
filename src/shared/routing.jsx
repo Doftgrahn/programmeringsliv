@@ -16,7 +16,7 @@ const ContentRouting = ({user}) => {
         {exact: false, path: "/addPost", component: AddPost},
         {exact: false, path: "/forum", component: Forum},
         {exact: false, path: "/chat", component: Chat},
-        {exact: false, path: "profile", component: Profile},
+        {exact: false, path: "/profile", component: Profile},
         {exact: false, path: "**", component: ForoFor}
     ]);
 
