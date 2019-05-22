@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "./styles/main.scss";
 
 import {providers, auth, database} from "./shared/Firebase";
-import collection from './shared/dbCollection';
+import collection from "./shared/dbCollection";
 import {BrowserRouter as Router} from "react-router-dom";
 
 import Header from "./components/main/header/Header";
