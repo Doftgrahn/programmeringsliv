@@ -11,53 +11,43 @@ import ContentRouting from "./shared/routing";
 
 class Programmerlingsliv extends Component {
     state = {
-        user: {
-            userName: null,
-            userEmail: null,
-            userPhotoURL: null,
-            id: null
-        }
+        user: null || JSON.parse(localStorage.getItem("user"))
     };
 
     logIn = () => {
-
         auth.signInWithPopup(providers.FacebookProvider).then(({user}) => {
-
             let objUser = {
                 userName: user.displayName,
                 userEmail: user.email,
                 userPhotoURL: user.photoURL,
                 id: user.uid
             };
+            if (!this.state.user) {
+                this.setState({user: user});
+            }
             const userCollection = database.collection(collection.user);
             userCollection
                 .doc(objUser.id)
                 .set(objUser)
-                .then(() => {
-                    this.setState({
-                        user: {
-                            userName: objUser.userName,
-                            userEmail: objUser.userEmail,
-                            userPhotoURL: objUser.userPhotoURL,
-                            id: objUser.id
-                        }
-                    });
-                });
+                .then(() => console.log("workd"));
         });
     };
 
     logOut = () => {
         auth.signOut().then(() => {
             this.setState({
-                user: {
-                    userName: null,
-                    userEmail: null,
-                    userPhotoURL: null,
-                    id: null
-                }
+                user: null
             });
         });
     };
+
+    componentDidMount() {
+        auth.onAuthStateChanged(user => {
+            user
+                ? localStorage.setItem("user", JSON.stringify(user))
+                : localStorage.removeItem("user");
+        });
+    }
 
     render() {
         const {user} = this.state;
