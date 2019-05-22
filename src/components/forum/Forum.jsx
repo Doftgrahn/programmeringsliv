@@ -8,6 +8,7 @@ import Post from "./Post";
 const Forum = ({user}) => {
     const [forum, setForum] = useState(null);
 
+
     useEffect(() => {
         let isSubscribed = true;
         const userCollection = database.collection("Posts");
@@ -34,7 +35,7 @@ const Forum = ({user}) => {
     return (
         <main className="forum">
             <h1>Hello {!user ? null : user.displayName}</h1>
-            <div>{!forum ? <p>Loading..</p> : posts}</div>
+            <div>{!forum ? null : posts}</div>
         </main>
     );
 };

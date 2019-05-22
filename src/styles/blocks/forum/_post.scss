@@ -1,14 +1,29 @@
 .post {
     width: 100%;
     padding: 10px;
-    background: $color-green;
+    background: $color-orange;
 
     &_container {
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: flex-start;
+        flex-direction: row;
         animation: fadeForumPost 0.4s linear;
+
+        &-info {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+            width: 20%;
+            background: $color-white;
+
+            h3 {
+                margin: 0;
+            }
+        }
+
+        p {
+            font-weight: bold;
+        }
     }
     @keyframes fadeForumPost {
         0% {
