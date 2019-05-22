@@ -25,7 +25,7 @@ const NavLinks = ({toggleOff, showMeny, user, logIn, logOut}) => {
             <ul>
             {navBar}
             {!user.userName ? <li onClick={logIn}>Log in</li> : <li onClick={logOut}>Log out</li>}
-            {!user.userName ? <li></li> : <li>{user.userName}</li>}
+            {!user.userName ? null : <li>{user.userName}</li>}
             </ul>
         </nav>
     );

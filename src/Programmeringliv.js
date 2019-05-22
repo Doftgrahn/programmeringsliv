@@ -25,7 +25,7 @@ class Programmerlingsliv extends Component {
     };
 
     logIn = () => {
-        auth.signInWithPopup(GoogleProvider).then(({user}) => {
+        auth.signInWithPopup(FacebookProvider).then(({user}) => {
             let objUser = {
                 userName: user.displayName,
                 userEmail: user.email,
