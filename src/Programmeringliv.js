@@ -1,8 +1,12 @@
 import React, {Component} from "react";
 import "./styles/main.scss";
 
-import {provider, auth, database} from "./shared/Firebase";
-
+import {
+    FacebookProvider,
+    GithubProvider,
+    auth,
+    database
+} from "./shared/Firebase";
 import {BrowserRouter as Router} from "react-router-dom";
 
 import Header from "./components/main/header/Header";
@@ -11,18 +15,39 @@ import ContentRouting from "./shared/routing";
 
 class Programmerlingsliv extends Component {
     state = {
-        user: null
+        user: null,
+        userName: null,
+        userEmail: null,
+        userPhotoURL: null,
+        id: null
     };
 
     logIn = () => {
-        auth.signInWithPopup(provider).then(({user}) => {
-            this.setState({user: user});
+        auth.signInWithPopup(GithubProvider).then(({user}) => {
+            let objUser = {
+                userName: user.displayName,
+                userEmail: user.email,
+                userPhotoURL: user.photoURL,
+                id: user.uid
+            };
+            const userCollection = database.collection("Users");
+            userCollection
+                .doc(objUser.id)
+                .set(objUser)
+                .then(docRef => {
+                    this.setState({
+                        userName: objUser.displayName,
+                        userEmail: objUser.email,
+                        userPhotoURL: objUser.photoURL,
+                        id: objUser.id
+                    });
+                });
         });
     };
 
     logOut = () => {
         auth.signOut().then(() => {
-            this.setState({user: null});
+            this.setState({userName: null});
         });
     };
 
