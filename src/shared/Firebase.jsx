@@ -12,3 +12,7 @@ export const database = app.firestore();
 
 export const FacebookProvider = new app.auth.FacebookAuthProvider();
 export const GithubProvider = new app.auth.GithubAuthProvider();
+<<<<<<< HEAD
+=======
+export const GoogleProvider = new app.auth.GoogleAuthProvider();
+>>>>>>> 4daeb3e434bbbd0dbef25f52166bd96404eba008

@@ -4,6 +4,7 @@ import "./styles/main.scss";
 import {
     FacebookProvider,
     GithubProvider,
+    GoogleProvider,
     auth,
     database
 } from "./shared/Firebase";
@@ -15,15 +16,16 @@ import ContentRouting from "./shared/routing";
 
 class Programmerlingsliv extends Component {
     state = {
-        user: null,
-        userName: null,
-        userEmail: null,
-        userPhotoURL: null,
-        id: null
+        user: {
+            userName: null,
+            userEmail: null,
+            userPhotoURL: null,
+            id: null
+        }
     };
 
     logIn = () => {
-        auth.signInWithPopup(GithubProvider).then(({user}) => {
+        auth.signInWithPopup(GoogleProvider).then(({user}) => {
             let objUser = {
                 userName: user.displayName,
                 userEmail: user.email,
@@ -34,12 +36,14 @@ class Programmerlingsliv extends Component {
             userCollection
                 .doc(objUser.id)
                 .set(objUser)
-                .then(docRef => {
+                .then(() => {
                     this.setState({
-                        userName: objUser.displayName,
-                        userEmail: objUser.email,
-                        userPhotoURL: objUser.photoURL,
-                        id: objUser.id
+                        user: {
+                            userName: objUser.userName,
+                            userEmail: objUser.userEmail,
+                            userPhotoURL: objUser.userPhotoURL,
+                            id: objUser.id
+                        }
                     });
                 });
         });
@@ -47,7 +51,14 @@ class Programmerlingsliv extends Component {
 
     logOut = () => {
         auth.signOut().then(() => {
-            this.setState({userName: null});
+            this.setState({
+                user: {
+                    userName: null,
+                    userEmail: null,
+                    userPhotoURL: null,
+                    id: null
+                }
+            });
         });
     };
 
@@ -56,7 +67,6 @@ class Programmerlingsliv extends Component {
         return (
             <Router>
                 <Header user={user} logIn={this.logIn} logOut={this.logOut} />
-
                 <main>
                     <ContentRouting user={user} />
                 </main>
