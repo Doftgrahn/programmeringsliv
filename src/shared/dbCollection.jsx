@@ -1,4 +1,4 @@
- const collection = {
+const collection = {
     user: "users",
     answer: "answer",
     post: "post",
