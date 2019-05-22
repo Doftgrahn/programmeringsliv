@@ -8,5 +8,15 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: flex-start;
+        animation: fadeForumPost 0.4s linear;
+    }
+    @keyframes fadeForumPost {
+        0% {
+            opacity: 0;
+        };
+
+        100% {
+            opacity: 1;
+        };
     }
 }

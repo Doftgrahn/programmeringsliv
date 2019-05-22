@@ -1,11 +1,11 @@
 @import './post.scss';
 /**/
 .forum {
+    background: $color-blue;
     height: 100%;
     width: 100%;
-    background: $color-white;
-
     h1 {
-        margin: 0;
+        padding: $regular-spacing;
+        text-align: center;
     }
 }

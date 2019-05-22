@@ -10,6 +10,7 @@ import Profile from "../components/profile/Profile";
 import ForoFor from "../components/main/forOFour/ForoFour";
 
 const ContentRouting = ({user}) => {
+
     return (
         <Switch>
             <Route exact={true} path="/" render={() => <LandingPage user={user} />}/>
