@@ -1,28 +1,68 @@
 .post {
+    margin: 0 auto;
     width: 100%;
     padding: 10px;
-    background: $color-orange;
+    background: $color-green;
+    margin-top: 10px;
+    @media screen and (min-width: 800px) {
+        width: 80%;
+    }
+
+    &:nth-child(odd) {
+        background: $color-blue;
+    }
 
     &_container {
+        margin-right: 500px;
+        padding: 20px;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         animation: fadeForumPost 0.4s linear;
 
-        &-info {
+        &-userInfo {
             display: flex;
             justify-content: center;
+            align-items: flex-start;
             flex-direction: column;
             padding: 20px;
-            width: 20%;
-            background: $color-white;
+            height: 80%;
+            background: $color-background;
 
-            h3 {
-                margin: 0;
+            h4 {
+                padding: 10px;
+            }
+
+            img {
+                height: 100px;
+                object-fit: contain;
             }
         }
 
-        p {
-            font-weight: bold;
+        &-question {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .username {
+                padding: 1px;
+            }
+
+            .title {
+                margin: 20px;
+            }
+
+            .content {
+                margin-left: 50px;
+                font-weight: bold;
+            }
+
+            .karma {
+                padding: 20px;
+                margin-left: auto;
+            }
         }
     }
     @keyframes fadeForumPost {

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Chat = () => {
+const Chat = (props) => {
     return (
         <div>
             <h1>Chat</h1>

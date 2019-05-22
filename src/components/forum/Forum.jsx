@@ -8,13 +8,12 @@ import Post from "./Post";
 const Forum = ({user}) => {
     const [forum, setForum] = useState(null);
 
-
     useEffect(() => {
         let isSubscribed = true;
         const userCollection = database.collection("Posts");
         userCollection.onSnapshot(snapshot => {
             if (isSubscribed) {
-                let list = [];
+                const list = [];
                 snapshot.forEach(doc => {
                     list.push(doc.data());
                 });
