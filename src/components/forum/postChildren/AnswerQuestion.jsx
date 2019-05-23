@@ -8,11 +8,13 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput}) => {
 
     const sendQuestion = () => {
         const collectionRef = database.collection(collection.answer).doc();
-        collectionRef
-            .set({question: questionInput})
-            .then(() => console.log("Success"));
-        setQuestionInput("");
-        hideAnswerInput();
+        if (questionInput) {
+            collectionRef
+                .set({question: questionInput})
+                .then(() => console.log("Success"));
+            setQuestionInput("");
+            hideAnswerInput();
+        }
     };
 
     return (
