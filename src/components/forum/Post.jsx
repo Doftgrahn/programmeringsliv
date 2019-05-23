@@ -16,7 +16,6 @@ const Post = ({user, forumData}) => {
     const [isAnswering, setIsAnswering] = useState(false);
 
     const showAnswerInput = () => {
-        console.log('hej', isAnswering);
         setIsAnswering(true)
     }
     const hideAnswerInput = () => {
