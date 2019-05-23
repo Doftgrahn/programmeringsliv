@@ -23,6 +23,7 @@ main {
 h1,
 h2,
 h3 {
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;
@@ -34,6 +35,7 @@ li,
 p,
 span,
 ul {
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;

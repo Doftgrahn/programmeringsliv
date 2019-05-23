@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 import {database} from "../../shared/Firebase";
+ // eslint-disable-next-line
 import collection from "../../shared/dbCollection";
 
 import Post from "./Post";
