@@ -8,21 +8,34 @@ Import Parts of page here
 --*/
 main {
     min-height: 100vh;
+    animation: routingAnimation 0.2s linear;
+}
+@keyframes routingAnimation {
+    0% {
+        opacity: 0;
+    };
+
+    100% {
+        opacity: 1;
+    };
 }
 
 h1,
 h2,
 h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-input,
 li,
 p,
 //span,
 ul {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

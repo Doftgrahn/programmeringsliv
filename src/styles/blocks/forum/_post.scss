@@ -1,12 +1,145 @@
 .post {
+    margin: 0 auto;
     width: 100%;
     padding: 10px;
     background: $color-green;
+    margin-top: 10px;
+    @media screen and (min-width: 800px) {
+        width: 80%;
+    }
+
+    &:nth-child(odd) {
+        background: $color-white;
+    }
 
     &_container {
+        margin-right: 500px;
+        padding: 20px;
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        animation: fadeForumPost 0.4s linear;
+
+        &-userInfo {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 50%;
+            padding: 20px;
+            height: 80%;
+            background: $color-white;
+
+            h4 {
+                padding: 10px;
+            }
+
+            img {
+                height: 100px;
+                object-fit: contain;
+            }
+        }
+
+        &-question {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            .username {
+                padding: 1px;
+            }
+
+            .title {
+                margin: 20px;
+            }
+
+            .content {
+                margin-left: 50px;
+                font-weight: bold;
+            }
+
+            .votes {
+                padding: 20px;
+                margin-left: auto;
+            }
+        }
+
+        &-answerWrapper {
+            flex: 1;
+            //width: 100%;
+            button {
+                outline: none;
+                cursor: pointer;
+                transition: 0.3s;
+                border: none;
+                background: $color-orange;
+            }
+
+            &-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                transition: 0.4s;
+                transform-origin: left;
+
+                textarea {
+                    width: 300px;
+                    height: 200px;
+                    color: black;
+                    background: white;
+                    //background: $color-background;
+                    resize: none;
+
+                    &::placeholder {
+                        color: black;
+                    }
+                }
+
+                .button_container {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
+
+                    button {
+                        margin-right: 10px;
+                        display: block;
+                        background: $color-green;
+
+                        &:nth-child(even) {
+                            background: $color-orange;
+                        }
+                    }
+                }
+            }
+
+            .show {
+                position: relative;
+                display: block;
+                transform: scale(1);
+            }
+
+            .hide {
+                position: absolute;
+                left: 3000px;
+                transition: 0.4s;
+                transform: scale(0);
+            }
+        }
+    }
+    @keyframes fadeForumPost {
+        0% {
+            opacity: 0;
+        };
+
+        100% {
+            opacity: 1;
+        };
     }
 }

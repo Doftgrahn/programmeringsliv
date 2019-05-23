@@ -10,6 +10,7 @@ app.initializeApp(firebaseConfig);
 export const auth = app.auth();
 export const database = app.firestore();
 
+
 export const providers = {
     FacebookProvider: new app.auth.FacebookAuthProvider(),
     GithubProvider: new app.auth.GithubAuthProvider(),
