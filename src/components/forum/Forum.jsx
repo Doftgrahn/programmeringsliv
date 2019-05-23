@@ -21,22 +21,26 @@ const Forum = ({user}) => {
             }
         });
 
-        return () => (isSubscribed = false);
+        return() => (isSubscribed = false);
     }, []);
 
     let posts;
     if (forum) {
-        posts = forum.map(post => (
-            <Post key={post} user={user} forumData={post} />
-        ));
+        posts = forum.map((post, index) => (<Post key={`key: ${index}`} user={user} forumData={post}/>));
     }
 
-    return (
-        <main className="forum">
-            <h1>Hello {!user ? null : user.displayName}</h1>
-            <div>{!forum ? null : posts}</div>
-        </main>
-    );
+    return (<main className="forum">
+        <h1>Hello {
+                !user
+                    ? null
+                    : user.displayName
+            }</h1>
+        <div>{
+                !forum
+                    ? null
+                    : posts
+            }</div>
+    </main>);
 };
 
 export default Forum;
