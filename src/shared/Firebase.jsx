@@ -1,9 +1,18 @@
-import firebase from "firebase";
-
+//import * as firebase from "firebase/app";
+import app from "firebase/app";
 import firebaseConfig from "./firebaseConfig";
 
-firebase.initializeApp(firebaseConfig);
+import "firebase/auth";
+import "firebase/firestore";
 
-export const auth = firebase.auth;
-export const database = firebase.database().ref();
-export const provider = new firebase.auth.FacebookAuthProvider();
+app.initializeApp(firebaseConfig);
+
+export const auth = app.auth();
+export const database = app.firestore();
+
+
+export const providers = {
+    FacebookProvider: new app.auth.FacebookAuthProvider(),
+    GithubProvider: new app.auth.GithubAuthProvider(),
+    GoogleProvider: new app.auth.GoogleAuthProvider()
+};
