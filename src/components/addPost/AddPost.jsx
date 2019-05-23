@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect} from "react";
 import Firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import * as firebase from "firebase/app";
@@ -7,14 +7,14 @@ import firebaseConfig from "./../../shared/firebaseConfig";
 
 class AddPostPage extends Component {
   state = {
-    userID: "",
-    username: "",
     title: "",
     content: "",
     picture: "",
+    timestamp: "",
     isUploading: false,
     progress: 0,
-    pictureURL: ""
+    pictureURL: "",
+    postSent: false
   };
 
   handleChangeTitle = event =>
@@ -37,29 +37,44 @@ class AddPostPage extends Component {
       .then(url => this.setState({ pictureURL: url }));
   };
 
+  SubmitPost = () => {
+    firebase.firestore().collection('Posts').add({
+      // userID: this.props.user.id,
+      // username: this.props.user.displayName,
+      title: this.state.title,
+      content: this.state.content,
+      picture: this.state.picture,
+      pictureURL: this.state.pictureURL,
+      timestamp: new Date()
+    }).then(()=> this.setState({postSent: true}))
+
+    //get url from the pic in storage
+  }
+
   render() {
-    return (
-      <div>
-        <h1>Addpost</h1>
-        <form>
-          <label>Title:</label>
-          <input
+    if(!this.state.postSent){
+      return (
+          <div>
+            <h1>Add post</h1>
+            <form>
+            <label>Title:</label>
+            <input
             type="text"
             value={this.state.title}
             name="title"
             onChange={this.handleChangeTitle}
-          /><br/>
-          <label>Your question:</label>
-          <textarea
+            /><br/>
+            <label>Your question:</label>
+            <textarea
             type="text"
             value={this.state.content}
             name="content"
             onChange={this.handleChangeContent}>
-          </textarea><br/>
-          <label>Picture:</label>
-          {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-          {this.state.pictureURL && <img src={this.state.pictureURL} />}
-          <FileUploader
+            </textarea><br/>
+            <label>Picture:</label>
+            {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+            {this.state.pictureURL && <img src={this.state.pictureURL} />}
+            <FileUploader
             accept="picture/*"
             name="picture"
             randomizeFilename
@@ -68,20 +83,20 @@ class AddPostPage extends Component {
             onUploadError={this.handleUploadError}
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
-          /><br/>
-          <button>Post</button>
-        </form>
-      </div>
-    );
-  }
+            /><br/>
+            </form>
+            <button onClick={this.SubmitPost} className="SubmitPost">Post</button>
+          </div>
+      )
+    } else {
+        return (
+          <div>
+          <h2>You post has been successfully sent!</h2>
+          </div>
+        )
+      }
+    }
 }
 
-export default AddPostPage;
 
-// service firebase.storage {
-//   match /b/{bucket}/o {
-//     match /{allPaths=**} {
-//       allow read, write: if request.auth != null;
-//     }
-//   }
-// }
+export default AddPostPage;
