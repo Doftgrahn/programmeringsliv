@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {Switch, Route} from "react-router-dom";
 
@@ -9,18 +9,27 @@ import Chat from "../components/chat/Chat";
 import Profile from "../components/profile/Profile";
 import ForoFor from "../components/main/forOFour/ForoFour";
 
-const ContentRouting = () => {
-    return (
-        <Switch>
-            <Route exact={true} path="/" component={LandingPage} />
-            <Route path="/home" component={LandingPage} />
-            <Route path="/addPost" component={AddPost} />
-            <Route path="/forum" component={Forum} />
-            <Route path="/chat" component={Chat} />
-            <Route path="/profile" component={Profile} />
-            <Route path="**" component={ForoFor} />
-        </Switch>
-    );
+const ContentRouting = ({user}) => {
+    const [routes] = useState([
+        {exact: true, path: "/", component: LandingPage},
+        {exact: false, path: "/home", component: LandingPage},
+        {exact: false, path: "/addPost", component: AddPost},
+        {exact: false, path: "/forum", component: Forum},
+        {exact: false, path: "/chat", component: Chat},
+        {exact: false, path: "/profile", component: Profile},
+        {exact: false, path: "**", component: ForoFor}
+    ]);
+
+    const Routes = routes.map((route, index) => (
+        <Route
+            key={index}
+            exact={route.exact}
+            path={route.path}
+            render={() => <route.component user={user} />}
+        />
+    ));
+
+    return <Switch>{Routes}</Switch>;
 };
 
 export default ContentRouting;
