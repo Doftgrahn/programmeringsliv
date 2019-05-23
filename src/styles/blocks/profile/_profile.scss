@@ -1,0 +1,76 @@
+.outsideBackground {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    margin: 0px;
+    background: $color-background;
+}
+.background {
+    background: $color-white;
+    margin: 0px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.avatar {
+    border-radius: 100%;
+    width: auto;
+    height: 70vw;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+}
+.profileInfo {
+    padding: 1em 1em;
+    font-size: 1em;
+    border-top: 1px solid rgba(0,0,0,.05);
+    .name {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin: 0.8em 0em;
+    }
+    .email {
+        font-size: 1em;
+        color: rgba(0,0,0,.4);
+    }
+}
+
+.extraProfileInfo {
+    padding: 1em 1em;
+    font-size: 1em;
+    border-top: 1px solid rgba(0,0,0,.05);
+    .karma {
+        float: right;
+    }
+}
+
+.postWrapper {
+    padding: 1em 1em;
+    font-size: 1em;
+    border-top: 1px solid rgba(0,0,0,.05);
+    margin: 0 20px;
+}
+.question {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.postDiv {
+    padding-bottom: 20px;
+    .postMetadata {
+        font-size: 1em;
+        color: rgba(0, 0, 0, 0.4);
+        .votes {
+            float: right;
+        }
+    }
+}
+
+
+
+
+
+
