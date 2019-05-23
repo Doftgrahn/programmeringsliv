@@ -68,7 +68,7 @@
             }
         }
 
-        &-answerContainer {
+        &-answerWrapper {
             flex: 1;
             //width: 100%;
             button {
@@ -78,7 +78,32 @@
                 border: none;
                 background: $color-orange;
             }
+
+            &-container {
+                display: flex;
+                margin-top: 20px;
+                transition: 0.3s;
+
+                input {
+                    color:black;
+                    background: white;
+                    //background: $color-background;
+                }
+
+                button {
+                    background: $color-green;
+                }
+            }
         }
+        .show {
+            transition: .4s;
+            display: block
+        }
+        .hide {
+            transition: .4s;
+             display: none;
+        }
+
     }
     @keyframes fadeForumPost {
         0% {

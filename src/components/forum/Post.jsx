@@ -15,9 +15,12 @@ const Post = ({user, forumData}) => {
     //const [timestamp] = useState(forumData.timestamp);
     const [isAnswering, setIsAnswering] = useState(false);
 
-    const showAnswerInput = (title) => {
-        console.log('hej', title);
+    const showAnswerInput = () => {
+        console.log('hej', isAnswering);
         setIsAnswering(true)
+    }
+    const hideAnswerInput = () => {
+        setIsAnswering(false)
     }
 
     return (<article className="post">
@@ -27,9 +30,9 @@ const Post = ({user, forumData}) => {
                 : (<div className="post_container">
                     <UserInfo user={user}/>
                     <ForumQuestion username={username} title={title} content={content} karma={karma}/>
-                    <div className="post_container-answerContainer">
-                        <button onClick={() => showAnswerInput(title)}>Answer</button>
-                        <AnswerQuestion isAnswering={isAnswering}/>
+                    <div className="post_container-answerWrapper">
+                        <button onClick={showAnswerInput}>Answer</button>
+                        <AnswerQuestion isAnswering={isAnswering} hideAnswerInput={hideAnswerInput}/>
                     </div>
                 </div>)
         }
