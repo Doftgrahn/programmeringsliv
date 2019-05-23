@@ -1,22 +1,22 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = ({user}) => {
     return (
       <div className="outsideBackground">
         <div className="background">
           <div className="content">
             <img
-              src="https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg"
+              src={!user.userPhotoURL ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.userPhotoURL} 
               alt="avatarPic"
               className="avatar"
             />
             <div className="profileInfo">
-              <div className="name">Ieva Lundin</div>
-              <div className="email">email@gmail.com</div>
+              <div className="name">{!user.userName ? 'User Unknown' : user.userName}</div>
+              <div className="email">{!user.userEmail ? 'email@gmail.com' : user.userEmail}</div>
             </div>
             <div className="extraProfileInfo">
               <span className="posts">{3} posts</span>
-              <span className="karma">{10} karma points</span>
+              <span className="karma">{0} karma points</span>
             </div>
             <div className="postWrapper">
                 <div className="postDiv">
