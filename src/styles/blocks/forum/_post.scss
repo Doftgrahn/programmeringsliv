@@ -103,26 +103,32 @@
                 .button_container {
                     display: flex;
                     flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
 
                     button {
                         margin-right: 10px;
                         display: block;
                         background: $color-green;
+
                         &:nth-child(even) {
                             background: $color-orange;
                         }
                     }
                 }
             }
-        }
 
-        .show {
-            display: block;
-        }
+            .show {
+                display: block;
+                transform: scale(1);
+            }
 
-        .hide {
-            transition: 0.4s;
-            display: none;
+            .hide {
+                position: absolute;
+                left: 3000px;
+                transition: 0.4s;
+                transform:scale(0);
+            }
         }
     }
     @keyframes fadeForumPost {
