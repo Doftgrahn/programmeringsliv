@@ -23,13 +23,16 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput}) => {
                 isAnswering ? "show" : "hide"
             }`}
         >
-            <input
+            <textarea
                 placeholder="Answer Quetsion..."
                 type="text"
                 value={questionInput}
                 onChange={event => setQuestionInput(event.target.value)}
             />
-            <button onClick={sendQuestion}>Send</button>
+            <div className="button_container">
+                <button onClick={sendQuestion}>Send</button>
+                <button onClick={hideAnswerInput}>Cancel</button>
+            </div>
         </div>
     );
 };

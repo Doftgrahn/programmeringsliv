@@ -9,7 +9,7 @@
     }
 
     &:nth-child(odd) {
-        background: $color-orange;
+        background: $color-white;
     }
 
     &_container {
@@ -81,29 +81,49 @@
 
             &-container {
                 display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
                 margin-top: 20px;
-                transition: 0.3s;
+                transition: 0.4s;
 
-                input {
-                    color:black;
+                textarea {
+                    width: 300px;
+                    height: 200px;
+                    color: black;
                     background: white;
                     //background: $color-background;
+                    resize: none;
+
+                    &::placeholder {
+                        color: black;
+                    }
                 }
 
-                button {
-                    background: $color-green;
+                .button_container {
+                    display: flex;
+                    flex-direction: row;
+
+                    button {
+                        margin-right: 10px;
+                        display: block;
+                        background: $color-green;
+                        &:nth-child(even) {
+                            background: $color-orange;
+                        }
+                    }
                 }
             }
         }
+
         .show {
-            transition: .4s;
-            display: block
-        }
-        .hide {
-            transition: .4s;
-             display: none;
+            display: block;
         }
 
+        .hide {
+            transition: 0.4s;
+            display: none;
+        }
     }
     @keyframes fadeForumPost {
         0% {
