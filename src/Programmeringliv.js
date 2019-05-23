@@ -17,9 +17,9 @@ class Programmerlingsliv extends Component {
         }
     };
     logIn = () => {
-        auth
-            .signInWithPopup(GoogleProvider)
+        auth.signInWithPopup(GoogleProvider)
             .then(({user}) => {
+                console.log(user)
                 let objUser = {
                     userName: user.displayName,
                     userEmail: user.email,
@@ -41,6 +41,7 @@ class Programmerlingsliv extends Component {
     };
 
     logOut = () => {
+        console.log(this.state.user)
         auth
             .signOut()
             .then(() => {
