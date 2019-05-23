@@ -86,6 +86,7 @@
                 align-items: center;
                 margin-top: 20px;
                 transition: 0.4s;
+                transform-origin: left;
 
                 textarea {
                     width: 300px;
@@ -119,6 +120,7 @@
             }
 
             .show {
+                position: relative;
                 display: block;
                 transform: scale(1);
             }
