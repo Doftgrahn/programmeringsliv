@@ -9,7 +9,7 @@
     }
 
     &:nth-child(odd) {
-        background: $color-blue;
+        background: $color-orange;
     }
 
     &_container {
@@ -30,7 +30,7 @@
             width: 50%;
             padding: 20px;
             height: 80%;
-            background: $color-background;
+            background: $color-white;
 
             h4 {
                 padding: 10px;

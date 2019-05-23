@@ -1,5 +1,11 @@
 import React, {useState} from "react";
 
+import UserInfo from './postChildren/UserInfo';
+
+import ForumQuestion from './postChildren/ForumQuestion';
+
+import AnswerQuestion from './postChildren/AnswerQuestion';
+
 const Post = ({user, forumData}) => {
     const [username] = useState(forumData.username);
     const [title] = useState(forumData.title);
@@ -7,25 +13,23 @@ const Post = ({user, forumData}) => {
     const [karma] = useState(forumData.karma);
     //const [picture] = useState(forumData.picture);
     //const [timestamp] = useState(forumData.timestamp);
+    const [isAnswering, setIsAnswering] = useState(false);
+
+    const showAnswerInput = (title) => {
+        console.log('hej', title);
+        setIsAnswering(true)
+    }
 
     return (<article className="post">
         {
             !user
                 ? ''
                 : (<div className="post_container">
-                    <div className="post_container-userInfo">
-                        <img src={user.photoURL} alt="ProfilePic"/>
-                        <h3>{user.displayName}</h3>
-                        <span>{user.email}</span>
-                    </div>
-                    <div className="post_container-question">
-                        <p className="username">{username}</p>
-                        <h3 className="title">{title}</h3>
-                        <p className="content">{content}</p>
-                        <p className="votes">Votes: {karma}</p>
-                    </div>
+                    <UserInfo user={user}/>
+                    <ForumQuestion username={username} title={title} content={content} karma={karma}/>
                     <div className="post_container-answerContainer">
-                        <button>Answer</button>
+                        <button onClick={() => showAnswerInput(title)}>Answer</button>
+                        <AnswerQuestion isAnswering={isAnswering}/>
                     </div>
                 </div>)
         }

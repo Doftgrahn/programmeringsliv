@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AnswerQuestion = () => {
+const AnswerQuestion = ({isAnswering}) => {
     return <div>
         <h1>Question</h1>
         <input type='text'/>
