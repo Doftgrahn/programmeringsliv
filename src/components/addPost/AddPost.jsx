@@ -88,6 +88,7 @@ class AddPostPage extends Component {
             <button onClick={this.SubmitPost} className="SubmitPost">Post</button>
           </div>
       )
+
     } else {
         return (
           <div>
@@ -95,6 +96,7 @@ class AddPostPage extends Component {
           </div>
         )
       }
+
     }
 }
 
