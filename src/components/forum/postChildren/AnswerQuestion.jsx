@@ -5,6 +5,7 @@ import collection from "../../../shared/dbCollection";
 
 const AnswerQuestion = ({isAnswering, hideAnswerInput, user}) => {
     const [questionInput, setQuestionInput] = useState("");
+    const [hasValue, setHasValue] = useState(false);
 
     const sendQuestion = () => {
         const collectionRef = database.collection(collection.answer).doc();
