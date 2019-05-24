@@ -1,8 +1,7 @@
-import React, { Component, useState, useEffect} from "react";
+import React, { Component } from "react";
 import Firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import * as firebase from "firebase/app";
-import firebaseConfig from "./../../shared/firebaseConfig";
 
 
 class AddPostPage extends Component {
