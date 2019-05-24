@@ -10,11 +10,11 @@ import Footer from "./components/main/footer/Footer";
 import ContentRouting from "./shared/routing";
 
 class Programmerlingsliv extends Component {
-    state = {
+ /*   state = {
         user: null || JSON.parse(localStorage.getItem('user'))
     };
-
-    logIn = () => {
+*/
+ /*   logIn = () => {
         auth.signInWithPopup(providers.FacebookProvider).then(({user}) => {
             let objUser = {
                 userName: user.displayName,
@@ -44,13 +44,13 @@ class Programmerlingsliv extends Component {
                 : localStorage.removeItem('user');
         });
     }
-
+*/
     render() {
-        const {user} = this.state;
+        //const {user} = this.state;
         return (<Router>
-            <Header user={user} logIn={this.logIn} logOut={this.logOut}/>
+            <Header /*user={user} logIn={this.logIn} logOut={this.logOut} */ />
             <main>
-                <ContentRouting user={user}/>
+                <ContentRouting /*user={user}*/ />
             </main>
             <Footer/>
         </Router>);

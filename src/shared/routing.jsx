@@ -9,10 +9,12 @@ import Chat from "../components/chat/Chat";
 import Profile from "../components/profile/Profile";
 import ForoFor from "../components/main/forOFour/ForoFour";
 
+import LoginPage from '../components/landingPage/LoginPage';
+
 const ContentRouting = ({user}) => {
     const [routes] = useState([
         {exact: true, path: "/", component: LandingPage},
-        {exact: false, path: "/home", component: LandingPage},
+        {exact: false, path: "/home", component: LoginPage},
         {exact: false, path: "/addPost", component: AddPost},
         {exact: false, path: "/forum", component: Forum},
         {exact: false, path: "/chat", component: Chat},
