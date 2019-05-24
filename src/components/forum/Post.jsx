@@ -2,9 +2,10 @@ import React, {useState} from "react";
 
 import UserInfo from "./postChildren/UserInfo";
 import ForumQuestion from "./postChildren/ForumQuestion";
+import ShowAnswer from "./postChildren/ShowAnswers";
 import AnswerQuestion from "./postChildren/AnswerQuestion";
 
-const Post = ({user, forumData}) => {
+const Post = ({user, forumData, answers}) => {
     const [username] = useState(forumData.username);
     const [title] = useState(forumData.title);
     const [content] = useState(forumData.content);
@@ -22,29 +23,27 @@ const Post = ({user, forumData}) => {
 
     return (
         <article className="post">
-            {!forumData ? (
-                ""
-            ) : (
-                <div className="post_container">
-                    <UserInfo forumData={forumData} />
-                    <ForumQuestion
-                        username={username}
-                        title={title}
-                        content={content}
-                        votes={votes}
-                    />
-                    <div className="post_container-answerWrapper">
-                        <div className="post_container-answerWrapper-button">
-                            <button onClick={showAnswerInput}>Answer</button>
-                        </div>
-                        <AnswerQuestion
-                            user={user}
-                            isAnswering={isAnswering}
-                            hideAnswerInput={hideAnswerInput}
-                        />
+            <div className="post_container">
+                <UserInfo forumData={forumData} />
+                <ForumQuestion
+                    username={username}
+                    title={title}
+                    content={content}
+                    votes={votes}
+                />
+                <ShowAnswer answers={answers} />
+
+                <div className="post_container-answerWrapper">
+                    <div className="post_container-answerWrapper-button">
+                        <button onClick={showAnswerInput}>Answer</button>
                     </div>
+                    <AnswerQuestion
+                        user={user}
+                        isAnswering={isAnswering}
+                        hideAnswerInput={hideAnswerInput}
+                    />
                 </div>
-            )}
+            </div>
         </article>
     );
 };

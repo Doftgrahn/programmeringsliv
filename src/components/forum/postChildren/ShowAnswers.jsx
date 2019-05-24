@@ -1,7 +1,13 @@
 import React from "react";
 
-const ShowAnswers = () => {
-    return <div>hej</div>;
+const ShowAnswers = ({answers}) => {
+    console.log("this is answers", answers);
+    let answer;
+
+    if (answers) {
+        answer = answers.map((a, i) => <span key={i}>{a.question}</span>);
+    }
+    return <div>{answer}</div>;
 };
 
 export default ShowAnswers;
