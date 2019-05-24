@@ -6,13 +6,13 @@ const Profile = ({user}) => {
         <div className="background">
           <div className="content">
             <img
-              src={!user.userPhotoURL ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.userPhotoURL} 
+              src={!user ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.photoURL} 
               alt="avatarPic"
               className="avatar"
             />
             <div className="profileInfo">
-              <div className="name">{!user.userName ? 'User Unknown' : user.userName}</div>
-              <div className="email">{!user.userEmail ? 'email@gmail.com' : user.userEmail}</div>
+              <div className="name">{!user ? 'User Unknown' : user.displayName}</div>
+              <div className="email">{!user ? 'email@gmail.com' : user.email}</div>
             </div>
             <div className="extraProfileInfo">
               <span className="posts">{3} posts</span>
@@ -34,7 +34,6 @@ const Profile = ({user}) => {
                     </div>
                 </div>
             </div>
-
           </div>
         </div>
       </div>
