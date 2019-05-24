@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect} from "react";
+    import React, { Component, useState, useEffect} from "react";
 import Firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import * as firebase from "firebase/app";
@@ -41,6 +41,8 @@ class AddPostPage extends Component {
     firebase.firestore().collection('posts').add({
        userID: this.props.user.uid,
        username: this.props.user.displayName,
+       profilePic: this.props.user.photoURL,
+       votes:0,
       title: this.state.title,
       content: this.state.content,
       picture: this.state.picture,

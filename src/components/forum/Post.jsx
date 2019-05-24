@@ -19,14 +19,14 @@ const Post = ({user, forumData}) => {
     const hideAnswerInput = () => {
         setIsAnswering(false)
     }
-    console.log(forumData);
+
 
     return (<article className="post">
         {
-            !user
+            !forumData
                 ? ''
                 : (<div className="post_container">
-                    <UserInfo user={user}/>
+                    <UserInfo user={forumData}/>
                     <ForumQuestion username={username} title={title} content={content} karma={karma}/>
                     <div className="post_container-answerWrapper">
                         <button onClick={showAnswerInput}>Answer</button>
