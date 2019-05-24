@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 
 import {database} from "../../shared/Firebase";
- // eslint-disable-next-line
+
 import collection from "../../shared/dbCollection";
 
 import Post from "./Post";
@@ -11,7 +11,7 @@ const Forum = ({user}) => {
 
     useEffect(() => {
         let isSubscribed = true;
-        const userCollection = database.collection("Posts");
+        const userCollection = database.collection(collection.post);
         userCollection.onSnapshot(snapshot => {
             if (isSubscribed) {
                 const list = [];

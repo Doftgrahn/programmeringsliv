@@ -6,6 +6,7 @@ import firebaseConfig from "./../../shared/firebaseConfig";
 
 
 class AddPostPage extends Component {
+
   state = {
     title: "",
     content: "",
@@ -36,11 +37,10 @@ class AddPostPage extends Component {
       .getDownloadURL()
       .then(url => this.setState({ pictureURL: url }));
   };
-
-  SubmitPost = () => {
-    firebase.firestore().collection('Posts').add({
-      // userID: this.props.user.id,
-      // username: this.props.user.displayName,
+    SubmitPost = () => {
+    firebase.firestore().collection('posts').add({
+       userID: this.props.user.uid,
+       username: this.props.user.displayName,
       title: this.state.title,
       content: this.state.content,
       picture: this.state.picture,
@@ -52,6 +52,7 @@ class AddPostPage extends Component {
   }
 
   render() {
+
     if(!this.state.postSent){
       return (
           <div>
