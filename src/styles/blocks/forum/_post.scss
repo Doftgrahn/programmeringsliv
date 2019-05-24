@@ -48,6 +48,7 @@
             justify-content: center;
             align-items: flex-start;
             flex-direction: column;
+            flex-wrap: wrap;
 
             .username {
                 padding: 20px;
@@ -57,7 +58,7 @@
                 padding: 0 20px;
             }
 
-            .content {
+            .content_c {
                 padding: 20px;
                 font-weight: bold;
             }
@@ -67,9 +68,13 @@
                 margin-left: auto;
             }
 
-            .postPicture {
-                width: 200px;
-                height: 200px;
+            .postPicture-container {
+                margin-left: auto;
+
+                .postPicture {
+                    width: 200px;
+                    height: 200px;
+                }
             }
         }
 
