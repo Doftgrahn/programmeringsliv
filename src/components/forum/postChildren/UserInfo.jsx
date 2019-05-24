@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const UserInfo = ({user}) => {
-    return (<div className="post_container-userInfo">
-        <img src={user.photoURL} alt="ProfilePic"/>
-        <h3>{user.displayName}</h3>
-        <span>{user.email}</span>
-    </div>)
-}
+const UserInfo = ({forumData}) => {
+    return (
+        <div className="post_container-userInfo">
+            <img src={forumData.profilePic} alt="ProfilePic" />
+            <h3>{forumData.username}</h3>
+            <span>{forumData.email}</span>
+        </div>
+    );
+};
 
 export default UserInfo;

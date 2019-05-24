@@ -1,7 +1,7 @@
 const collection = {
     user: "users",
     answer: "answer",
-    post: "post",
+    post: "posts",
     messages: "messages"
 };
 

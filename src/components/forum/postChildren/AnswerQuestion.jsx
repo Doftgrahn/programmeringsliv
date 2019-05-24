@@ -3,14 +3,19 @@ import React, {useState} from "react";
 import {database} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
 
-const AnswerQuestion = ({isAnswering, hideAnswerInput}) => {
+const AnswerQuestion = ({isAnswering, hideAnswerInput, user}) => {
     const [questionInput, setQuestionInput] = useState("");
+    const [hasValue, setHasValue] = useState(false);
 
     const sendQuestion = () => {
         const collectionRef = database.collection(collection.answer).doc();
         if (questionInput) {
             collectionRef
-                .set({question: questionInput})
+                .set({
+                    question: questionInput,
+                    userId: user.uid,
+                    timestamp: new Date()
+                })
                 .then(() => console.log("Success"));
             setQuestionInput("");
             hideAnswerInput();
