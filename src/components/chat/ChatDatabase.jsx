@@ -1,20 +1,49 @@
 import React from "react";
+import firebase from 'firebase';
 
-const Chat = (props) => {
-    // Retrieve Firebase Messaging object.
+const ChatDatabase = (props) => {
+    //const user=props.user;
+
     const messaging = firebase.messaging();
-    // Add the public key generated from the console here.
     messaging.usePublicVapidKey("BLkOAODmGtvAnhY9Y2TEbPzTG42DROonh5BP_kjCH0I1OjkzvVD_S2MIKdVVua3otWWB3lOWVLQaAWficUaNAR4");
+    Notification.requestPermission().then( (permission) => {
+        console.log('permission: ', permission)
+        if (permission === 'granted'){
+            console.log('Have permission')
+        return messaging.getToken()
+        .then( (token) => {
+            if (token) {
+                console.log('token:', token)
+            }
+            
+        })
+        } else {
+            console.log('unable to get permission to notify')
+        }
+        
+    })
+    .catch( (error) => {
+        console.log('error ocurred', error)
+    }) 
+
+    messaging.onMessage( (payload => {
+        console.log('On message', payload)
+    }))
+
+    /*// Add the public key generated from the console here.
+    
     Notification.requestPermission().then(function(permission) {
         if (permission === 'granted') {
           console.log('Notification permission granted.');
           // TODO(developer): Retrieve an Instance ID token for use with FCM.
           // ...
+          
         } else {
           console.log('Unable to get permission to notify.');
         }
       });
-      // Get Instance ID token. Initially this makes a network call, once retrieved
+
+       // Get Instance ID token. Initially this makes a network call, once retrieved
         // subsequent calls to getToken will return from cache.
         messaging.getToken().then(function(currentToken) {
             if (currentToken) {
@@ -32,6 +61,7 @@ const Chat = (props) => {
             showToken('Error retrieving Instance ID token. ', err);
             setTokenSentToServer(false);
         });      
+     
         // Callback fired if Instance ID token is updated.
         messaging.onTokenRefresh(function() {
             messaging.getToken().then(function(refreshedToken) {
@@ -46,7 +76,7 @@ const Chat = (props) => {
             console.log('Unable to retrieve refreshed token ', err);
             showToken('Unable to retrieve refreshed token ', err);
             });
-        });  
+        });  */
 
     return (
         <div>
@@ -55,5 +85,5 @@ const Chat = (props) => {
     );
 };
 
-export default Chat;
+export default ChatDatabase;
 

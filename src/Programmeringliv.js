@@ -9,6 +9,8 @@ import Header from "./components/main/header/Header";
 import Footer from "./components/main/footer/Footer";
 import ContentRouting from "./shared/routing";
 
+
+
 class Programmerlingsliv extends Component {
     state = {
         user: null || JSON.parse(localStorage.getItem('user'))
