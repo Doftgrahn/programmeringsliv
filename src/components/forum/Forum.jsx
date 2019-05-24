@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from "react";
-
 import {database} from "../../shared/Firebase";
-
 import collection from "../../shared/dbCollection";
-
 import Post from "./Post";
 
 const Forum = ({user}) => {
     const [forum, setForum] = useState(null);
+    const [answers, setAnswer] = useState(null);
 
     useEffect(() => {
         let isSubscribed = true;
@@ -22,26 +20,37 @@ const Forum = ({user}) => {
             }
         });
 
-        return() => (isSubscribed = false);
+        return () => (isSubscribed = false);
+    }, []);
+
+    useEffect(() => {
+        const answerCollection = database.collection(collection.answer);
+        answerCollection.onSnapshot(snapshot => {
+            const list = [];
+            snapshot.forEach(doc => {
+                list.push(doc.data());
+            });
+            setAnswer(list);
+        });
     }, []);
 
     let posts;
     if (forum) {
-        posts = forum.map((post, index) => (<Post key={`key: ${index}`} user={user} forumData={post}/>));
+        posts = forum.map((post, index) => (
+            <Post
+                key={`key: ${index}`}
+                user={user}
+                forumData={post}
+                answers={answers}
+            />
+        ));
     }
 
-    return (<main className="forum">
-        <h1>Hello {
-                !user
-                    ? null
-                    : user.displayName
-            }</h1>
-        <div>{
-                !forum
-                    ? null
-                    : posts
-            }</div>
-    </main>);
+    return (
+        <main className="forum">
+            {!forum ? <div className="loader" /> : posts}
+        </main>
+    );
 };
 
 export default Forum;
