@@ -91,8 +91,8 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin-top: 20px;
-                transition: 0.4s;
+                margin-top:  20px;
+                transition: 0.2s;
                 transform-origin: left;
 
                 textarea {
@@ -105,7 +105,7 @@
                     resize: none;
 
                     &::placeholder {
-                        color: black;
+                        //color: black;
                     }
                     &:focus {
                         padding:1px;
