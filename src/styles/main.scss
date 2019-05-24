@@ -1,8 +1,9 @@
 /*--
 Import Parts of page here
 --*/
-@import './settings/_main.scss';
-@import './blocks/_main.scss';
+@import './settings/_main';
+@import './parts/_main';
+@import './blocks/_main';
 /*--
 <3
 --*/
@@ -23,17 +24,18 @@ main {
 h1,
 h2,
 h3 {
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-
 li,
 p,
 span,
 ul {
+    font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;

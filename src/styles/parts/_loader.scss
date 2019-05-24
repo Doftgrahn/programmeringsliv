@@ -1,0 +1,23 @@
+.loader {
+    background: $color-orange;
+    margin:0 auto;
+    width:300px;
+    height: 300px;
+    border-radius: 50%;
+    border:20px solid black;
+    animation: 4s spin linear infinite;
+    border-top:20px;
+    border-bottom: 20px;
+    margin-top:200px;
+
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform:rotate(360deg);
+    }
+}
