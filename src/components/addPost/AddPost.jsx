@@ -1,4 +1,4 @@
-    import React, { Component, useState, useEffect} from "react";
+import React, { Component, useState, useEffect} from "react";
 import Firebase from "firebase";
 import FileUploader from "react-firebase-file-uploader";
 import * as firebase from "firebase/app";
@@ -48,18 +48,27 @@ class AddPostPage extends Component {
       picture: this.state.picture,
       pictureURL: this.state.pictureURL,
       timestamp: new Date()
-    }).then(()=> this.setState({postSent: true}))
+    }).then(()=> this.setState({postSent: true}));
 
     //get url from the pic in storage
   }
 
-  render() {
+  BackToForm = () => {
+    this.setState({
+      postSent: false,
+      title: '',
+      content: '',
+      picture: '',
+      isUploading: false
+    });
+  }
 
+  render() {
     if(!this.state.postSent){
       return (
           <div>
             <h1>Add post</h1>
-            <form>
+            <form id="newForm" name="form">
             <label>Title:</label>
             <input
             type="text"
@@ -96,6 +105,7 @@ class AddPostPage extends Component {
         return (
           <div>
           <h2>You post has been successfully sent!</h2>
+          <button onClick={this.BackToForm}>New post</button>
           </div>
         )
       }
