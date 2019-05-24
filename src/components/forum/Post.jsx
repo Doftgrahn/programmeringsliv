@@ -1,9 +1,7 @@
 import React, {useState} from "react";
 
 import UserInfo from './postChildren/UserInfo';
-
 import ForumQuestion from './postChildren/ForumQuestion';
-
 import AnswerQuestion from './postChildren/AnswerQuestion';
 
 const Post = ({user, forumData}) => {
@@ -22,16 +20,20 @@ const Post = ({user, forumData}) => {
         setIsAnswering(false)
     }
 
+
     return (<article className="post">
         {
-            !user
+            !forumData
                 ? ''
                 : (<div className="post_container">
-                    <UserInfo user={user}/>
+                    <UserInfo user={forumData}/>
                     <ForumQuestion username={username} title={title} content={content} karma={karma}/>
                     <div className="post_container-answerWrapper">
                         <button onClick={showAnswerInput}>Answer</button>
-                        <AnswerQuestion isAnswering={isAnswering} hideAnswerInput={hideAnswerInput}/>
+                        <AnswerQuestion
+                        user={user}
+                        isAnswering={isAnswering}
+                        hideAnswerInput={hideAnswerInput}/>
                     </div>
                 </div>)
         }
