@@ -1,9 +1,7 @@
 import React from "react";
 
 const ShowAnswers = ({answers}) => {
-    console.log("this is answers", answers);
     let answer;
-
     if (answers) {
         answer = answers.map((a, i) => <span key={i}>{a.question}</span>);
     }
