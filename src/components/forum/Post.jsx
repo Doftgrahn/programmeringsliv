@@ -34,16 +34,15 @@ const Post = ({user, forumData}) => {
                         votes={votes}
                     />
                     <div className="post_container-answerWrapper">
-                    <div className="post_container-answerWrapper-button">
-                    <button onClick={showAnswerInput}>Answer</button>
-                    </div>
+                        <div className="post_container-answerWrapper-button">
+                            <button onClick={showAnswerInput}>Answer</button>
+                        </div>
                         <AnswerQuestion
                             user={user}
                             isAnswering={isAnswering}
                             hideAnswerInput={hideAnswerInput}
                         />
-                        </div>
-
+                    </div>
                 </div>
             )}
         </article>
