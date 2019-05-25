@@ -10,7 +10,7 @@ const Post = ({user, forumData, answers}) => {
     const [title] = useState(forumData.title);
     const [content] = useState(forumData.content);
     const [votes] = useState(forumData.votes);
-    //const [picture] = useState(forumData.picture);
+    const [picture] = useState(forumData.pictureURL);
     //const [timestamp] = useState(forumData.timestamp);
     const [isAnswering, setIsAnswering] = useState(false);
 
@@ -30,6 +30,7 @@ const Post = ({user, forumData, answers}) => {
                     title={title}
                     content={content}
                     votes={votes}
+                    picture={picture}
                 />
                 <ShowAnswer answers={answers} />
 

@@ -24,14 +24,18 @@ const Forum = ({user}) => {
     }, []);
 
     useEffect(() => {
+        let isSubscribed = true;
         const answerCollection = database.collection(collection.answer);
         answerCollection.onSnapshot(snapshot => {
-            const list = [];
-            snapshot.forEach(doc => {
-                list.push(doc.data());
-            });
-            setAnswer(list);
+            if (isSubscribed) {
+                const list = [];
+                snapshot.forEach(doc => {
+                    list.push(doc.data());
+                });
+                setAnswer(list);
+            }
         });
+        return () => (isSubscribed = false);
     }, []);
 
     let posts;

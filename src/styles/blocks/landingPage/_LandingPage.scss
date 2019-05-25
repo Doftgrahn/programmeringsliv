@@ -1,3 +1,88 @@
-.wrapper {
+.outsideLBackground {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    width: 100%;
+    background: $color-background;
+    margin: 0px;
+    padding: 20px;
+}
+.backgroundL {
+    background: $color-white;
+    margin: 0 auto;
+    //height: 90vh;
+    //width: 90vw;
+    padding: 20px;
+}
+.contentL {
+    display: flex;
+    flex-direction: column;
+}
+
+.banerHeader {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.bannerText {
+    font-size: 25px;
+}
+
+.logInBtn, .signUpBtn {
+    border-radius: 50px;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 12px 40px;
+    letter-spacing: 1px;
+    border: 0px;
+    text-align: center;
+    margin: 10px;
+}
+
+.logInBtn {
+    background: $color-purple;
+    
+}
+
+.signUpBtn {
+    background: $color-blue;
+}
+
+.firstBaner {
+    padding-bottom: 100px;
+}
+
+.moreAboutUs {
+    height: 500px;
+    width: auto;
+    background: $color-background;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.randomText {
+    width: 70%;
+    text-align: center;
+    background-image: url('{questionMark}');
+    background-image: "url(" + questionMark + ")";
+}
+
+.questionPicture {
+    width: 100vw;
+}
+
+.bg {
+    background-image: url("https://cdn-images-1.medium.com/max/1600/1*-AsCrxMgm10RitulDLwD9g.png");
     height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg2 {
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("https://www.daytranslations.com/blog/wp-content/uploads/2015/09/DayTranslationsBlog-5-Effective-Tips-to-Improve-Your-Typing-Skills.jpg");
 }
