@@ -3,7 +3,13 @@ import {database} from "../../shared/Firebase";
 import Question from './Question';
 import Answer from './Answer';
 
+/*PROBLEMS TO FIX: 
+-Connect karma points
+-Write out timestamp data to the posts. {question.timestamp.toDate()} doesnt work 
+  and gives memory problems that causes app to crash
+*/
 const Profile = ({user}) => {
+  let postsNumber = 0;
   let userId; 
   if(user) {
     userId = user.uid;
@@ -24,7 +30,7 @@ const Profile = ({user}) => {
             });
             setQuestions(list);
     });
-  }, []);
+  }, [userId, postsNumber]);
 
   useEffect(() => {
     const answerCollection = database.collection('answer');
@@ -38,9 +44,9 @@ const Profile = ({user}) => {
             });
             setAnswers(list);
     });
-  }, []);
+  }, [userId, postsNumber]);
 
-  let postsNumber = 0;
+
   let questionData;
   if (questions) {
     postsNumber += questions.length;
@@ -75,8 +81,8 @@ const Profile = ({user}) => {
               <span className="karma">{0} karma points</span>
             </div>
             <div className="postWrapper">
-            {!questionData ? <li>no question data</li> : questionData}
-            {!answerData ? <li>no answer data</li> : answerData}
+            {!questionData ? <div>no question data</div> : questionData}
+            {!answerData ? <div>no answer data</div> : answerData}
             </div>
           </div>
         </div>
