@@ -77,8 +77,8 @@ const Profile = ({user}) => {
               <div className="email">{!user ? 'email@gmail.com' : user.email}</div>
             </div>
             <div className="extraProfileInfo">
-              <span className="posts">{postsNumber} posts</span>
-              <span className="karma">{0} karma points</span>
+              <span className="posts"><i className="far fa-comment"></i> {postsNumber} posts</span>
+              <span className="karma"><i className="far fa-heart"></i> {0} karma points</span>
             </div>
             <div className="postWrapper">
             {!questionData ? <div>no question data</div> : questionData}
