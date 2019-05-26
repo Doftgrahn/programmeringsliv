@@ -11,6 +11,7 @@
         width: 80%;
     }
 
+
     &:nth-child(odd) {
         background: $color-green;
     }
@@ -43,7 +44,8 @@
         }
 
         &-question {
-            margin: 10px 0;
+            //margin: 10px 0;
+            padding: 10px;
             background: $color-white;
             flex: 1;
             display: flex;
@@ -67,19 +69,26 @@
             }
 
             .postPicture-container {
+                //margin:0 auto;
+                position: relative;
                 margin-top: 10px;
-                width: 100%;
-                border-top: 2px solid black;
+                //width: 300px;
+                //height: 300px;
+                //border-top: 2px solid black;
                 //padding: 0 20px;
                 .postPicture {
+                    position: relative;
+                    object-fit: contain;
                     padding: 10px;
-                    width: 100%;
-                    height: 100%;
+                    height: 300px;
+                    width: 300px;
+                    //height: 300px;
                 }
             }
         }
 
         &-answerWrapper {
+            //margin:10px;
             padding: 10px;
             width: 100%;
             //display: block;
