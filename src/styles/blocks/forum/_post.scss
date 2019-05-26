@@ -8,7 +8,7 @@
     background: $color-orange;
     //margin-top: 10px;
     @media screen and (min-width: 800px) {
-        width: 80%;
+        width: 40%;
     }
 
     &:nth-child(odd) {
@@ -27,47 +27,66 @@
         &-userInfo {
             width: 100%;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
+            align-items: center;
+            flex-direction: row;
             padding: 10px;
 
-            h4 {
-                padding: 10px;
+            h3 {
+                margin-left: 10px;
+                padding: 0 10px;
+                //padding: 10px;
             }
 
             img {
-                height: 100px;
-                object-fit: contain;
+                height: 60px;
+                object-fit: fill;
             }
         }
 
         &-question {
+            text-align: left;
             //margin: 10px 0;
             padding: 10px;
+            width: 100%;
             background: $color-white;
-            flex: 1;
             display: flex;
-            justify-content: center;
-            align-items: flex-start;
+            //justify-content:  center;
+            //align-items: center;
             flex-direction: column;
             flex-wrap: wrap;
 
             .title {
-                padding: 0;
+                margin: 0;
             }
 
             .content_c {
-                padding: 0;
-                font-weight: bold;
+                padding: 1px;
             }
 
-            .votes {
+            .votes-container {
+                position: relative;
                 padding: 0 20px;
+                display: flex;
+                flex-direction: column;
                 margin-left: auto;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    height: 20px;
+                    width: 20px;
+                }
+
+                .upvote {
+                    transform: rotate(180deg);
+                }
+
+                .downVote {}
             }
 
             .showPictureBtn {
+                margin-right: auto;
+                width: 80px;
                 border-radius: 20px;
                 padding: 5px;
                 display: block;
