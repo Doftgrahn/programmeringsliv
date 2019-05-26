@@ -22,7 +22,7 @@ const Forum = ({user}) => {
 
         return () => (isSubscribed = false);
     }, []);
-
+    
     useEffect(() => {
         let isSubscribed = true;
         const answerCollection = database.collection(collection.answer);

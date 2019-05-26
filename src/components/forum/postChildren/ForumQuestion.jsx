@@ -1,18 +1,18 @@
 import React from "react";
 
-const ForumQuestion = ({username, title, content, votes, picture}) => {
+const ForumQuestion = ({forumData}) => {
     return (
         <div className="post_container-question">
-            <p className="votes">Votes: {votes}</p>
+            <p className="votes">Votes: {forumData.votes}</p>
 
-            <h3 className="title">{title}</h3>
-            <p className="content_c">{content}</p>
+            <h3 className="title">{forumData.title}</h3>
+            <p className="content_c">{forumData.content}</p>
 
             <div className="postPicture-container">
-                {picture ? (
+                {forumData.pictureURL ? (
                     <img
                         className="postPicture"
-                        src={picture}
+                        src={forumData.pictureURL}
                         alt="postPicture"
                     />
                 ) : null}
@@ -22,5 +22,7 @@ const ForumQuestion = ({username, title, content, votes, picture}) => {
 };
 
 export default ForumQuestion;
+
+//username, title, content, votes, picture
 
 //<p className="username">{username}</p>

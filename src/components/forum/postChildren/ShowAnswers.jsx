@@ -3,9 +3,9 @@ import React from "react";
 const ShowAnswers = ({answers}) => {
     let answer;
     if (answers) {
-        answer = answers.map((a, i) => <li key={i}>{a.question}</li>);
+        answer = answers.map((a, i) => <span key={i}>{a.question}</span>);
     }
-    return <ul>{answer}</ul>;
+    return <div>{null}</div>;
 };
 
 export default ShowAnswers;
