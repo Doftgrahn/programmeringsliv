@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 const ForumQuestion = ({forumData}) => {
+    const [isPictureVisible, setPictureVisible] = useState(false);
+
+    const togglePicture = () => setPictureVisible(!isPictureVisible);
+
     return (
         <div className="post_container-question">
             <p className="votes">Votes: {forumData.votes}</p>
@@ -8,7 +12,19 @@ const ForumQuestion = ({forumData}) => {
             <h3 className="title">{forumData.title}</h3>
             <p className="content_c">{forumData.content}</p>
 
-            <div className="postPicture-container">
+            <button
+                className={`showPictureBtn ${
+                    forumData.pictureURL ? "show" : "hidden"
+                }`}
+                onClick={togglePicture}
+            >
+                {isPictureVisible ? "Hide Picture" : "Show picture"}
+            </button>
+            <div
+                className={`postPicture-container ${
+                    isPictureVisible ? "show" : "hidden"
+                }`}
+            >
                 {forumData.pictureURL ? (
                     <img
                         className="postPicture"

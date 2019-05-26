@@ -1,8 +1,9 @@
-    import React, { Component, useState, useEffect} from "react";
-import Firebase from "firebase";
+    import React, { Component} from "react";
 import FileUploader from "react-firebase-file-uploader";
+import Firebase from "firebase";
+ 
+
 import * as firebase from "firebase/app";
-import firebaseConfig from "./../../shared/firebaseConfig";
 
 
 class AddPostPage extends Component {
@@ -76,7 +77,7 @@ class AddPostPage extends Component {
             </textarea><br/>
             <label>Picture:</label>
             {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-            {this.state.pictureURL && <img src={this.state.pictureURL} />}
+            {this.state.pictureURL && <img src={this.state.pictureURL}alt="pictureURL" />}
             <FileUploader
             accept="picture/*"
             name="picture"
