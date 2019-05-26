@@ -3,18 +3,20 @@ import React, {useState} from "react";
 import {database} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
 
-const AnswerQuestion = ({isAnswering, hideAnswerInput, user}) => {
+const AnswerQuestion = ({isAnswering, hideAnswerInput, user, forumData}) => {
     const [questionInput, setQuestionInput] = useState("");
-    const [hasValue, setHasValue] = useState(false);
 
-    const sendQuestion = () => {
+    const sendQuestion = postId => {
+        console.log("this should be the post id", postId);
         const collectionRef = database.collection(collection.answer).doc();
         if (questionInput) {
             collectionRef
                 .set({
                     question: questionInput,
                     userId: user.uid,
-                    timestamp: new Date()
+                    timestamp: new Date(),
+                    postId: postId.postId, // TODO!!!!!: Fix id, connect with post. 
+                    votes: 0
                 })
                 .then(() => console.log("Success"));
             setQuestionInput("");
@@ -35,7 +37,7 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput, user}) => {
                 onChange={event => setQuestionInput(event.target.value)}
             />
             <div className="button_container">
-                <button onClick={sendQuestion}>Send</button>
+                <button onClick={() => sendQuestion(forumData)}>Send</button>
                 <button onClick={hideAnswerInput}>Cancel</button>
             </div>
         </div>

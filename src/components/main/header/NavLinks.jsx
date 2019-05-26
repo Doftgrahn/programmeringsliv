@@ -16,16 +16,19 @@ const NavLinks = ({toggleOff, showMeny, user, logIn, logOut}) => {
             <Link className="routerLinks" to={link.to} onClick={toggleOff}>
                 {link.name}
             </Link>
-
         </li>
     ));
 
     return (
         <nav className={"navBar " + (showMeny ? "h_active" : "")}>
             <ul>
-            {navBar}
-            {!user ? <li onClick={logIn}>Log in</li> : <li onClick={logOut}>Log out</li>}
-            {!user ? null : <li>{user.userName}</li>}
+                {navBar}
+                {!user ? (
+                    <li onClick={logIn}>Log in</li>
+                ) : (
+                    <li onClick={logOut}>Log out</li>
+                )}
+                {!user ? null : <li>{user.displayName}</li>}
             </ul>
         </nav>
     );

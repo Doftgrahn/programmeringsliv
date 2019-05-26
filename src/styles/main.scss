@@ -9,7 +9,7 @@ Import Parts of page here
 --*/
 main {
     min-height: 100vh;
-    animation: routingAnimation 0.2s linear;
+    animation: routingAnimation 1s linear alternate;
 }
 @keyframes routingAnimation {
     0% {
@@ -33,8 +33,8 @@ h3 {
 
 li,
 p,
-//span,
-ul {
+span,
+ul, {
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
