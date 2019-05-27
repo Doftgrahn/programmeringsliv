@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 const NavLinks = ({toggleOff, showMeny, user, logIn, logOut}) => {
     const [links] = useState([
         {name: "Home", to: "/home"},
-        {name: "Addpost", to: "/addPost"},
+        {name: "Add new post", to: "/addPost"},
         {name: "Forum", to: "/forum"},
         {name: "Chat", to: "/chat"},
         {name: "Profile", to: "/profile"}
