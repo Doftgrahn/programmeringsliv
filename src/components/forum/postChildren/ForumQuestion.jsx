@@ -1,8 +1,11 @@
 import React, {useState} from "react";
 
+import {database} from "../../../shared/Firebase";
+import collection from "../../../shared/dbCollection";
+
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
-const ForumQuestion = ({forumData}) => {
+const ForumQuestion = ({user, forumData}) => {
     const [isPictureVisible, setPictureVisible] = useState(false);
     const togglePicture = () => setPictureVisible(!isPictureVisible);
 
@@ -11,6 +14,16 @@ const ForumQuestion = ({forumData}) => {
     };
     const downVote = () => {
         console.log("downVote");
+    };
+
+    const deletePost = data => {
+        if (data.userID === user.uid) {
+            const dbCollection = database.collection(collection.post);
+            dbCollection
+                .doc(data.postiD)
+                .delete()
+                .then(() => console.log("deleted successfully"));
+        }
     };
 
     return (
@@ -32,6 +45,11 @@ const ForumQuestion = ({forumData}) => {
                     alt="DownVote"
                 />
             </div>
+            {forumData.userID === user.uid ? (
+                <button className="deleteButton" onClick={() => deletePost(forumData)}>
+                    Delete
+                </button>
+            ) : null}
             <button
                 className={`showPictureBtn ${
                     forumData.pictureURL ? "show" : "hidden"

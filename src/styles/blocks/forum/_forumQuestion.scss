@@ -41,6 +41,19 @@
         .downVote {}
     }
 
+    .deleteButton {
+        margin-left: auto;
+        //width: 80px;
+        border-radius: 20px;
+        margin-right: 12px;
+        padding: 5px;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s;
+        //border: none;
+        background: $color-orange;
+    }
+
     .showPictureBtn {
         margin-right: auto;
         //width: 80px;

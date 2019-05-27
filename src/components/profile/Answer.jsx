@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Answer = ({ answer }) => (
-  <div className="postDiv"> Answer: 
+  <div className="postDiv"> Answer:
     <div className="answer">
       {answer.question}
     </div>
