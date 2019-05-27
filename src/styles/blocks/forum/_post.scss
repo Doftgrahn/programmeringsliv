@@ -1,18 +1,20 @@
 @import './userInfo.scss';
 @import './forumQuestion.scss';
 @import './answerQuestion.scss';
+@import './showAnswer.scss';
 
 .post {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-wrap: wrap;
     margin: 0 auto;
     width: 100%;
     //padding: 10px;
-    background: $color-white;
+    background: $color-orange;
     //margin-top: 10px;
     @media screen and (min-width: 800px) {
-        width: 70%;
+        width: 60%;
     }
 
     &:nth-child(odd) {
@@ -20,13 +22,13 @@
     }
 
     &_container {
-        border-bottom: 20px solid black;
-        padding: 20px 0;
+        border-bottom: 10px solid black;
+        //padding: 20px 0;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: flex-start;
-        flex-wrap: wrap;
+        flex-direction: column;
+        //justify-content: space-around;
+        //align-items: flex-start;
+        //flex-wrap: wrap;
         animation: fadeForumPost 0.4s linear;
     }
     @keyframes fadeForumPost {

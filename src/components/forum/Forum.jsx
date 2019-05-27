@@ -52,8 +52,6 @@ const Forum = ({user}) => {
 
     return (
         <main className="forum">
-            <h1>Forum</h1>
-
             {!forum ? <div className="loader" /> : posts}
         </main>
     );
