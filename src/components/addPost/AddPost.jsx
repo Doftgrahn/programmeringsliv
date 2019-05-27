@@ -7,6 +7,7 @@ import * as firebase from "firebase/app";
 class AddPostPage extends Component {
 
   state = {
+    votes: 0,
     title: "",
     content: "",
     picture: "",
@@ -65,26 +66,29 @@ class AddPostPage extends Component {
   render() {
     if(!this.state.postSent){
       return (
-          <div>
+          <div className="wrapper">
             <h1>Add post</h1>
             <form id="newForm" name="form">
+            <span className="title">
             <label>Title:</label>
             <input
             type="text"
             value={this.state.title}
             name="title"
             onChange={this.handleChangeTitle}
-            /><br/>
+            /></span><br/>
+            <span className="questionText">
             <label>Your question:</label>
             <textarea
             type="text"
             value={this.state.content}
             name="content"
             onChange={this.handleChangeContent}>
-            </textarea><br/>
+            </textarea></span><br/>
+            <span className="pictureUpload">
             <label>Picture:</label>
             {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-            {this.state.pictureURL && <img src={this.state.pictureURL} />}
+            {this.state.pictureURL && <img src={this.state.pictureURL} alt="" />}
             <FileUploader
             accept="picture/*"
             name="picture"
@@ -94,7 +98,7 @@ class AddPostPage extends Component {
             onUploadError={this.handleUploadError}
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
-            /><br/>
+            /></span><br/>
             </form>
             <button onClick={this.SubmitPost} className="SubmitPost">Post</button>
           </div>
