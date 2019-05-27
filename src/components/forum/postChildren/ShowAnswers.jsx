@@ -31,12 +31,8 @@ const ShowAnswers = ({answers, forumQuestion, user}) => {
                     <div className="answer-container" key={a.id}>
                         <span>Username: {a.username}</span>
                         <span>
-                            Date:
-                            {date}
-                        </span>
-                        <span>
-                            Time:
-                            {time}
+                            posted:
+                            {date} {time}
                         </span>
                         <div className="vote">
                             <img
@@ -46,6 +42,13 @@ const ShowAnswers = ({answers, forumQuestion, user}) => {
                             />
                             <span>votes: {a.votes}</span>
                             <img src={voteArrow} alt="downVote" />
+                        </div>
+
+                        <div className="answerAndDeletel-container">
+                            <p>
+                                Answer:
+                                {a.answer}
+                            </p>
                             {a.userId === user.uid ? (
                                 <button
                                     className="deleteButton"
@@ -55,11 +58,6 @@ const ShowAnswers = ({answers, forumQuestion, user}) => {
                                 </button>
                             ) : null}
                         </div>
-
-                        <p>
-                            Answer:
-                            {a.answer}
-                        </p>
                     </div>
                 );
             })}

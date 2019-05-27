@@ -14,13 +14,36 @@
             //display: block;
         }
 
-        p {
-            border-bottom: 1px solid black;
+        .answerAndDeletel-container {
+            //margin-top: 10px;
             width: 100%;
-            font-weight: bold;
-            margin: 10px;
-            padding: 10px;
-            //display: inline-block;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            border-bottom: 1px solid black;
+
+            p {
+                width: 100%;
+                font-weight: bold;
+                //margin: 10px;
+                padding: 10px;
+                //display: inline-block;
+            }
+
+            .deleteButton {
+                //margin: 5px auto 0;
+                height: 30px;
+                margin-left: auto;
+                //width: 80px;
+                border-radius: 20px;
+                margin-right: 5px;
+                padding: 0 5px;
+                outline: none;
+                cursor: pointer;
+                transition: 0.3s;
+                //border: none;
+                background: $color-orange;
+            }
         }
 
         .vote {
@@ -37,19 +60,6 @@
                 //display: inline-block;
                 height: 20px;
                 width: 20px;
-            }
-
-            .deleteButton {
-                margin-left: auto;
-                //width: 80px;
-                border-radius: 20px;
-                margin: 5px;
-                padding: 5px;
-                outline: none;
-                cursor: pointer;
-                transition: 0.3s;
-                //border: none;
-                background: $color-orange;
             }
         }
 
