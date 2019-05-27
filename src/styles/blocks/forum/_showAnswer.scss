@@ -1,0 +1,14 @@
+.answer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: auto;
+
+    .answer-container {
+        padding: 10px;
+
+        span {
+            margin: 10px;
+        }
+    }
+}
