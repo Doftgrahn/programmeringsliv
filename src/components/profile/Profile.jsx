@@ -23,7 +23,7 @@ const Profile = ({user}) => {
     postCollection.onSnapshot(snapshot => {
             const list = [];
             snapshot.forEach(doc => {
-              //console.log(doc._document.proto.fields.timestamp.timestampValue);
+              //console.log(doc._document.proto.fields.userID.stringValue);
                 if(doc._document.proto.fields.userID.stringValue === userId) {
                   list.push(doc.data());
               }
@@ -37,6 +37,7 @@ const Profile = ({user}) => {
     answerCollection.onSnapshot(snapshot => {
             const list = [];
             snapshot.forEach(doc => {
+              console.log(doc);
               //console.log(doc._document.proto.fields.userId.stringValue);
              if(doc._document.proto.fields.userId.stringValue === userId) {
               list.push(doc.data());
