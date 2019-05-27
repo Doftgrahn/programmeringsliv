@@ -15,9 +15,9 @@
         width: 70%;
     }
 
-    // &:nth-child(odd) {
-    //     background: $color-green;
-    // }
+    &:nth-child(odd) {
+        background: $color-green;
+    }
 
     &_container {
         border-bottom: 20px solid black;

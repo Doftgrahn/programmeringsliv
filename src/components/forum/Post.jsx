@@ -20,7 +20,7 @@ const Post = ({user, forumData, answers}) => {
             <div className="post_container">
                 <UserInfo forumData={forumData} />
                 <ForumQuestion forumData={forumData} />
-                <ShowAnswer answers={answers} />
+                <ShowAnswer forumQuestion={forumData} answers={answers} />
 
                 <div className="post_container-answerWrapper">
                     <div className="post_container-answerWrapper-button">
