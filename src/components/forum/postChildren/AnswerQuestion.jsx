@@ -31,12 +31,12 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput, user, forumData}) => {
                 isAnswering ? "show" : "hide"
             }`}
         >
-            <span>
+            {user ? <span>
                 Comment as:
                 <Link className="linktoProfile" to="/profile">
                     {user.displayName}
                 </Link>
-            </span>
+            </span>: ''}
             <textarea
                 placeholder="Answer Quetsion..."
                 type="text"

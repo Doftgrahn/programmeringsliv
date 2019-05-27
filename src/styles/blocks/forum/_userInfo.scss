@@ -1,28 +1,37 @@
 .post_container-userInfo {
     width: 100%;
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    //justify-content: center;
+    flex-wrap: wrap;
     padding: 10px;
 
     h3 {
-        //margin-left: 10px;
-        //padding: 0 10px;
-        //padding: 10px;
+        font-weight: bold;
+        margin: 0;
+        padding: 0 10px;
     }
 
     img {
-        height: 60px;
+        height: 100px;
         object-fit: contain;
         border-radius: 50%;
     }
 
     .time {
         display: flex;
+        align-items: center;
+        margin: 10px;
 
         span {
+            font-family: 'Open Sans', sans-serif;
+            margin-left: 4px;
+            font-weight: bold;
+            flex: 1;
+
             &:first-child {
-                margin-right: 10px;
+                //margin-right: 10px;
             }
         }
     }

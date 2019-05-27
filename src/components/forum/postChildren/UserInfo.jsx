@@ -11,6 +11,7 @@ const UserInfo = ({forumData}) => {
             <h3>{forumData.username}</h3>
             <span>{forumData.email}</span>
             <div className="time">
+                <span>posted: </span>
                 <span>{date}</span>
                 <span>{time}</span>
             </div>
