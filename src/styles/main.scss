@@ -33,12 +33,17 @@ h3 {
 
 li,
 p,
-span,
-ul, {
+ul {
+    font-size: 14px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: 0.4s;
+}
+
+button,
+textarea {
+    font-size: 14px;
 }

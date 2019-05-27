@@ -3,18 +3,18 @@ import {database} from "../../shared/Firebase";
 import Question from './Question';
 import Answer from './Answer';
 
-/*PROBLEMS TO FIX: 
+/*PROBLEMS TO FIX:
 -Connect karma points
--Write out timestamp data to the posts. {question.timestamp.toDate()} doesnt work 
+-Write out timestamp data to the posts. {question.timestamp.toDate()} doesnt work
   and gives memory problems that causes app to crash
 */
 const Profile = ({user}) => {
   let postsNumber = 0;
-  let userId; 
+  let userId;
   if(user) {
     userId = user.uid;
   }
-  
+
   const [questions, setQuestions] = useState(null);
   const [answers, setAnswers] = useState(null);
 
@@ -23,7 +23,7 @@ const Profile = ({user}) => {
     postCollection.onSnapshot(snapshot => {
             const list = [];
             snapshot.forEach(doc => {
-              //console.log(doc._document.proto.fields.timestamp.timestampValue);
+              //console.log(doc._document.proto.fields.userID.stringValue);
                 if(doc._document.proto.fields.userID.stringValue === userId) {
                   list.push(doc.data());
               }
@@ -37,6 +37,7 @@ const Profile = ({user}) => {
     answerCollection.onSnapshot(snapshot => {
             const list = [];
             snapshot.forEach(doc => {
+              console.log(doc);
               //console.log(doc._document.proto.fields.userId.stringValue);
              if(doc._document.proto.fields.userId.stringValue === userId) {
               list.push(doc.data());
@@ -68,7 +69,7 @@ const Profile = ({user}) => {
         <div className="background">
           <div className="content">
             <img
-              src={!user ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.photoURL} 
+              src={!user ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.photoURL}
               alt="avatarPic"
               className="avatar"
             />

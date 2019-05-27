@@ -1,0 +1,77 @@
+.post_container-question {
+    text-align: left;
+    padding: 10px 0;
+    width: 100%;
+    background: $color-white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .title {
+        padding: 10px;
+        margin: 0;
+        text-transform: uppercase;
+    }
+
+    .content_c {
+        padding: 10px;
+        margin: 0;
+        //padding: 0 10px;
+    }
+
+    .votes-container {
+        padding: 10px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        align-items: center;
+
+        img {
+            height: 20px;
+            width: 20px;
+            cursor: pointer;
+        }
+
+        .upvote {
+            transform: rotate(180deg);
+        }
+
+        .downVote {}
+    }
+
+    .showPictureBtn {
+        margin-right: auto;
+        //width: 80px;
+        border-radius: 20px;
+        margin: 10px;
+        padding: 5px;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s;
+        //border: none;
+        background: $color-blue;
+    }
+
+    .postPicture-container {
+        margin: 0 auto;
+        //position: relative;
+        margin-top: 10px;
+
+        .postPicture {
+            //position: relative;
+            object-fit: contain;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .show {
+        display: block;
+    }
+
+    .hidden {
+        display: none;
+    }
+}

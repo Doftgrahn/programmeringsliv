@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 import {database} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
@@ -6,16 +7,16 @@ import collection from "../../../shared/dbCollection";
 const AnswerQuestion = ({isAnswering, hideAnswerInput, user, forumData}) => {
     const [questionInput, setQuestionInput] = useState("");
 
-    const sendQuestion = postId => {
-        console.log("this should be the post id", postId);
+    const sendQuestion = post => {
         const collectionRef = database.collection(collection.answer).doc();
-        if (questionInput) {
+        if (questionInput && user) {
             collectionRef
                 .set({
-                    question: questionInput,
+                    answer: questionInput,
+                    username: user.displayName,
                     userId: user.uid,
-                    timestamp: new Date(),
-                    postId: postId.postId, // TODO!!!!!: Fix id, connect with post. 
+                    timestamp: new Date(), // postI
+                    postIdRef: post.postiD, // TODO!!!!!: Fix id, connect with post.
                     votes: 0
                 })
                 .then(() => console.log("Success"));
@@ -30,6 +31,12 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput, user, forumData}) => {
                 isAnswering ? "show" : "hide"
             }`}
         >
+            {user ? <span>
+                Comment as:
+                <Link className="linktoProfile" to="/profile">
+                    {user.displayName}
+                </Link>
+            </span>: ''}
             <textarea
                 placeholder="Answer Quetsion..."
                 type="text"

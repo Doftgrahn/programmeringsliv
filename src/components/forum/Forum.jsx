@@ -14,7 +14,7 @@ const Forum = ({user}) => {
             if (isSubscribed) {
                 const list = [];
                 snapshot.forEach(doc => {
-                    list.push(doc.data());
+                    list.push({...doc.data(), postiD: doc.id});
                 });
                 setForum(list);
             }
@@ -22,7 +22,7 @@ const Forum = ({user}) => {
 
         return () => (isSubscribed = false);
     }, []);
-    
+
     useEffect(() => {
         let isSubscribed = true;
         const answerCollection = database.collection(collection.answer);
@@ -30,7 +30,7 @@ const Forum = ({user}) => {
             if (isSubscribed) {
                 const list = [];
                 snapshot.forEach(doc => {
-                    list.push(doc.data());
+                    list.push({...doc.data(), id: doc.id});
                 });
                 setAnswer(list);
             }
@@ -42,7 +42,7 @@ const Forum = ({user}) => {
     if (forum) {
         posts = forum.map((post, index) => (
             <Post
-                key={`key: ${index}`}
+                key={` ${index}`}
                 user={user}
                 forumData={post}
                 answers={answers}
