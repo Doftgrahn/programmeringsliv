@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./styles/main.scss";
 
 import {providers, auth, database} from "./shared/Firebase";
+import './shared/FirebaseMessaging';
 import collection from "./shared/dbCollection";
 import {BrowserRouter as Router} from "react-router-dom";
 
@@ -17,7 +18,7 @@ class Programmerlingsliv extends Component {
     };
 
     logIn = () => {
-        auth.signInWithPopup(providers.FacebookProvider).then(({user}) => {
+        auth.signInWithPopup(providers.GoogleProvider).then(({user}) => {
             const objUser = {
                 userName: user.displayName,
                 userEmail: user.email,

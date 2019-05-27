@@ -1,7 +1,7 @@
 //import * as firebase from "firebase/app";
 import app from "firebase/app";
 import firebaseConfig from "./firebaseConfig";
-
+//import firebase from 'firebase';
 import "firebase/auth";
 import "firebase/firestore";
 
