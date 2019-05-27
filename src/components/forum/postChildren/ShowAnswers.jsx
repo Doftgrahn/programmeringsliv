@@ -5,7 +5,7 @@ const ShowAnswers = ({answers}) => {
     if (answers) {
         answer = answers.map((a, i) => <span key={i}>{a.question}</span>);
     }
-    return <div>{answer}</div>;
+    return <div>{null}</div>;
 };
 
 export default ShowAnswers;

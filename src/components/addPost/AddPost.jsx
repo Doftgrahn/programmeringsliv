@@ -1,6 +1,8 @@
-import React, { Component } from "react";
-import Firebase from "firebase";
+import React, { Component} from "react";
 import FileUploader from "react-firebase-file-uploader";
+import Firebase from "firebase";
+
+
 import * as firebase from "firebase/app";
 
 

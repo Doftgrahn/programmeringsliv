@@ -2,15 +2,21 @@
 @import './navbar.scss';
 
 header {
-    padding: $regular-spacing;
+    padding: 10px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background: $color-white;
+    background: $color-background;
 
-    h1 {
-        margin: 0;
+    .header_Link {
+        color: black;
+        text-decoration: none;
+
+        h1 {
+            padding: 0;
+            margin: 0;
+        }
     }
 }

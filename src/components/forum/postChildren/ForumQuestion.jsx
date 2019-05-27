@@ -1,18 +1,47 @@
-import React from "react";
+import React, {useState} from "react";
 
-const ForumQuestion = ({username, title, content, votes, picture}) => {
+import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
+
+const ForumQuestion = ({forumData}) => {
+    const [isPictureVisible, setPictureVisible] = useState(false);
+
+    const togglePicture = () => setPictureVisible(!isPictureVisible);
+
     return (
         <div className="post_container-question">
-            <h3 className="title">{title}</h3>
-            <p className="content">{content}</p>
-            <p className="votes">Votes: {votes}</p>
-            {picture ? (
-                <img className="postPicture" src={picture} alt="postPicture" />
-            ) : null}
+            <h3 className="title">{forumData.title}</h3>
+            <p className="content_c">{forumData.content}</p>
+            <button
+                className={`showPictureBtn ${
+                    forumData.pictureURL ? "show" : "hidden"
+                }`}
+                onClick={togglePicture}
+            >
+                {isPictureVisible ? "Hide Picture" : "Show picture"}
+            </button>
+            <div className="votes-container">
+                <img className="upvote" src={voteArrow} alt="upvote" />
+                <span className="votes">Votes: {forumData.votes}</span>
+                <img className="downVote" src={voteArrow} alt="DownVote" />
+            </div>
+
+            <div
+                className={`postPicture-container ${
+                    isPictureVisible ? "show" : "hidden"
+                }`}
+            >
+                {forumData.pictureURL ? (
+                    <img
+                        className="postPicture"
+                        src={forumData.pictureURL}
+                        alt="postPicture"
+                    />
+                ) : null}
+            </div>
         </div>
     );
 };
 
 export default ForumQuestion;
 
-//<p className="username">{username}</p>
+//username, title, content, votes, picture

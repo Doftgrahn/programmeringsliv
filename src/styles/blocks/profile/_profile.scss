@@ -59,6 +59,9 @@
     font-weight: bold;
     font-size: 1.1em;
 }
+.questionContent {
+    font-weight: normal;
+}
 
 .postDiv {
     padding-bottom: 20px;
@@ -69,6 +72,10 @@
             float: right;
         }
     }
+}
+
+.far {
+    display: inline;
 }
 
 /*
@@ -89,6 +96,8 @@
     }
 }*/
 
-
+/*PROBLEMS TO FIX: 
+-Background is short if theres no user data. Or if I use 100vh then when screen is bigger background will be too short
+*/
 
 

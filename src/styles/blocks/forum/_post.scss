@@ -1,152 +1,33 @@
+@import './userInfo.scss';
+@import './forumQuestion.scss';
+@import './answerQuestion.scss';
+
 .post {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
     width: 100%;
-    padding: 10px;
-    background: $color-orange;
-    margin-top: 10px;
+    //padding: 10px;
+    background: $color-white;
+    //margin-top: 10px;
     @media screen and (min-width: 800px) {
-        width: 80%;
+        width: 70%;
     }
 
-    &:nth-child(odd) {
-        background: $color-green;
-    }
+    // &:nth-child(odd) {
+    //     background: $color-green;
+    // }
 
     &_container {
-        padding: 0 20px;
+        border-bottom: 20px solid black;
+        padding: 20px 0;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        align-items: center;
+        align-items: flex-start;
         flex-wrap: wrap;
         animation: fadeForumPost 0.4s linear;
-
-        &-userInfo {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            padding: 20px;
-            background: $color-white;
-
-            h4 {
-                padding: 10px;
-            }
-
-            img {
-                height: 100px;
-                object-fit: contain;
-            }
-        }
-
-        &-question {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-
-            .username {
-                padding: 20px;
-            }
-
-            .title {
-                padding: 0 20px;
-            }
-
-            .content {
-                padding: 20px;
-                font-weight: bold;
-            }
-
-            .votes {
-                padding: 0 20px;
-                margin-left: auto;
-            }
-
-            .postPicture {
-                width: 200px;
-                height: 200px;
-            }
-        }
-
-        &-answerWrapper {
-            padding: 10px;
-            width: 100%;
-            display: block;
-
-            &-button {
-                padding: 0;
-
-                button {
-                    display: block;
-                    outline: none;
-                    cursor: pointer;
-                    transition: 0.3s;
-                    border: none;
-                    background: $color-orange;
-                }
-            }
-
-            &-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                margin-top: 20px;
-                transition: 0.2s;
-                transform-origin: left;
-
-                textarea {
-                    font-size: 18px;
-                    width: 100%;
-                    height: 300px;
-                    color: black;
-                    //background: white;
-                    background: $color-background;
-                    resize: none;
-
-                    &::placeholder {
-                        //color: black;
-                    }
-
-                    &:focus {
-                        padding: 1px;
-                    }
-                }
-
-                .button_container {
-                    display: flex;
-
-                    button {
-                        cursor: pointer;
-                        margin-right: 10px;
-                        display: block;
-                        background: $color-green;
-
-                        &:nth-child(even) {
-                            background: $color-orange;
-                        }
-                    }
-                }
-            }
-
-            .show {
-                position: relative;
-                display: block;
-                transform: scale(1);
-            }
-
-            .hide {
-                position: absolute;
-                left: 3000px;
-                transition: 0.4s;
-                transform: scale(0);
-            }
-        }
     }
     @keyframes fadeForumPost {
         0% {

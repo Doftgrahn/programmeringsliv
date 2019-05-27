@@ -42,7 +42,7 @@ const Forum = ({user}) => {
     if (forum) {
         posts = forum.map((post, index) => (
             <Post
-                key={`key: ${index}`}
+                key={` ${index}`}
                 user={user}
                 forumData={post}
                 answers={answers}
