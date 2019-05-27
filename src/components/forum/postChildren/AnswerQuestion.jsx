@@ -8,6 +8,7 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput, user, forumData}) => {
 
     const sendQuestion = postId => {
         console.log("this should be the post id", postId);
+
         const collectionRef = database.collection(collection.answer).doc();
         if (questionInput && user) {
             collectionRef
@@ -15,11 +16,11 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput, user, forumData}) => {
                     question: questionInput,
                     userId: user.uid,
                     timestamp: new Date(),
-                    postId: postId.postId, // TODO!!!!!: Fix id, connect with post.
+                    //postId: postId.postId, // TODO!!!!!: Fix id, connect with post.
                     votes: 0
                 })
                 .then(() => console.log("Success"));
-            setQuestionInput("");
+            setQuestionInput('');
             hideAnswerInput();
         }
     };

@@ -2,13 +2,7 @@
 /**/
 .forum {
     background: $color-blue;
-    //height: 100%;
-    //width: 100%;
     display: flex;
-    flex-direction:  column;
-    //padding: 20px;
-    h1 {
-        padding: $regular-spacing;
-        text-align: center;
-    }
+    flex-direction: column;
+    padding: 20px 0;
 }
