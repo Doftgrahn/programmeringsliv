@@ -24,7 +24,7 @@ const Profile = ({user}) => {
             const list = [];
             snapshot.forEach(doc => {
               //console.log(doc._document.proto.fields.userID.stringValue);
-                if(doc._document.proto.fields.userID.stringValue === userId) {
+                if(doc.data().userID === userId) {
                   list.push(doc.data());
               }
             });
@@ -39,7 +39,7 @@ const Profile = ({user}) => {
             snapshot.forEach(doc => {
               console.log(doc);
               //console.log(doc._document.proto.fields.userId.stringValue);
-             if(doc._document.proto.fields.userId.stringValue === userId) {
+             if(doc.data().userId === userId) {
               list.push(doc.data());
               }
             });
