@@ -22,7 +22,7 @@ const Forum = ({user}) => {
 
         return () => (isSubscribed = false);
     }, []);
-    
+
     useEffect(() => {
         let isSubscribed = true;
         const answerCollection = database.collection(collection.answer);
@@ -42,7 +42,7 @@ const Forum = ({user}) => {
     if (forum) {
         posts = forum.map((post, index) => (
             <Post
-                key={`key: ${index}`}
+                key={` ${index}`}
                 user={user}
                 forumData={post}
                 answers={answers}

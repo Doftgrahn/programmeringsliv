@@ -1,0 +1,28 @@
+.post_container-userInfo {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+
+    h3 {
+        //margin-left: 10px;
+        //padding: 0 10px;
+        //padding: 10px;
+    }
+
+    img {
+        height: 60px;
+        object-fit: contain;
+    }
+
+    .time {
+        display: flex;
+
+        span {
+            &:first-child {
+                margin-right: 10px;
+            }
+        }
+    }
+}
