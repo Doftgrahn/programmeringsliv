@@ -58,6 +58,7 @@ class AddPostPage extends Component {
       title: '',
       content: '',
       picture: '',
+      pictureURL: '',
       isUploading: false
     });
   }
