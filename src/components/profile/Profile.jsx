@@ -19,8 +19,10 @@ const Profile = ({user}) => {
   const [answers, setAnswers] = useState(null);
 
   useEffect(() => {
+    let isSubscribed = true;
     const postCollection = database.collection('posts');
     postCollection.onSnapshot(snapshot => {
+      if (isSubscribed) {
             const list = [];
             snapshot.forEach(doc => {
               //console.log(doc._document.proto.fields.userID.stringValue);
@@ -29,22 +31,29 @@ const Profile = ({user}) => {
               }
             });
             setQuestions(list);
+          }
     });
+    return () => (isSubscribed = false);
   }, [userId, postsNumber]);
 
   useEffect(() => {
+    let isSubscribed = true;
     const answerCollection = database.collection('answer');
     answerCollection.onSnapshot(snapshot => {
+      if (isSubscribed) {
             const list = [];
             snapshot.forEach(doc => {
-              console.log(doc);
+              
+              //console.log(doc);
               //console.log(doc._document.proto.fields.userId.stringValue);
              if(doc.data().userId === userId) {
               list.push(doc.data());
               }
             });
             setAnswers(list);
+          }
     });
+    return () => (isSubscribed = false);
   }, [userId, postsNumber]);
 
 
