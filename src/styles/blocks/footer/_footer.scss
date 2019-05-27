@@ -10,14 +10,14 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $color-white;
+    //background: $color-white;
     width: 100%;
     bottom: 0;
     left: 0;
     position: relative;
     padding-top: 40px;
   }
-  
+
   .footerContacts {
     @media (min-width: 1025px) {
       display: flex;
@@ -38,16 +38,16 @@ footer {
       padding-top: 20px;
     }
   }
-  
+
   .map {
     position: relative;
     //top: -20px;
-  
+
     h2 {
         text-align: center;
         padding-top: 0;
     }
-  
+
     img {
         width: auto;
         height: 200px;

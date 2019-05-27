@@ -3,47 +3,57 @@ import {database} from "../../shared/Firebase";
 import Question from './Question';
 import Answer from './Answer';
 
-/*PROBLEMS TO FIX: 
+/*PROBLEMS TO FIX:
 -Connect karma points
--Write out timestamp data to the posts. {question.timestamp.toDate()} doesnt work 
+-Write out timestamp data to the posts. {question.timestamp.toDate()} doesnt work
   and gives memory problems that causes app to crash
 */
 const Profile = ({user}) => {
   let postsNumber = 0;
-  let userId; 
+  let userId;
   if(user) {
     userId = user.uid;
   }
-  
+
   const [questions, setQuestions] = useState(null);
   const [answers, setAnswers] = useState(null);
 
   useEffect(() => {
+    let isSubscribed = true;
     const postCollection = database.collection('posts');
     postCollection.onSnapshot(snapshot => {
+      if (isSubscribed) {
             const list = [];
             snapshot.forEach(doc => {
-              //console.log(doc._document.proto.fields.timestamp.timestampValue);
-                if(doc._document.proto.fields.userID.stringValue === userId) {
+              //console.log(doc._document.proto.fields.userID.stringValue);
+                if(doc.data().userID === userId) {
                   list.push(doc.data());
               }
             });
             setQuestions(list);
+          }
     });
+    return () => (isSubscribed = false);
   }, [userId, postsNumber]);
 
   useEffect(() => {
+    let isSubscribed = true;
     const answerCollection = database.collection('answer');
     answerCollection.onSnapshot(snapshot => {
+      if (isSubscribed) {
             const list = [];
             snapshot.forEach(doc => {
+              
+              //console.log(doc);
               //console.log(doc._document.proto.fields.userId.stringValue);
-             if(doc._document.proto.fields.userId.stringValue === userId) {
+             if(doc.data().userId === userId) {
               list.push(doc.data());
               }
             });
             setAnswers(list);
+          }
     });
+    return () => (isSubscribed = false);
   }, [userId, postsNumber]);
 
 
@@ -68,7 +78,7 @@ const Profile = ({user}) => {
         <div className="background">
           <div className="content">
             <img
-              src={!user ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.photoURL} 
+              src={!user ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.photoURL}
               alt="avatarPic"
               className="avatar"
             />

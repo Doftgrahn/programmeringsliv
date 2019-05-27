@@ -1,6 +1,22 @@
 .post_container-answerWrapper {
-    padding: 10px;
+    padding: 20px;
     width: 100%;
+
+    span {
+
+        .linktoProfile {
+            margin: 1px;
+            text-decoration: underline;
+            color: $color-textBlack;
+            transition: 0.4s;
+
+            &:hover {
+                background: $color-orange;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
 
     &-button {
         padding: 0;

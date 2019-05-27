@@ -19,20 +19,15 @@ const Post = ({user, forumData, answers}) => {
         <article className="post">
             <div className="post_container">
                 <UserInfo forumData={forumData} />
-                <ForumQuestion forumData={forumData} />
-                <ShowAnswer answers={answers} />
-
-                <div className="post_container-answerWrapper">
-                    <div className="post_container-answerWrapper-button">
-                        <button onClick={showAnswerInput}>Answer</button>
-                    </div>
-                    <AnswerQuestion
-                        user={user}
-                        isAnswering={isAnswering}
-                        hideAnswerInput={hideAnswerInput}
-                        forumData={forumData}
-                    />
-                </div>
+                <ForumQuestion forumData={forumData} user={user} />
+                <ShowAnswer user={user} forumQuestion={forumData} answers={answers} />
+                <AnswerQuestion
+                    user={user}
+                    isAnswering={isAnswering}
+                    showAnswerInput={showAnswerInput}
+                    hideAnswerInput={hideAnswerInput}
+                    forumData={forumData}
+                />
             </div>
         </article>
     );

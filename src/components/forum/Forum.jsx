@@ -14,7 +14,7 @@ const Forum = ({user}) => {
             if (isSubscribed) {
                 const list = [];
                 snapshot.forEach(doc => {
-                    list.push(doc.data());
+                    list.push({...doc.data(), postiD: doc.id});
                 });
                 setForum(list);
             }
@@ -30,7 +30,7 @@ const Forum = ({user}) => {
             if (isSubscribed) {
                 const list = [];
                 snapshot.forEach(doc => {
-                    list.push(doc.data());
+                    list.push({...doc.data(), id: doc.id});
                 });
                 setAnswer(list);
             }
