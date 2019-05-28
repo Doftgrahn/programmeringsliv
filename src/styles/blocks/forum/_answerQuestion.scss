@@ -1,0 +1,93 @@
+.post_container-answerWrapper {
+    padding: 20px;
+    width: 100%;
+
+    span {
+        .linktoProfile {
+            margin: 1px;
+            text-decoration: underline;
+            color: $color-textBlack;
+            transition: 0.4s;
+
+            &:hover {
+                background: $color-orange;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    &-button {
+        padding: 0;
+
+        button {
+            border-radius: 20px;
+            padding: 10px;
+            display: block;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            background: $color-orange;
+        }
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        transition: 0.2s;
+        transform-origin: left;
+
+        textarea {
+            font-size: 18px;
+            width: 100%;
+            height: 300px;
+            color: $color-textBlack;
+            background: $color-background;
+            resize: none;
+
+            &::placeholder {
+                //color: black;
+            }
+
+            &:focus {
+                padding: 1px;
+            }
+        }
+
+        .button_container {
+            display: flex;
+
+            button {
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                padding: 5px;
+                cursor: pointer;
+                margin-right: 10px;
+                display: block;
+                background: $color-blue;
+
+                &:nth-child(even) {
+                    background: $color-orange;
+                }
+            }
+        }
+    }
+
+    .show {
+        position: relative;
+        display: block;
+        transform: scale(1);
+    }
+
+    .hide {
+        position: absolute;
+        left: 3000px;
+        transition: 0.4s;
+        transform: scale(0);
+    }
+}

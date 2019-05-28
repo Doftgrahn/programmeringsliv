@@ -1,8 +1,8 @@
 import React from 'react';
 
-const UserListItem = ({name, user}) => {
+const UserListItem = ({data, user, sendMessage}) => {
     return (
-        <li>{user.userName}</li>
+        <li onClick={e => sendMessage(data)}>{data.userName}</li>
     )
 }
 export default UserListItem;

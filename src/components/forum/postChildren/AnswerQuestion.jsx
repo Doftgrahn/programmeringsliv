@@ -1,20 +1,29 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
 
 import {database} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
 
-const AnswerQuestion = ({isAnswering, hideAnswerInput, user}) => {
+const AnswerQuestion = ({
+    isAnswering,
+    hideAnswerInput,
+    user,
+    forumData,
+    showAnswerInput
+}) => {
     const [questionInput, setQuestionInput] = useState("");
-    const [hasValue, setHasValue] = useState(false);
 
-    const sendQuestion = () => {
+    const sendQuestion = post => {
         const collectionRef = database.collection(collection.answer).doc();
-        if (questionInput) {
+        if (questionInput && user) {
             collectionRef
                 .set({
-                    question: questionInput,
+                    answer: questionInput,
+                    username: user.displayName,
                     userId: user.uid,
-                    timestamp: new Date()
+                    timestamp: new Date(), // postI
+                    postIdRef: post.postiD, // TODO!!!!!: Fix id, connect with post.
+                    votes: 0
                 })
                 .then(() => console.log("Success"));
             setQuestionInput("");
@@ -23,20 +32,37 @@ const AnswerQuestion = ({isAnswering, hideAnswerInput, user}) => {
     };
 
     return (
-        <div
-            className={`post_container-answerWrapper-container ${
-                isAnswering ? "show" : "hide"
-            }`}
-        >
-            <textarea
-                placeholder="Answer Quetsion..."
-                type="text"
-                value={questionInput}
-                onChange={event => setQuestionInput(event.target.value)}
-            />
-            <div className="button_container">
-                <button onClick={sendQuestion}>Send</button>
-                <button onClick={hideAnswerInput}>Cancel</button>
+        <div className="post_container-answerWrapper">
+            <div className="post_container-answerWrapper-button">
+                <button onClick={showAnswerInput}>Answer</button>
+            </div>
+            <div
+                className={`post_container-answerWrapper-container ${
+                    isAnswering ? "show" : "hide"
+                }`}
+            >
+                {user ? (
+                    <span>
+                        Comment as:
+                        <Link className="linktoProfile" to="/profile">
+                            {user.displayName}
+                        </Link>
+                    </span>
+                ) : (
+                    ""
+                )}
+                <textarea
+                    placeholder="Answer Quetsion..."
+                    type="text"
+                    value={questionInput}
+                    onChange={event => setQuestionInput(event.target.value)}
+                />
+                <div className="button_container">
+                    <button onClick={() => sendQuestion(forumData)}>
+                        Send
+                    </button>
+                    <button onClick={hideAnswerInput}>Cancel</button>
+                </div>
             </div>
         </div>
     );
