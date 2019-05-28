@@ -1,41 +1,36 @@
 import React, {useState} from "react";
 
-import UserInfo from './postChildren/UserInfo';
+import UserInfo from "./postChildren/UserInfo";
+import ForumQuestion from "./postChildren/ForumQuestion";
+import ShowAnswer from "./postChildren/ShowAnswers";
+import AnswerQuestion from "./postChildren/AnswerQuestion";
 
-import ForumQuestion from './postChildren/ForumQuestion';
-
-import AnswerQuestion from './postChildren/AnswerQuestion';
-
-const Post = ({user, forumData}) => {
-    const [username] = useState(forumData.username);
-    const [title] = useState(forumData.title);
-    const [content] = useState(forumData.content);
-    const [karma] = useState(forumData.karma);
-    //const [picture] = useState(forumData.picture);
-    //const [timestamp] = useState(forumData.timestamp);
+const Post = ({user, forumData, answers}) => {
     const [isAnswering, setIsAnswering] = useState(false);
 
     const showAnswerInput = () => {
-        setIsAnswering(true)
-    }
+        setIsAnswering(true);
+    };
     const hideAnswerInput = () => {
-        setIsAnswering(false)
-    }
+        setIsAnswering(false);
+    };
 
-    return (<article className="post">
-        {
-            !user
-                ? ''
-                : (<div className="post_container">
-                    <UserInfo user={user}/>
-                    <ForumQuestion username={username} title={title} content={content} karma={karma}/>
-                    <div className="post_container-answerWrapper">
-                        <button onClick={showAnswerInput}>Answer</button>
-                        <AnswerQuestion isAnswering={isAnswering} hideAnswerInput={hideAnswerInput}/>
-                    </div>
-                </div>)
-        }
-    </article>);
+    return (
+        <article className="post">
+            <div className="post_container">
+                <UserInfo forumData={forumData} />
+                <ForumQuestion forumData={forumData} user={user} />
+                <ShowAnswer user={user} forumQuestion={forumData} answers={answers} />
+                <AnswerQuestion
+                    user={user}
+                    isAnswering={isAnswering}
+                    showAnswerInput={showAnswerInput}
+                    hideAnswerInput={hideAnswerInput}
+                    forumData={forumData}
+                />
+            </div>
+        </article>
+    );
 };
 
 export default Post;

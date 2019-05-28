@@ -1,14 +1,15 @@
 /*--
 Import Parts of page here
 --*/
-@import './settings/_main.scss';
-@import './blocks/_main.scss';
+@import './settings/_main';
+@import './parts/_main';
+@import './blocks/_main';
 /*--
 <3
 --*/
 main {
     min-height: 100vh;
-    animation: routingAnimation 0.2s linear;
+    animation: routingAnimation 1s linear alternate;
 }
 @keyframes routingAnimation {
     0% {
@@ -31,13 +32,17 @@ h3 {
 }
 
 li,
-p,
-//span,
 ul {
+    font-size: 14px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    //-webkit-text-fill-color: transparent;
     transition: 0.4s;
+}
+
+button,
+textarea {
+    font-size: 14px;
 }

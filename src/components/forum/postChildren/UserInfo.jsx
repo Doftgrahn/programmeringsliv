@@ -1,11 +1,22 @@
-import React from 'react';
+import React, {useState} from "react";
 
-const UserInfo = ({user}) => {
-    return (<div className="post_container-userInfo">
-        <img src={user.photoURL} alt="ProfilePic"/>
-        <h3>{user.displayName}</h3>
-        <span>{user.email}</span>
-    </div>)
-}
+const UserInfo = ({forumData}) => {
+    const [timestamp] = useState(forumData.timestamp);
+    const date = timestamp.toDate().toLocaleDateString();
+    const time = timestamp.toDate().toLocaleTimeString();
+
+    return (
+        <div className="post_container-userInfo">
+            <img src={forumData.profilePic} alt="ProfilePic" />
+            <h3>{forumData.username}</h3>
+            <span>{forumData.email}</span>
+            <div className="time">
+                <span>posted: </span>
+                <span>{date}</span>
+                <span>{time}</span>
+            </div>
+        </div>
+    );
+};
 
 export default UserInfo;

@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 
+import {Link} from "react-router-dom";
+
 import NavLinks from "./NavLinks";
 import Hamburger from "./Hamburger";
 
@@ -16,7 +18,9 @@ const Header = ({user, logIn, logOut}) => {
 
     return (
         <header>
-            <h1>ProgrammingLajf</h1>
+            <Link className="header_Link" to="/home">
+                <h1>ProgrammingLajf</h1>
+            </Link>
             <NavLinks
                 toggleOff={toggleOff}
                 showMeny={showMeny}

@@ -1,13 +1,8 @@
 @import './post.scss';
 /**/
 .forum {
-    background: $color-blue;
-    height: 100%;
-    width: 100%;
-    padding: 20px;
-
-    h1 {
-        padding: $regular-spacing;
-        text-align: center;
-    }
+    //background: $color-blue;
+    display: flex;
+    flex-direction: column;
+    //padding: 20px 0;
 }

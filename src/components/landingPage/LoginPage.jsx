@@ -1,15 +1,14 @@
 import React from 'react';
-
 import { FirebaseAuth } from 'react-firebaseui';
 import firebase, { firestore } from 'firebase';
 import LandingPage from './LandingPage';
 
 
 
-class LoginPage extends React.Component {
-    state = {
+const LoginPage = (props) => {
+  /*  state = {
         signedIn: false, 
-        user: {},
+        user: null || JSON.parse(localStorage.getItem('user')),
         userName: null,
         userEmail: null,
         userPhotoURL: null,
@@ -33,7 +32,8 @@ class LoginPage extends React.Component {
                 userName: user.displayName,
                 userEmail: user.email,
                 userPhotoURL: user.photoURL,
-                id: user.uid
+                id: user.uid,
+                karma: 0
             });
             return false; // Avoid redirects after sign-in.
           }
@@ -48,10 +48,10 @@ class LoginPage extends React.Component {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 this.setState({ user });
-             //   localStorage.setItem('user', user.uid);
+                localStorage.setItem('user', JSON.stringify(user));
             } else {
                 this.setState({ user: null });
-             //   localStorage.removeItem('user');
+                localStorage.removeItem('user');
             }
         })
       }
@@ -59,42 +59,40 @@ class LoginPage extends React.Component {
       logout = (e) => {
         firebase.auth().signOut().then(() => {
             console.log('Signed Out');
-            this.setState({signedIn: false});
+            this.setState({signedIn: false, user: null});
         }).catch((error) => {
             console.log('Sign Out Error', error);
         });
-      };
+      }; */
 
-      render() {
-
-        if (!this.state.signedIn ) {
+      
+      
+        if (!props.signedIn ) {
           return (
             <div>
-              <p>Please sign-in:</p>
-              <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+              <p>Please sign-in first!</p> 
             </div>
           );
-        } else if (this.state.user) {
+        } else if (props.user) {
             return (
               <div>
                 <div>User exists!And you have loged in</div>
                 <div>
-                  user name: {this.state.userName}, user email:{" "}
-                  {this.state.userEmail},
-                  <img src={this.state.userPhotoURL} alt="pic" />
+                  user name: {props.userName}
                 </div>
-                <button onClick={this.logout}>Log out</button>
+                <button onClick={props.logout}>Log out</button>
               </div>
             ); 
-        }
-        return (
-          <div>
-            <p>this.state.signedIn = true, but theres no user data :( </p>
-            <button onClick={this.logout}>Log out</button>
-            <LandingPage />
-          </div>
-        );
-      }
-    }
+        } else {
+            return (
+              <div>
+                <p>this.state.signedIn = true, but theres no user data :( </p>
+                <button onClick={props.logout}>Log out</button>
+                <LandingPage />
+              </div>
+            ); 
+         }
+      } 
+    
 
 export default LoginPage;
