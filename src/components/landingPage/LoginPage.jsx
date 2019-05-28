@@ -1,6 +1,6 @@
 import React from 'react';
-import { FirebaseAuth } from 'react-firebaseui';
-import firebase, { firestore } from 'firebase';
+//import { FirebaseAuth } from 'react-firebaseui';
+//import firebase, { firestore } from 'firebase';
 import LandingPage from './LandingPage';
 
 

@@ -10,9 +10,9 @@ import Footer from "./components/main/footer/Footer";
 import ContentRouting from "./shared/routing";
 
 
-import firebase from 'firebase';
-
+import firebase from 'firebase/app';
 import { FirebaseAuth } from 'react-firebaseui';
+import LoginPage from './components/landingPage/LoginPage';
 
 class Programmerlingsliv extends Component {
 
@@ -115,12 +115,27 @@ state = {
     });
   };
 
+  logIn = () => {
+      alert('hello');
+      return (
+        <div>
+            <LoginPage /> 
+            <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+        </div> 
+    )
+  }
+
     render() {
         const {user} = this.state;
         return (<Router>
-            <Header user={user} /*logIn={this.logIn}*/ logOut={this.logout} />
+            <Header user={user} logIn={this.logIn} logOut={this.logout} />
             <main> 
-                {user ?  <ContentRouting user={user} /> : <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} /> }
+                {user 
+                    ?  <ContentRouting user={user} /> 
+                    : (<div> <LoginPage /> <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} /> ) 
+                    <ContentRouting user={user} /> 
+                    </div> )
+                    }
           {/* <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
                 <LoginPage signedIn={this.state.signedIn} 
                 user={user}
