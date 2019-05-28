@@ -27,9 +27,29 @@ const ForumQuestion = ({user, forumData}) => {
     const upVote = data => {
         const filterOutPost = voteList.filter(v => v.postiDRef === data.postiD);
         const votes = filterOutPost.map(e => e.votes);
-        let userId = filterOutPost.map(
-            e => (e.userIdRef !== user.uid ? e.userIdRef : user.uid)
-        );
+
+        const dbCollection = database
+            .collection(collection.votes)
+            .doc(data.postiD);
+        if (data.postiD)
+            dbCollection
+                .set({
+                    userIdRef: null,
+                    postiDRef: data.postiD,
+                    votes: +votes + 1
+                })
+                .then(() => console.log("hej"));
+
+        dbCollection.update({
+            userIdRef: arrayDb.FieldValue.arrayUnion(user.uid),
+            postiDRef: data.postiD,
+            votes: +votes + 1
+        });
+    };
+
+    const downVote = data => {
+        const filterOutPost = voteList.filter(v => v.postiDRef === data.postiD);
+        const votes = filterOutPost.map(e => e.votes);
 
         const dbCollection = database
             .collection(collection.votes)
@@ -38,16 +58,8 @@ const ForumQuestion = ({user, forumData}) => {
         dbCollection.update({
             userIdRef: arrayDb.FieldValue.arrayUnion(user.uid),
             postiDRef: data.postiD,
-            votes: +votes + 1
+            votes: votes - 1
         });
-        //
-        // dbCollection
-        //     .set({
-        //         userIdRef: user.uid,
-        //         postiDRef: data.postiD,
-        //         votes: +votes + 1
-        //     })
-        //     .then(() => console.log("Success"));
     };
 
     const deletePost = data => {
@@ -79,7 +91,12 @@ const ForumQuestion = ({user, forumData}) => {
                     Votes:{" "}
                     {!filterVotes ? "ZERO" : filterVotes.map(e => e.votes)}
                 </span>
-                <img className="downVote" src={voteArrow} alt="DownVote" />
+                <img
+                    onClick={() => downVote(forumData)}
+                    className="downVote"
+                    src={voteArrow}
+                    alt="DownVote"
+                />
             </div>
             {user && forumData.userID === user.uid ? (
                 <button
