@@ -11,6 +11,7 @@ const ShowAnswers = ({answers, forumQuestion, user}) => {
         filterAnswers = answers.filter(
             answer => answer.postIdRef === forumQuestion.postiD
         );
+
     const deleteAnswer = data => {
         console.log(data);
         if (data.userId === user.uid) {

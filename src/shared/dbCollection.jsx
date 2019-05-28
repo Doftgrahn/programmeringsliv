@@ -2,7 +2,8 @@ const collection = {
     user: "users",
     answer: "answer",
     post: "posts",
-    messages: "messages"
+    messages: "messages",
+    votes: "votes"
 };
 
 export default collection;

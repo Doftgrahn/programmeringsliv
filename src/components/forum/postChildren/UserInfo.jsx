@@ -9,7 +9,7 @@ const UserInfo = ({forumData}) => {
         <div className="post_container-userInfo">
             <img src={forumData.profilePic} alt="ProfilePic" />
             <h3>{forumData.username}</h3>
-            <span>{forumData.email}</span>
+            <span>{forumData.userEmail}</span>
             <div className="time">
                 <span>posted: </span>
                 <span>{date}</span>

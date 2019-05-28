@@ -4,14 +4,16 @@ import {Link} from "react-router-dom";
 import {database} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
 
-const AnswerQuestion = ({
-    isAnswering,
-    hideAnswerInput,
-    user,
-    forumData,
-    showAnswerInput
-}) => {
+const AnswerQuestion = ({user, forumData}) => {
     const [questionInput, setQuestionInput] = useState("");
+    const [isAnswering, setIsAnswering] = useState(false);
+
+    const showAnswerInput = () => {
+        setIsAnswering(true);
+    };
+    const hideAnswerInput = () => {
+        setIsAnswering(false);
+    };
 
     const sendQuestion = post => {
         const collectionRef = database.collection(collection.answer).doc();

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 
 import {database} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
@@ -6,14 +6,41 @@ import collection from "../../../shared/dbCollection";
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
 const ForumQuestion = ({user, forumData}) => {
+    const [voteList, setVotes] = useState([]);
     const [isPictureVisible, setPictureVisible] = useState(false);
+
     const togglePicture = () => setPictureVisible(!isPictureVisible);
 
-    const upVote = () => {
-        console.log("upvote");
-    };
-    const downVote = () => {
-        console.log("downVote");
+    useEffect(() => {
+        const vCollection = database.collection(collection.votes);
+        vCollection.onSnapshot(snapshot => {
+            const votesList = [];
+            snapshot.forEach(doc => {
+                votesList.push({...doc.data(), voteId: doc.id});
+            });
+            setVotes(votesList);
+        });
+    }, []);
+
+    const upVote = data => {
+        const filterV = voteList
+            .filter(v => v.postiDRef === data.postiD)
+            .map(e => e.votes);
+
+        const filterUser = voteList
+            .filter(u => u.postiDRef === data.postiD)
+            .map(us => us.userIdRef);
+
+        const dbCollection = database
+            .collection(collection.votes)
+            .doc(data.postiD);
+        dbCollection
+            .set({
+                userIdRef: [...filterUser, user.uid],
+                postiDRef: data.postiD,
+                votes: +filterV + 1
+            })
+            .then(() => console.log("Success"));
     };
 
     const deletePost = data => {
@@ -26,27 +53,32 @@ const ForumQuestion = ({user, forumData}) => {
         }
     };
 
+    const filterVotes = voteList.filter(
+        vote => vote.postiDRef === forumData.postiD
+    );
+
     return (
         <div className="post_container-question">
             <h3 className="title">{forumData.title}</h3>
             <p className="content_c">{forumData.content}</p>
             <div className="votes-container">
                 <img
-                    onClick={upVote}
+                    onClick={() => upVote(forumData)}
                     className="upvote"
                     src={voteArrow}
                     alt="upvote"
                 />
-                <span className="votes">Votes: {forumData.votes}</span>
-                <img
-                    onClick={downVote}
-                    className="downVote"
-                    src={voteArrow}
-                    alt="DownVote"
-                />
+                <span className="votes">
+                    Votes:{" "}
+                    {!filterVotes ? "ZERO" : filterVotes.map(e => e.votes)}
+                </span>
+                <img className="downVote" src={voteArrow} alt="DownVote" />
             </div>
-            {forumData.userID === user.uid ? (
-                <button className="deleteButton" onClick={() => deletePost(forumData)}>
+            {user && forumData.userID === user.uid ? (
+                <button
+                    className="deleteButton"
+                    onClick={() => deletePost(forumData)}
+                >
                     Delete
                 </button>
             ) : null}
@@ -77,5 +109,3 @@ const ForumQuestion = ({user, forumData}) => {
 };
 
 export default ForumQuestion;
-
-//username, title, content, votes, picture
