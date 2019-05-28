@@ -68,7 +68,7 @@ class FormPost extends Component {
 
     return (
       <div>
-      <img src={url} alt="" />
+      <img className="uploadedImage" src={url} alt="" />
       <button onClick={this.cancelImage}>Delete</button>
       </div>
     )
