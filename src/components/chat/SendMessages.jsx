@@ -54,31 +54,26 @@ const SendMessages = ({user}) => {
                 let docData = doc.data();
                 if(docData.user1 === user.uid || docData.user2 === user.uid) {
                     if (docData.user1 === sendToUser.id || docData.user2 === sendToUser.id){
-                        
                         idOnConversation = doc.id;
                         conversation = docData;
-                        console.log('nested: ', 'id: ',idOnConversation, 'conversation: ', conversation)
                     }
                 }
             })
             return sendAway(conversation, idOnConversation)
         })
-        //console.log('user: ', user);
-        //console.log('SendToUser: ', sendToUser)
-        //console.log('idOnConversation: ',idOnConversation)
     }
-    const sendAway = (senderUser, id) => {
+    const sendAway = (senderUserVar, id) => {
         const userCollection = database.collection(collection.messages);
         if(id){
-            senderUser.messages.push(messageToUser);
-            senderUser.senderUser.push(sendToUser.id);
+            senderUserVar.messages.push(messageToUser);
+            senderUserVar.senderUser.push(user.uid);
             userCollection.doc(id).set({
                 user1: user.uid,
                 user1Name: user.displayName,
                 user2: sendToUser.id,
                 user2Name: sendToUser.userName,
-                messages: senderUser.messages,
-                senderUser: senderUser.senderUser
+                messages: senderUserVar.messages,
+                senderUser: senderUserVar.senderUser
             }).then(console.log('meddelandet skickat'))
         } else {
             let obj = {
