@@ -1,13 +1,14 @@
 import React, {useState, useEffect} from "react";
 
-import {database,arrayDb} from "../../../shared/Firebase";
+import {database, arrayDb} from "../../../shared/Firebase";
+
 import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
-
 const ForumQuestion = ({user, forumData}) => {
     const [voteList, setVotes] = useState([]);
+    const [id, setId] = useState([]);
     const [isPictureVisible, setPictureVisible] = useState(false);
 
     const togglePicture = () => setPictureVisible(!isPictureVisible);
@@ -34,18 +35,19 @@ const ForumQuestion = ({user, forumData}) => {
             .collection(collection.votes)
             .doc(data.postiD);
 
-              userId = dbCollection.update({
-                userIdRef: arrayDb.FieldValue.arrayUnion(user.uid)
-            });
-
-        dbCollection
-            .set({
-                //userIdRef: userId,
-                postiDRef: data.postiD,
-                votes: +votes + 1
-            })
-            .then(() => console.log("Success"));
-
+        dbCollection.update({
+            userIdRef: arrayDb.FieldValue.arrayUnion(user.uid),
+            postiDRef: data.postiD,
+            votes: +votes + 1
+        });
+        //
+        // dbCollection
+        //     .set({
+        //         userIdRef: user.uid,
+        //         postiDRef: data.postiD,
+        //         votes: +votes + 1
+        //     })
+        //     .then(() => console.log("Success"));
     };
 
     const deletePost = data => {
