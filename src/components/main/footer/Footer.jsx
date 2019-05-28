@@ -8,10 +8,7 @@ const Footer = () => {
             <h2>Visit us here!</h2>
             <div className="mapouter">
                 <div className="gmap_canvas">
-                    <iframe title="map" width="308" height="194"  
-                    src="https://www.google.com/maps/d/u/0/embed?mid=1SpX9qy40Pi7Yd1TGesKYrzghnQcg2lp5"
-                    frameBorder="0" marginHeight="0" marginWidth="0">
-                    </iframe>
+
                 </div>
             </div>
           </div>
@@ -29,3 +26,8 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// <iframe title="map" width="308" height="194"
+// src="https://www.google.com/maps/d/u/0/embed?mid=1SpX9qy40Pi7Yd1TGesKYrzghnQcg2lp5"
+// frameBorder="0" marginHeight="0" marginWidth="0">
+// </iframe>
