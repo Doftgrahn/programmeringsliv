@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from "react";
 
-import {database} from "../../../shared/Firebase";
+import {database,arrayDb} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
+
+import app from "firebase/app";
 
 const ForumQuestion = ({user, forumData}) => {
     const [voteList, setVotes] = useState([]);
@@ -23,24 +25,28 @@ const ForumQuestion = ({user, forumData}) => {
     }, []);
 
     const upVote = data => {
-        const filterV = voteList
-            .filter(v => v.postiDRef === data.postiD)
-            .map(e => e.votes);
-
-        const filterUser = voteList
-            .filter(u => u.postiDRef === data.postiD)
-            .map(us => us.userIdRef);
+        const filterOutPost = voteList.filter(v => v.postiDRef === data.postiD);
+        const votes = filterOutPost.map(e => e.votes);
+        let userId = filterOutPost.map(
+            e => (e.userIdRef !== user.uid ? e.userIdRef : user.uid)
+        );
 
         const dbCollection = database
             .collection(collection.votes)
             .doc(data.postiD);
+
+              userId = dbCollection.update({
+                userIdRef: arrayDb.FieldValue.arrayUnion(user.uid)
+            });
+
         dbCollection
             .set({
-                userIdRef: [...filterUser, user.uid],
+                //userIdRef: userId,
                 postiDRef: data.postiD,
-                votes: +filterV + 1
+                votes: +votes + 1
             })
             .then(() => console.log("Success"));
+
     };
 
     const deletePost = data => {
