@@ -55,11 +55,13 @@ const SendMessages = ({user}) => {
                 if(docData.user1 === user.uid || docData.user2 === user.uid) {
                     if (docData.user1 === sendToUser.id || docData.user2 === sendToUser.id){
                         idOnConversation = doc.id;
+                        console.log('idOnConversation: ', idOnConversation)
                         conversation = docData;
                     }
                 }
             });
         });
+        console.log('idOnConversation: ', idOnConversation)
         if(idOnConversation){
             conversation.messages.push(messageToUser);
             conversation.senderUser.push(sendToUser.id);
@@ -76,10 +78,11 @@ const SendMessages = ({user}) => {
                 messages: [messageToUser],
                 senderUser: [user.uid]
             }
-            userCollection.add(obj).then(console.log('meddelandet skickat'))
+            userCollection.add(obj).then(console.log('meddelandet tillagt'))
         }
-        console.log('user: ', user);
-        console.log('SendToUser: ', sendToUser)
+        //console.log('user: ', user);
+        //console.log('SendToUser: ', sendToUser)
+        //console.log('idOnConversation: ',idOnConversation)
     }
     let listContent =  
         <div>
