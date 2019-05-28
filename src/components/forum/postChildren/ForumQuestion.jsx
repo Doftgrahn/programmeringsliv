@@ -5,7 +5,6 @@ import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
-import app from "firebase/app";
 
 const ForumQuestion = ({user, forumData}) => {
     const [voteList, setVotes] = useState([]);
