@@ -28,10 +28,9 @@ const ForumQuestion = ({user, forumData}) => {
             .map(e => e.votes);
 
         const filterUser = voteList
-            .filter(u => u.userIdRef === user.id)
+            .filter(u => u.postiDRef === data.postiD)
             .map(us => us.userIdRef);
 
-console.log(filterUser);
         const dbCollection = database
             .collection(collection.votes)
             .doc(data.postiD);
@@ -42,9 +41,7 @@ console.log(filterUser);
                 votes: +filterV + 1
             })
             .then(() => console.log("Success"));
-
     };
-
 
     const deletePost = data => {
         if (data.userID === user.uid) {
