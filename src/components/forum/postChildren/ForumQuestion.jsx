@@ -8,6 +8,7 @@ import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 const ForumQuestion = ({user, forumData}) => {
     const [voteList, setVotes] = useState([]);
     const [isPictureVisible, setPictureVisible] = useState(false);
+
     const togglePicture = () => setPictureVisible(!isPictureVisible);
 
     useEffect(() => {
@@ -73,7 +74,7 @@ const ForumQuestion = ({user, forumData}) => {
                 </span>
                 <img className="downVote" src={voteArrow} alt="DownVote" />
             </div>
-            {forumData.userID === user.uid ? (
+            {user && forumData.userID === user.uid ? (
                 <button
                     className="deleteButton"
                     onClick={() => deletePost(forumData)}
