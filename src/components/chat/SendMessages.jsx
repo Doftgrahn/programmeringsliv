@@ -46,6 +46,40 @@ const SendMessages = ({user}) => {
         setSendMessageState(false);
         setSendToUser(null);
         setMessageToUser(null);
+        const userCollection = database.collection(collection.messages);
+        let idOnConversation = null;
+        let conversation = null;
+        userCollection.get().then(snapshot => {
+            snapshot.forEach(doc => {
+                let docData = doc.data();
+                if(docData.user1 === user.uid || docData.user2 === user.uid) {
+                    if (docData.user1 === sendToUser.id || docData.user2 === sendToUser.id){
+                        idOnConversation = doc.id;
+                        conversation = docData;
+                    }
+                }
+            });
+        });
+        if(idOnConversation){
+            conversation.messages.push(messageToUser);
+            conversation.senderUser.push(sendToUser.id);
+            userCollection.doc(idOnConversation).set({
+                messages: conversation.messages,
+                senderUser: conversation.senderUser
+            }).then(console.log('meddelandet skickat'))
+        } else {
+            let obj = {
+                user1: user.uid,
+                user1Name: user.displayName,
+                user2: sendToUser.id,
+                user2Name: sendToUser.userName,
+                messages: [messageToUser],
+                senderUser: [user.uid]
+            }
+            userCollection.add(obj).then(console.log('meddelandet skickat'))
+        }
+        console.log('user: ', user);
+        console.log('SendToUser: ', sendToUser)
     }
     let listContent =  
         <div>
