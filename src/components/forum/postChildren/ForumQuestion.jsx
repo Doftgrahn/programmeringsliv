@@ -1,46 +1,74 @@
 import React, {useState, useEffect} from "react";
 
 import {database} from "../../../shared/Firebase";
+
 import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
 const ForumQuestion = ({user, forumData}) => {
-    const [voteList, setVotes] = useState([]);
+    const [votePostId, setPostId] = useState([]);
+    const [whatValue, setWhatValue] = useState(null);
+
     const [isPictureVisible, setPictureVisible] = useState(false);
 
     const togglePicture = () => setPictureVisible(!isPictureVisible);
 
-    useEffect(() => {
-        const vCollection = database.collection(collection.votes);
-        vCollection.onSnapshot(snapshot => {
-            const votesList = [];
-            snapshot.forEach(doc => {
-                votesList.push({...doc.data(), voteId: doc.id});
-            });
-            setVotes(votesList);
-        });
-    }, []);
+    useEffect(
+        () => {
+            const vCollection = database.collection(collection.votes);
+            let unsubscribe = vCollection
+                .where("postId", "==", forumData.postiD)
+                .onSnapshot(snapshot => {
+                    const idList = [];
+                    snapshot.forEach(doc => {
+                        idList.push({...doc.data(), id: doc.id});
+                    });
+                    setPostId(idList);
+                });
+            return unsubscribe;
+        },
+        [forumData.postiD]
+    );
+    let hasVoted;
+    if (user) hasVoted = votePostId.find(post => post.userId === user.uid);
 
-    const upVote = data => {
-        const filterV = voteList
-            .filter(v => v.postiDRef === data.postiD)
-            .map(e => e.votes);
+    const upVote = postData => {
+        if (user && !hasVoted) {
+            const votes = votePostId
+                .map(e => e.vote)
+                .reduce((a, b) => +a + +b, 0);
 
-        const filterUser = voteList
-            .filter(u => u.postiDRef === data.postiD)
-            .map(us => us.userIdRef);
+            const vote = {
+                userId: user.uid,
+                postId: postData.postiD,
+                vote: votes + 1
+            };
+            const votePath = `${vote.userId}###${vote.postId}`;
+            const dbCollection = database
+                .collection(collection.votes)
+                .doc(votePath);
+            dbCollection.set(vote).then(() => console.log("Success"));
+        }
+    };
 
-        const dbCollection = database
-            .collection(collection.votes)
-            .doc(data.postiD);
-        dbCollection
-            .set({
-                userIdRef: [...filterUser, user.uid],
-                postiDRef: data.postiD,
-                votes: +filterV + 1
-            })
-            .then(() => console.log("Success"));
+    const downVote = postData => {
+        if (!hasVoted) {
+            const votes = votePostId
+                .map(e => e.vote)
+                .reduce((a, b) => +a + +b, 0);
+
+            const vote = {
+                userId: user.uid,
+                postId: postData.postiD,
+                vote: votes - 1
+            };
+            const votePath = `${vote.userId}###${vote.postId}`;
+            const dbCollection = database
+                .collection(collection.votes)
+                .doc(votePath);
+            dbCollection.set(vote).then(() => console.log("Success"));
+        }
     };
 
     const deletePost = data => {
@@ -53,9 +81,7 @@ const ForumQuestion = ({user, forumData}) => {
         }
     };
 
-    const filterVotes = voteList.filter(
-        vote => vote.postiDRef === forumData.postiD
-    );
+    const filterVotes = votePostId;
 
     return (
         <div className="post_container-question">
@@ -69,10 +95,17 @@ const ForumQuestion = ({user, forumData}) => {
                     alt="upvote"
                 />
                 <span className="votes">
-                    Votes:{" "}
-                    {!filterVotes ? "ZERO" : filterVotes.map(e => e.votes)}
+                    Votes:
+                    {filterVotes.length === 0
+                        ? 0
+                        : filterVotes.map(e => e.vote)}
                 </span>
-                <img className="downVote" src={voteArrow} alt="DownVote" />
+                <img
+                    onClick={() => downVote(forumData)}
+                    className="downVote"
+                    src={voteArrow}
+                    alt="DownVote"
+                />
             </div>
             {user && forumData.userID === user.uid ? (
                 <button
@@ -109,3 +142,16 @@ const ForumQuestion = ({user, forumData}) => {
 };
 
 export default ForumQuestion;
+
+/*
+useEffect(() => {
+    const vCollection = database.collection(collection.votes);
+    vCollection.onSnapshot(snapshot => {
+        const votesList = [];
+        snapshot.forEach(doc => {
+            votesList.push({...doc.data(), voteId: doc.id});
+        });
+        setVotes(votesList);
+    });
+}, []);
+*/

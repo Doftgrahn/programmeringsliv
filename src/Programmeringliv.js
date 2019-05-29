@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import "./styles/main.scss";
 
 //import {providers, auth, database} from "./shared/Firebase";
+import "./shared/FirebaseMessaging";
 //import collection from "./shared/dbCollection";
 import {BrowserRouter as Router} from "react-router-dom";
 
