@@ -114,7 +114,7 @@ state = {
   logout = (e) => {
     firebase.auth().signOut().then(() => {
         console.log('Signed Out');
-        this.setState({signedIn: false/*, user: null*/});
+        this.setState({signedIn: false, isOpen: false /*, user: null*/});
     }).catch((error) => {
         console.log('Sign Out Error', error);
     });
@@ -129,8 +129,11 @@ state = {
         return (<Router>
             <Header user={user} logIn={this.logIn} logOut={this.logout} />
             <main> 
-                <Dialog isOpen={this.state.isOpen && !this.state.user} onClose={e => this.setState({isOpen: false})} >
-                        <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                <Dialog isOpen={this.state.isOpen && !this.state.user} 
+                        onClose={e => this.setState({isOpen: false})} >
+
+                        <FirebaseAuth uiConfig={this.uiConfig} 
+                                    firebaseAuth={firebase.auth()} />
                 </Dialog>
                 <ContentRouting user={user} /> 
             </main>

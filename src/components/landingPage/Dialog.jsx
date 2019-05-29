@@ -14,7 +14,7 @@ class Dialog extends React.Component {
             </div>
         );
 
-        if(!this.props.isOpen) {
+        if(!this.props.isOpen && !this.props.user) {
             dialog = null;
         }
     return (
