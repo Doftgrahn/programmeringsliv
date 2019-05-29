@@ -1,6 +1,7 @@
 import React from "react";
 import FormPost from "./FormPost"
 import Writer from "./PostWriter"
+import LastPosts from "./LastPosts"
 
 const AddPostPage = ({user}) => {
 
@@ -12,6 +13,9 @@ const AddPostPage = ({user}) => {
       </div>
       <div className="mainForm">
       <FormPost user={user}/>
+      </div>
+      <div className="lastPosts">
+      <LastPosts/>
       </div>
     </div>
   )
