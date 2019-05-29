@@ -61,12 +61,33 @@ class FormPost extends Component {
     });
   }
 
+  showImage = (url) => {
+    if (!url) {
+      return
+    }
+
+    return (
+      <div>
+      <img className="uploadedImage" src={url} alt="" />
+      <button onClick={this.cancelImage}>Delete</button>
+      </div>
+    )
+  }
+
+  cancelImage = (url) => {
+    this.setState({
+        isUploading: false,
+        picture: "",
+        pictureURL: ""
+    })
+    console.log('url', this.state.pictureURL);
+  }
+
   render() {
     if(!this.state.postSent){
       return (
           <div className="wrapper">
-            <h1>Add post</h1>
-            <form id="newForm" name="form">
+            <div id="newForm">
             <span className="title">
             <label>Title:</label>
             <input
@@ -86,7 +107,7 @@ class FormPost extends Component {
             <span className="pictureUpload">
             <label>Picture:</label>
             {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-            {this.state.pictureURL && <img src={this.state.pictureURL} alt="" />}
+            {this.showImage(this.state.pictureURL)}
             <FileUploader
             accept="picture/*"
             name="picture"
@@ -97,7 +118,7 @@ class FormPost extends Component {
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
             /></span><br/>
-            </form>
+            </div>
             <button onClick={this.SubmitPost} className="SubmitPost">Post</button>
           </div>
       )
