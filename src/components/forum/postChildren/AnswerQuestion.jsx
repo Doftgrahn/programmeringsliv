@@ -54,7 +54,7 @@ const AnswerQuestion = ({user, forumData}) => {
                     ""
                 )}
                 <textarea
-                    placeholder="Answer Quetsion..."
+                    placeholder="Answer Question..."
                     type="text"
                     value={questionInput}
                     onChange={event => setQuestionInput(event.target.value)}

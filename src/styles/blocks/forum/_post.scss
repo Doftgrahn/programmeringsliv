@@ -14,7 +14,7 @@
     background: $color-orange;
     //margin-top: 10px;
     @media screen and (min-width: 800px) {
-        width: 60%;
+        width: 40%;
     }
 
     &:nth-child(odd) {
@@ -22,13 +22,13 @@
     }
 
     &_container {
-        border-bottom: 10px solid black;
+        //border-bottom: 10px solid black;
         //padding: 20px 0;
         display: flex;
         flex-direction: column;
-        //justify-content: space-around;
-        //align-items: flex-start;
-        //flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
         animation: fadeForumPost 0.4s linear;
     }
     @keyframes fadeForumPost {
