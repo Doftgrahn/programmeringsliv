@@ -10,16 +10,16 @@ const Post = ({user, forumData, answers}) => {
         <article className="post">
             <div className="post_container">
                 <UserInfo forumData={forumData} />
+
                 <ForumQuestion forumData={forumData} user={user} />
-                {!user ? null : (
-                    <AnswerQuestion user={user} forumData={forumData} />
-                )}
                 <ShowAnswer
                     user={user}
                     forumQuestion={forumData}
                     answers={answers}
                 />
-
+                {!user ? null : (
+                    <AnswerQuestion user={user} forumData={forumData} />
+                )}
             </div>
         </article>
     );

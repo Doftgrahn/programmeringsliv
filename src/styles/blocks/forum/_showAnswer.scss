@@ -1,13 +1,14 @@
 .answer {
     width: 100%;
-    //padding:10px;
+
     .answer-container {
-        padding: 10px;
+        background: $color-purple;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
+        padding: 18px;
 
         .answer-photo {
             width: 60px;
@@ -22,7 +23,8 @@
         }
 
         span {
-            margin: 10px;
+            padding: 10px;
+            margin: 0 10px;
             //display: block;
         }
 
@@ -35,25 +37,24 @@
             border-bottom: 1px solid black;
 
             p {
-                width: 100%;
-                font-weight: bold;
+                //width: 100%;
+                //font-weight: bold;
                 //margin: 10px;
-                padding: 10px;
+                //padding: 10px;
                 //display: inline-block;
             }
 
             .deleteButton {
-                //margin: 5px auto 0;
+                margin: 5px auto 0;
                 height: 30px;
-                margin-left: auto;
                 //width: 80px;
                 border-radius: 20px;
-                margin-right: 5px;
-                padding: 0 5px;
+                margin-right: 8px;
+                padding: 0 10px;
                 outline: none;
                 cursor: pointer;
                 transition: 0.3s;
-                //border: none;
+                border: blue;
                 background: $color-orange;
             }
         }
