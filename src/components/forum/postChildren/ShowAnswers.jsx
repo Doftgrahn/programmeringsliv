@@ -13,7 +13,6 @@ const ShowAnswers = ({answers, forumQuestion, user}) => {
         );
 
     const deleteAnswer = data => {
-        console.log(data);
         if (data.userId === user.uid) {
             const dbCollection = database.collection(collection.answer);
             dbCollection
@@ -50,7 +49,7 @@ const ShowAnswers = ({answers, forumQuestion, user}) => {
                                 Answer:
                                 {a.answer}
                             </p>
-                            {a.userId === user.uid ? (
+                            {user && a.userId === user.uid ? (
                                 <button
                                     className="deleteButton"
                                     onClick={() => deleteAnswer(a)}

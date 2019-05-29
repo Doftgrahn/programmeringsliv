@@ -9,10 +9,14 @@ import "firebase/storage";
 
 app.initializeApp(firebaseConfig);
 
+// app.firestore().settings({
+//     cacheSizeBytes: app.firestore.CACHE_SIZE_UNLIMITED
+// });
+//
+// app.firestore().enablePersistence();
 
 export const auth = app.auth();
 export const database = app.firestore();
-export const arrayDb = app.firestore;
 export const storage = app.storage();
 
 export const providers = {

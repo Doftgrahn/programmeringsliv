@@ -16,7 +16,9 @@ const Post = ({user, forumData, answers}) => {
                     forumQuestion={forumData}
                     answers={answers}
                 />
-                <AnswerQuestion user={user} forumData={forumData} />
+                {!user ? null : (
+                    <AnswerQuestion user={user} forumData={forumData} />
+                )}
             </div>
         </article>
     );

@@ -1,66 +1,73 @@
 import React, {useState, useEffect} from "react";
 
-import {database, arrayDb} from "../../../shared/Firebase";
+import {database} from "../../../shared/Firebase";
 
 import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
 const ForumQuestion = ({user, forumData}) => {
-    const [voteList, setVotes] = useState([]);
-    const [id, setId] = useState([]);
+    //const [voteIds, setVoteId] = useState([]);
+    const [votePostId, setPostId] = useState([]);
     const [isPictureVisible, setPictureVisible] = useState(false);
 
     const togglePicture = () => setPictureVisible(!isPictureVisible);
 
-    useEffect(() => {
-        const vCollection = database.collection(collection.votes);
-        vCollection.onSnapshot(snapshot => {
-            const votesList = [];
-            snapshot.forEach(doc => {
-                votesList.push({...doc.data(), voteId: doc.id});
-            });
-            setVotes(votesList);
-        });
-    }, []);
+    useEffect(
+        () => {
+            const vCollection = database.collection(collection.votes);
+            let unsubscribe = vCollection
+                .where("postId", "==", forumData.postiD)
+                .onSnapshot(snapshot => {
+                    const idList = [];
+                    snapshot.forEach(doc => {
+                        idList.push({...doc.data(), id: doc.id});
+                    });
+                    setPostId(idList);
+                });
+            return unsubscribe;
+        },
+        [forumData.postiD]
+    );
 
-    const upVote = data => {
-        const filterOutPost = voteList.filter(v => v.postiDRef === data.postiD);
-        const votes = filterOutPost.map(e => e.votes);
-        const id = filterOutPost.map(e => e.userIdRef);
+    let hasVoted = votePostId.find(post => post.userId === user.uid);
 
-        const dbCollection = database
-            .collection(collection.votes)
-            .doc(data.postiD);
-        if (!id)
-            dbCollection
-                .set({
-                    userIdRef: [id],
-                    postiDRef: data.postiD,
-                    votes: +votes + 1
-                })
-                .then(() => console.log("hej"));
+    const upVote = postData => {
+        if (!hasVoted) {
+            const votes = votePostId
+                .map(e => e.vote)
+                .reduce((a, b) => +a + +b, 0);
 
-        dbCollection.update({
-            userIdRef: arrayDb.FieldValue.arrayUnion(user.uid),
-            postiDRef: data.postiD,
-            votes: +votes + 1
-        });
+            const vote = {
+                userId: user.uid,
+                postId: postData.postiD,
+                vote: votes + 1
+            };
+            const votePath = `${vote.userId}###${vote.postId}`;
+            const dbCollection = database
+                .collection(collection.votes)
+                .doc(votePath);
+            dbCollection.set(vote).then(() => console.log("Success"));
+        }
     };
 
-    const downVote = data => {
-        const filterOutPost = voteList.filter(v => v.postiDRef === data.postiD);
-        const votes = filterOutPost.map(e => e.votes);
+    const downVote = postData => {
+        if (!hasVoted) {
+            const votes = votePostId
+                .map(e => e.vote)
+                .reduce((a, b) => +a + +b, 0);
 
-        const dbCollection = database
-            .collection(collection.votes)
-            .doc(data.postiD);
-
-        dbCollection.update({
-            userIdRef: arrayDb.FieldValue.arrayUnion(user.uid),
-            postiDRef: data.postiD,
-            votes: votes - 1
-        });
+            const vote = {
+                userId: user.uid,
+                postId: postData.postiD,
+                vote: votes - 1
+            };
+            const votePath = `${vote.userId}###${vote.postId}`;
+            const dbCollection = database
+                .collection(collection.votes)
+                .doc(votePath);
+            dbCollection.set(vote).then(() => console.log("Success"));
+        }
     };
 
     const deletePost = data => {
@@ -73,9 +80,7 @@ const ForumQuestion = ({user, forumData}) => {
         }
     };
 
-    const filterVotes = voteList.filter(
-        vote => vote.postiDRef === forumData.postiD
-    );
+    const filterVotes = votePostId;
 
     return (
         <div className="post_container-question">
@@ -89,8 +94,7 @@ const ForumQuestion = ({user, forumData}) => {
                     alt="upvote"
                 />
                 <span className="votes">
-                    Votes:{" "}
-                    {!filterVotes ? "ZERO" : filterVotes.map(e => e.votes)}
+                    Votes: {!filterVotes ? "sup" : filterVotes.map(e => e.vote)}
                 </span>
                 <img
                     onClick={() => downVote(forumData)}
@@ -134,3 +138,16 @@ const ForumQuestion = ({user, forumData}) => {
 };
 
 export default ForumQuestion;
+
+/*
+useEffect(() => {
+    const vCollection = database.collection(collection.votes);
+    vCollection.onSnapshot(snapshot => {
+        const votesList = [];
+        snapshot.forEach(doc => {
+            votesList.push({...doc.data(), voteId: doc.id});
+        });
+        setVotes(votesList);
+    });
+}, []);
+*/
