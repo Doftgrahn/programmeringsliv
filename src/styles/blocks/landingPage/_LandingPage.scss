@@ -88,7 +88,31 @@
 }
 
 
-.firebaseui-idp-text {
-    //-webkit-text-fill-color: rgba(0,0,0,.87);
+.dialogWindow {
+    background: #eee;
+    width: 500px;
+    max-width: 100%;
+    margin: 0 auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    padding: 10px 20px 40px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.dialogButton {
+    margin-bottom: 15px;
+    padding: 3px 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    width: 38px;
+    height: 38px;
+    font-weight: bold;
+    align-self: flex-end;
 }
 

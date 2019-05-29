@@ -12,7 +12,9 @@ import ContentRouting from "./shared/routing";
 
 import firebase from 'firebase/app';
 import { FirebaseAuth } from 'react-firebaseui';
-import LoginPage from './components/landingPage/LoginPage';
+
+
+import Dialog from './components/landingPage/Dialog';
 
 class Programmerlingsliv extends Component {
 
@@ -63,6 +65,8 @@ state = {
     userEmail: null,
     userPhotoURL: null,
     id: null,
+
+    isOpen: false
 };
 
   uiConfig = {
@@ -115,14 +119,8 @@ state = {
     });
   };
 
-  logIn = () => {
-      alert('hello');
-      return (
-        <div>
-            <LoginPage /> 
-            <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
-        </div> 
-    )
+  logIn = (e) => {
+      this.setState({isOpen: true})
   }
 
     render() {
@@ -130,19 +128,10 @@ state = {
         return (<Router>
             <Header user={user} logIn={this.logIn} logOut={this.logout} />
             <main> 
-                {user 
-                    ?  <ContentRouting user={user} /> 
-                    : (<div> <LoginPage /> <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} /> ) 
-                    <ContentRouting user={user} /> 
-                    </div> )
-                    }
-          {/* <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
-                <LoginPage signedIn={this.state.signedIn} 
-                user={user}
-                userName={this.state.userName}
-                logout={this.logout}
-                />
-        <ContentRouting user={user} /> */}
+                <Dialog isOpen={this.state.isOpen && !this.state.user} onClose={e => this.setState({isOpen: false})} >
+                        <FirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                </Dialog>
+                <ContentRouting user={user} /> 
             </main>
             <Footer/>
         </Router>);
