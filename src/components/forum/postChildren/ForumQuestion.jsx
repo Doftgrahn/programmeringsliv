@@ -30,11 +30,11 @@ const ForumQuestion = ({user, forumData}) => {
         },
         [forumData.postiD]
     );
-
-    let hasVoted = votePostId.find(post => post.userId === user.uid);
+    let hasVoted;
+    if (user) hasVoted = votePostId.find(post => post.userId === user.uid);
 
     const upVote = postData => {
-        if (!hasVoted) {
+        if (user && !hasVoted) {
             const votes = votePostId
                 .map(e => e.vote)
                 .reduce((a, b) => +a + +b, 0);
