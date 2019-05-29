@@ -3,6 +3,7 @@ import {database} from './Firebase';
 
 
 const messaging = firebase.messaging();
+
 messaging.usePublicVapidKey("BLkOAODmGtvAnhY9Y2TEbPzTG42DROonh5BP_kjCH0I1OjkzvVD_S2MIKdVVua3otWWB3lOWVLQaAWficUaNAR4");
 
 export const initializeApp = () => {

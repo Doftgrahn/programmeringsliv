@@ -22,6 +22,7 @@ const AnswerQuestion = ({user, forumData}) => {
                 .set({
                     answer: questionInput,
                     username: user.displayName,
+                    photoURL: user.photoURL,
                     userId: user.uid,
                     timestamp: new Date(), // postI
                     postIdRef: post.postiD, // TODO!!!!!: Fix id, connect with post.

@@ -8,7 +8,7 @@ import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
 const ForumQuestion = ({user, forumData}) => {
     const [votePostId, setPostId] = useState([]);
-    const [whatVoted, setWhatVoted] = useState(null);
+    //const [whatVoted, setWhatVoted] = useState(null);
 
     const [isPictureVisible, setPictureVisible] = useState(false);
 
@@ -30,6 +30,7 @@ const ForumQuestion = ({user, forumData}) => {
         },
         [forumData.postiD]
     );
+
     let hasVoted;
     if (user) hasVoted = votePostId.find(post => post.userId === user.uid);
 
@@ -77,7 +78,7 @@ const ForumQuestion = ({user, forumData}) => {
             dbCollection
                 .doc(data.postiD)
                 .delete()
-                .then(() => console.log("deleted successfully"));
+                .then(() => console.log("Deleted successfully"));
         }
     };
 
