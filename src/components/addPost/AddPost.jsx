@@ -7,7 +7,7 @@ const AddPostPage = ({user}) => {
 
   return (
     <div className="wrapper">
-      <h1>Add post</h1>
+      <h2>Add post</h2>
       <div className="writerProfile">
         <Writer user={user}/>
       </div>
