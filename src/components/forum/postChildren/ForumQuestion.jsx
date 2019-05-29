@@ -27,14 +27,15 @@ const ForumQuestion = ({user, forumData}) => {
     const upVote = data => {
         const filterOutPost = voteList.filter(v => v.postiDRef === data.postiD);
         const votes = filterOutPost.map(e => e.votes);
+        const id = filterOutPost.map(e => e.userIdRef);
 
         const dbCollection = database
             .collection(collection.votes)
             .doc(data.postiD);
-        if (data.postiD)
+        if (!id)
             dbCollection
                 .set({
-                    userIdRef: null,
+                    userIdRef: [id],
                     postiDRef: data.postiD,
                     votes: +votes + 1
                 })
