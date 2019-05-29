@@ -7,8 +7,9 @@ import collection from "../../../shared/dbCollection";
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
 const ForumQuestion = ({user, forumData}) => {
-    //const [voteIds, setVoteId] = useState([]);
     const [votePostId, setPostId] = useState([]);
+    const [whatValue, setWhatValue] = useState(null);
+
     const [isPictureVisible, setPictureVisible] = useState(false);
 
     const togglePicture = () => setPictureVisible(!isPictureVisible);
@@ -94,7 +95,10 @@ const ForumQuestion = ({user, forumData}) => {
                     alt="upvote"
                 />
                 <span className="votes">
-                    Votes: {!filterVotes ? "sup" : filterVotes.map(e => e.vote)}
+                    Votes:
+                    {filterVotes.length === 0
+                        ? 0
+                        : filterVotes.map(e => e.vote)}
                 </span>
                 <img
                     onClick={() => downVote(forumData)}
