@@ -8,7 +8,7 @@ import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
 const ForumQuestion = ({user, forumData}) => {
     const [votePostId, setPostId] = useState([]);
-    const [whatValue, setWhatValue] = useState(null);
+    const [whatVoted, setWhatVoted] = useState(null);
 
     const [isPictureVisible, setPictureVisible] = useState(false);
 
@@ -16,7 +16,7 @@ const ForumQuestion = ({user, forumData}) => {
 
     useEffect(
         () => {
-            const vCollection = database.collection(collection.votes);
+            const vCollection = database.collection(collection.votes_posts);
             let unsubscribe = vCollection
                 .where("postId", "==", forumData.postiD)
                 .onSnapshot(snapshot => {
@@ -37,26 +37,26 @@ const ForumQuestion = ({user, forumData}) => {
         if (user && !hasVoted) {
             const votes = votePostId
                 .map(e => e.vote)
-                .reduce((a, b) => +a + +b, 0);
-
+                .reduce((a, b) => a + b, 0);
             const vote = {
                 userId: user.uid,
                 postId: postData.postiD,
                 vote: votes + 1
             };
+
             const votePath = `${vote.userId}###${vote.postId}`;
             const dbCollection = database
-                .collection(collection.votes)
+                .collection(collection.votes_posts)
                 .doc(votePath);
             dbCollection.set(vote).then(() => console.log("Success"));
         }
     };
 
     const downVote = postData => {
-        if (!hasVoted) {
+        if (user && !hasVoted) {
             const votes = votePostId
                 .map(e => e.vote)
-                .reduce((a, b) => +a + +b, 0);
+                .reduce((a, b) => a + b, 0);
 
             const vote = {
                 userId: user.uid,
@@ -65,7 +65,7 @@ const ForumQuestion = ({user, forumData}) => {
             };
             const votePath = `${vote.userId}###${vote.postId}`;
             const dbCollection = database
-                .collection(collection.votes)
+                .collection(collection.votes_posts)
                 .doc(votePath);
             dbCollection.set(vote).then(() => console.log("Success"));
         }
