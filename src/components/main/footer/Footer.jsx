@@ -1,4 +1,5 @@
 import React from "react";
+import map from '../../../assets/map.png';
 
 const Footer = () => {
     return (
@@ -8,7 +9,7 @@ const Footer = () => {
             <h2>Visit us here!</h2>
             <div className="mapouter">
                 <div className="gmap_canvas">
-
+                  <img src={map} alt="map" />
                 </div>
             </div>
           </div>

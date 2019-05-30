@@ -11,7 +11,7 @@ return (
             <div className="questionContent">{question.content}</div>
                 <div className="postMetadata">
                     <span className="date">{date} {time}</span>
-                    <span className="votes">{question.votes} votes</span>
+                    {/*<span className="votes">{question.votes} votes</span>*/}
                 </div>
         </div>
     </div>
