@@ -35,27 +35,30 @@ const ForumQuestion = ({user, forumData}) => {
     if (user) hasVoted = votePostId.find(post => post.userId === user.uid);
 
     const upVote = postData => {
-        if (user && !hasVoted) {
+        if (user && hasVoted) {
             const votes = votePostId
+                .filter(f => f.postId === forumData.postiD)
                 .map(e => e.vote)
                 .reduce((a, b) => a + b, 0);
+            console.log("hej", votes);
             const vote = {
                 userId: user.uid,
                 postId: postData.postiD,
                 vote: votes + 1
             };
 
-            const votePath = `${vote.userId}###${vote.postId}`;
+            const votePathiD = `${vote.userId}_###_${vote.postId}`;
             const dbCollection = database
                 .collection(collection.votes_posts)
-                .doc(votePath);
-            dbCollection.set(vote).then(() => console.log("Success"));
+                .doc(votePathiD);
+            dbCollection.set(vote).then(() => console.log("Success Upvote"));
         }
     };
 
     const downVote = postData => {
         if (user && !hasVoted) {
             const votes = votePostId
+                .filter(f => f.postId === forumData.postiD)
                 .map(e => e.vote)
                 .reduce((a, b) => a + b, 0);
 
@@ -68,7 +71,7 @@ const ForumQuestion = ({user, forumData}) => {
             const dbCollection = database
                 .collection(collection.votes_posts)
                 .doc(votePath);
-            dbCollection.set(vote).then(() => console.log("Success"));
+            dbCollection.set(vote).then(() => console.log("Success DownVote"));
         }
     };
 
