@@ -1,6 +1,8 @@
 .answer {
     width: 100%;
 
+
+
     .answer-container {
         background: $color-purple;
         display: flex;
@@ -10,6 +12,7 @@
         flex-wrap: wrap;
         padding: 18px;
 
+        
         .answer-photo {
             width: 60px;
             height: 60px;
