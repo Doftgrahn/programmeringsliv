@@ -35,7 +35,7 @@ const ForumQuestion = ({user, forumData}) => {
     if (user) hasVoted = votePostId.find(post => post.userId === user.uid);
 
     const upVote = postData => {
-        if (user && hasVoted) {
+        if (user && !hasVoted) {
             const votes = votePostId
                 .filter(f => f.postId === forumData.postiD)
                 .map(e => e.vote)

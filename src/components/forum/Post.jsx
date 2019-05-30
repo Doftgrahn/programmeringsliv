@@ -5,7 +5,7 @@ import ForumQuestion from "./postChildren/ForumQuestion";
 import ShowAnswer from "./postChildren/ShowAnswers";
 import AnswerQuestion from "./postChildren/AnswerQuestion";
 
-const Post = ({user, forumData, answers}) => {
+const Post = ({user, forumData}) => {
     return (
         <article className="post">
             <div className="post_container">
@@ -15,7 +15,6 @@ const Post = ({user, forumData, answers}) => {
                 <ShowAnswer
                     user={user}
                     forumQuestion={forumData}
-                    answers={answers}
                 />
                 {!user ? null : (
                     <AnswerQuestion user={user} forumData={forumData} />
