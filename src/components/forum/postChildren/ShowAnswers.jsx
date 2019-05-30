@@ -29,6 +29,9 @@ const ShowAnswers = ({answers, forumQuestion, user}) => {
                 let time = a.timestamp.toDate().toLocaleTimeString();
                 return (
                     <div className="answer-container" key={a.id}>
+                    <div className="answer-photo">
+                    <img src={a.photoURL} alt="userPhoto"/>
+                    </div>
                         <span>Username: {a.username}</span>
                         <span>
                             posted:

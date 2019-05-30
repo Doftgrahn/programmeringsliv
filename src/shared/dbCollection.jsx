@@ -3,7 +3,7 @@ const collection = {
     answer: "answer",
     post: "posts",
     messages: "messages",
-    votes: "votes"
+    votes_posts: "votes_posts"
 };
 
 export default collection;
