@@ -40,7 +40,7 @@ const ForumQuestion = ({user, forumData}) => {
                 .filter(f => f.postId === forumData.postiD)
                 .map(e => e.vote)
                 .reduce((a, b) => a + b, 0);
-            console.log("hej", votes);
+                
             const vote = {
                 userId: user.uid,
                 postId: postData.postiD,
@@ -51,7 +51,14 @@ const ForumQuestion = ({user, forumData}) => {
             const dbCollection = database
                 .collection(collection.votes_posts)
                 .doc(votePathiD);
-            dbCollection.set(vote).then(() => console.log("Success Upvote"));
+            dbCollection
+                .set(vote)
+                .then(() =>
+                    console.log(
+                        "%c successfully upvoted ",
+                        "background: #222; color: #bada55"
+                    )
+                );
         }
     };
 
@@ -71,7 +78,14 @@ const ForumQuestion = ({user, forumData}) => {
             const dbCollection = database
                 .collection(collection.votes_posts)
                 .doc(votePath);
-            dbCollection.set(vote).then(() => console.log("Success DownVote"));
+            dbCollection
+                .set(vote)
+                .then(() =>
+                    console.log(
+                        "%c successfully upvoted ",
+                        "background: #222; color: #bada55"
+                    )
+                );
         }
     };
 

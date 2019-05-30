@@ -45,7 +45,12 @@ const Answer = ({answer, forumQuestion, user}) => {
                 .doc(votePathiD);
             dbCollection
                 .set(vote)
-                .then(() => console.log("successfully upvoted"));
+                .then(() =>
+                    console.log(
+                        "%c successfully upvoted ",
+                        "background: #222; color: green"
+                    )
+                );
         }
     };
 
@@ -65,18 +70,27 @@ const Answer = ({answer, forumQuestion, user}) => {
                 .doc(votePathiD);
             dbCollection
                 .set(vote)
-                .then(() => console.log("successfully upvoted"));
+                .then(() =>
+                    console.log(
+                        "%c successfully downvoted ",
+                        "background: #222; color: red"
+                    )
+                );
         }
     };
 
     const deleteAnswer = data => {
-        console.log(data);
         if (data.userId === user.uid) {
             const dbCollection = database.collection(collection.answer);
             dbCollection
                 .doc(data.id)
                 .delete()
-                .then(() => console.log("Deleted successfully"));
+                .then(() =>
+                    console.log(
+                        "%c Deleted Question",
+                        "background: #222; color: red"
+                    )
+                );
         }
     };
 
