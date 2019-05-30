@@ -4,13 +4,15 @@
 @import './showAnswer.scss';
 
 .post {
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 0 auto;
+    margin: 20px auto 0;
     width: 100%;
-    background: $color-purple;
+    background: $color-blue;
     //margin-top: 10px;
     @media screen and (min-width: 800px) {
         width: 40%;
