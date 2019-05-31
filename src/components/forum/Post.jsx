@@ -6,6 +6,8 @@ import ShowAnswer from "./postChildren/ShowAnswers";
 import AnswerQuestion from "./postChildren/AnswerQuestion";
 
 const Post = ({user, forumData}) => {
+
+
     return (
         <article className="post">
             <div className="post_container">

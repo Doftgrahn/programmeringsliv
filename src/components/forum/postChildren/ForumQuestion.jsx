@@ -8,7 +8,7 @@ import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
 const ForumQuestion = ({user, forumData}) => {
     const [votePostId, setPostId] = useState([]);
-    //const [whatVoted, setWhatVoted] = useState(null);
+    const [answers, setAnswers] = useState([]);
 
     const [isPictureVisible, setPictureVisible] = useState(false);
 
@@ -31,6 +31,23 @@ const ForumQuestion = ({user, forumData}) => {
         [forumData.postiD]
     );
 
+    useEffect(
+        () => {
+            const aCollection = database.collection(collection.answer);
+            let unsubscribe = aCollection
+                .where("postIdRef", "==", forumData.postiD)
+                .onSnapshot(snapshot => {
+                    const aList = [];
+                    snapshot.forEach(doc => {
+                        aList.push({...doc.data(), id: doc.id});
+                    });
+                    setAnswers(aList);
+                });
+            return unsubscribe;
+        },
+        [forumData.postiD]
+    );
+
     let hasVoted;
     if (user) hasVoted = votePostId.find(post => post.userId === user.uid);
 
@@ -40,7 +57,7 @@ const ForumQuestion = ({user, forumData}) => {
                 .filter(f => f.postId === forumData.postiD)
                 .map(e => e.vote)
                 .reduce((a, b) => a + b, 0);
-                
+
             const vote = {
                 userId: user.uid,
                 postId: postData.postiD,
@@ -96,6 +113,14 @@ const ForumQuestion = ({user, forumData}) => {
                 .doc(data.postiD)
                 .delete()
                 .then(() => console.log("Deleted successfully"));
+
+            answers.forEach(e => {
+                const aCollection = database.collection(collection.answer);
+                aCollection
+                    .doc(e.id)
+                    .delete()
+                    .then(e => console.log("answers deleted"));
+            });
         }
     };
 
