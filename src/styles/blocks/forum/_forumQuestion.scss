@@ -1,6 +1,6 @@
 .post_container-question {
     text-align: left;
-    padding: 18px 0;
+    padding: 18px;
     width: 100%;
     background: $color-white;
     display: flex;
@@ -9,19 +9,17 @@
     flex-wrap: wrap;
 
     .title {
-        padding: 0 12px;
-        margin: 0;
+        //padding: 0 12px;
+        //margin: 0;
         text-transform: uppercase;
     }
 
     .content_c {
-        padding: 0 12px;
-        margin: 0;
-        //padding: 0 10px;
+        //margin: 0;
     }
 
     .votes-container {
-        padding: 0 18px;
+        //padding: 0 18px;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -45,7 +43,7 @@
         margin-left: auto;
         //width: 80px;
         border-radius: 20px;
-        margin-right: 12px;
+        //margin-right: 18px;
         padding: 5px;
         outline: none;
         cursor: pointer;
@@ -63,7 +61,7 @@
         outline: none;
         cursor: pointer;
         transition: 0.3s;
-        //border: none;
+        border: none;
         background: $color-blue;
     }
 

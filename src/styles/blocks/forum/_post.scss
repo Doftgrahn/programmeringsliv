@@ -4,8 +4,7 @@
 @import './showAnswer.scss';
 
 .post {
-    border-bottom: 5px solid black;
-    border-top: 5px solid black;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,6 +13,7 @@
     width: 100%;
     background: $color-blue;
     //margin-top: 10px;
+    box-shadow: 5px 5px rgba(49, 219, 122, 0.4);
     @media screen and (min-width: 800px) {
         width: 40%;
     }
@@ -23,8 +23,6 @@
     }
 
     &_container {
-        //border-bottom: 10px solid black;
-        //padding: 20px 0;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
