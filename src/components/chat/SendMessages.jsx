@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {database} from '../../shared/Firebase';
 import collection from '../../shared/dbCollection'
 import UserListItem from './UserListItem';
+import SendNewMessageComponent from './SendNewMessageComponent';
 
 const SendMessages = ({user}) => {
     const [userData, setUserData] = useState(null);
-    const [list, setList] = useState(null);
+    const [listOfUsers, setListOfUsers] = useState(null);
     const [sendMessageState, setSendMessageState] = useState(false);
     const [sendToUser, setSendToUser] = useState(null);
     const [messageToUser, setMessageToUser] = useState('');
+    const [newMessageState, setNewMessageState] = useState(false);
 
     useEffect(() => {
         let isSubscribed = true;
@@ -28,10 +30,10 @@ const SendMessages = ({user}) => {
 
     const renderSearch = (search) => {
 	    if( userData ) {
-            setList(userData
+            setListOfUsers(userData
             .filter(data => data.userName.toLowerCase().includes(search.toLowerCase()))
             .map(data => (
-                <UserListItem key= {data.id} data={data} user={user} sendMessage={setSendToUserFunction}/>
+                <UserListItem key= {data.id} data={data} sendMessage={setSendToUserFunction}/>
             )))
         }
     }
@@ -39,70 +41,62 @@ const SendMessages = ({user}) => {
         setSendMessageState(true);
         setSendToUser(value);
     }
+
     const setMessage = (value) => {
         setMessageToUser(value);
     }
+
     const sendMessage = () => {
         setSendMessageState(false);
-        setSendToUser(null);
         setMessageToUser(null);
-        const userCollection = database.collection(collection.messages);
         let idOnConversation = null;
         let conversation = null;
+        const userCollection = database.collection(collection.messages).where('ids', 'array-contains', user.uid);
         userCollection.get().then(snapshot => {
             snapshot.forEach(doc => {
                 let docData = doc.data();
-                if(docData.user1 === user.uid || docData.user2 === user.uid) {
-                    if (docData.user1 === sendToUser.id || docData.user2 === sendToUser.id){
-                        idOnConversation = doc.id;
-                        conversation = docData;
-                    }
+                let isConversationTrue = docData.ids.filter(id => id === sendToUser.id);
+                if(isConversationTrue.length > 0){
+                    idOnConversation = doc.id;
+                    conversation = docData;
                 }
             })
             return sendAway(conversation, idOnConversation)
         })
     }
-    const sendAway = (senderUserVar, id) => {
+    const sendAway = (senderUserInfo, id) => {
         const userCollection = database.collection(collection.messages);
         if(id){
-            senderUserVar.messages.push(messageToUser);
-            senderUserVar.senderUser.push(user.uid);
-            userCollection.doc(id).set({
-                user1: user.uid,
-                user1Name: user.displayName,
-                user2: sendToUser.id,
-                user2Name: sendToUser.userName,
-                messages: senderUserVar.messages,
-                senderUser: senderUserVar.senderUser
-            }).then(console.log('meddelandet skickat'))
+            senderUserInfo.messages.push({
+                content: messageToUser,
+                idSender: user.uid
+            });
+            userCollection.doc(id).update({
+                messages: senderUserInfo.messages
+            }).then(setSendToUser(null));
+            setNewMessageState(false);
         } else {
             let obj = {
-                user1: user.uid,
-                user1Name: user.displayName,
-                user2: sendToUser.id,
-                user2Name: sendToUser.userName,
-                messages: [messageToUser],
-                senderUser: [user.uid]
+                ids: [user.uid, sendToUser.id],
+                messages:[{content: messageToUser, idSender: user.uid}],
+                users: [
+                    {username: user.displayName, id: user.uid},
+                    {username: sendToUser.userName, id: sendToUser.id}
+                ]
             }
-            userCollection.add(obj).then(console.log('meddelandet tillagt'))
+            userCollection.add(obj).then(setSendToUser(null));
+            setNewMessageState(false);
         }
     }
-    let listContent =  
-        <div>
-            <input type="text" onChange={e => renderSearch(e.target.value)}/>
-            <ul>
-                {list}
-            </ul>
-        </div>;
-    let sendMessageContent = 
-    <div>
-        <textarea onChange={e => setMessage(e.target.value)} rows="4" cols="50"></textarea>
-        <button onClick={sendMessage}>Skicka till {sendToUser? sendToUser.userName:'användare'}</button>
-    </div>;
+    const switchNewMessageState = () => {
+        setNewMessageState(true);
+    }
+  
     return (
         <div>
-            <p>sendMessages</p>
-            {sendMessageState? sendMessageContent:listContent}
+            {newMessageState? <SendNewMessageComponent renderSearch={renderSearch} listOfUsers={listOfUsers} setMessage={setMessage} 
+            sendMessage={sendMessage} sendToUser={sendToUser} sendMessageState={sendMessageState} /> :
+            <button onClick={switchNewMessageState}>Send brand new message</button>}
         </div>
     )
 }

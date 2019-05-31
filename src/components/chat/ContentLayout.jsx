@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ContentLayout = ({ m, message, user, index}) => {
+const ContentLayout = ({ message, user, index}) => {
     let content;
-    if(user.uid === message.senderUser[index]){
-        content = <div className="messageLayoutUser"> {m} </div>
+    if(user.uid === message.messages[index].idSender){
+        content = <div className="messageLayoutUser"> {message.messages[index].content} </div>
     } else {
-        content = <div className="messageLayoutSender"> {m} </div>
+        content = <div className="messageLayoutSender"> {message.messages[index].content} </div>
     }
     return(
         content
