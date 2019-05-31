@@ -1,6 +1,7 @@
 .post_container-answerWrapper {
     padding: 20px;
     width: 100%;
+    margin: 0 auto;
 
     span {
         .linktoProfile {
@@ -53,15 +54,14 @@
                 //color: black;
             }
 
-            &:focus {
-                padding: 1px;
-            }
+            &:focus {}
         }
 
         .button_container {
             display: flex;
 
             button {
+                flex: 1;
                 border-radius: 20px;
                 border: none;
                 outline: none;
@@ -69,10 +69,10 @@
                 cursor: pointer;
                 margin-right: 10px;
                 display: block;
-                background: $color-blue;
+                background: $color-orange;
 
                 &:nth-child(even) {
-                    background: $color-orange;
+                    background: $color-blue;
                 }
             }
         }

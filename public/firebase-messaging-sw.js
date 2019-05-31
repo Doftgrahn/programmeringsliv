@@ -7,5 +7,3 @@ importScripts('https://www.gstatic.com/firebasejs/4.8.1/firebase-messaging.js');
     'messagingSenderId': '693478885127'
   });
   const messaging = firebase.messaging();
-
-

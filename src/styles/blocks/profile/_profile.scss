@@ -4,7 +4,7 @@
     width: 100%;
     padding: 20px;
     margin: 0px;
-    background: $color-background;
+    //background: $color-background;
 }
 .background {
     background: $color-white;
@@ -78,26 +78,45 @@
     display: inline;
 }
 
-/*
+
 @media (min-width: 1000px) {
-    .profileWrapper {
-        width: 100%;
-        margin: 0px;
+    .containerOfProfile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .picContainer {
+        width: 50%;
+        text-align: center;
         .avatar {
-            height: 40vh;
+            display: inline-block;
+            height: 45vh;
             width: auto;
-            float: left;
-        }
-        .profileInfo, .extraProfileInfo {
-            width: 40vw;
-            border: none;
-            float: right;
         }
     }
-}*/
+    .profileInfoContainer {
+        width: 50%; 
+        font-size: 1.2em;
+        letter-spacing: 1px; 
+        padding-left: 30px;
+        text-align: end;
+    }
+    
+    .profileInfo {
+        padding: 2em;
+        border: none;
+    }
 
-/*PROBLEMS TO FIX: 
--Background is short if theres no user data. Or if I use 100vh then when screen is bigger background will be too short
-*/
+    .extraProfileInfo .karma, .extraProfileInfo .posts {
+        display: block;
+        float: none;
+        padding: 1.2em;
+    }
+    .fa-comment:before, .fa-heart:before {
+        font-size: 22px;
+    }
+}
+
 
 
