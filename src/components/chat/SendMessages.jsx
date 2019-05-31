@@ -31,7 +31,7 @@ const SendMessages = ({user}) => {
             setList(userData
             .filter(data => data.userName.toLowerCase().includes(search.toLowerCase()))
             .map(data => (
-                <UserListItem key= {data.id} data={data} user={user} sendMessage={setSendToUserFunction}/>
+                <UserListItem key= {data.id} data={data} sendMessage={setSendToUserFunction}/>
             )))
         }
     }
@@ -39,52 +39,49 @@ const SendMessages = ({user}) => {
         setSendMessageState(true);
         setSendToUser(value);
     }
+
     const setMessage = (value) => {
         setMessageToUser(value);
     }
+
     const sendMessage = () => {
         setSendMessageState(false);
-        setSendToUser(null);
         setMessageToUser(null);
-        const userCollection = database.collection(collection.messages);
         let idOnConversation = null;
         let conversation = null;
+        const userCollection = database.collection(collection.messages).where('ids', 'array-contains', user.uid);
         userCollection.get().then(snapshot => {
             snapshot.forEach(doc => {
                 let docData = doc.data();
-                if(docData.user1 === user.uid || docData.user2 === user.uid) {
-                    if (docData.user1 === sendToUser.id || docData.user2 === sendToUser.id){
-                        idOnConversation = doc.id;
-                        conversation = docData;
-                    }
+                let isConversationTrue = docData.ids.filter(id => id === sendToUser.id);
+                if(isConversationTrue.length > 0){
+                    idOnConversation = doc.id;
+                    conversation = docData;
                 }
             })
             return sendAway(conversation, idOnConversation)
         })
     }
-    const sendAway = (senderUserVar, id) => {
+    const sendAway = (senderUserInfo, id) => {
         const userCollection = database.collection(collection.messages);
         if(id){
-            senderUserVar.messages.push(messageToUser);
-            senderUserVar.senderUser.push(user.uid);
-            userCollection.doc(id).set({
-                user1: user.uid,
-                user1Name: user.displayName,
-                user2: sendToUser.id,
-                user2Name: sendToUser.userName,
-                messages: senderUserVar.messages,
-                senderUser: senderUserVar.senderUser
-            }).then(console.log('meddelandet skickat'))
+            senderUserInfo.messages.push({
+                content: messageToUser,
+                idSender: user.uid
+            });
+            userCollection.doc(id).update({
+                messages: senderUserInfo.messages
+            }).then(setSendToUser(null))
         } else {
             let obj = {
-                user1: user.uid,
-                user1Name: user.displayName,
-                user2: sendToUser.id,
-                user2Name: sendToUser.userName,
-                messages: [messageToUser],
-                senderUser: [user.uid]
+                ids: [user.uid, sendToUser.id],
+                messages:[{content: messageToUser, idSender: user.uid}],
+                users: [
+                    {username: user.displayName, id: user.uid},
+                    {username: sendToUser.userName, id: sendToUser.id}
+                ]
             }
-            userCollection.add(obj).then(console.log('meddelandet tillagt'))
+            userCollection.add(obj).then(setSendToUser(null))
         }
     }
     let listContent =  

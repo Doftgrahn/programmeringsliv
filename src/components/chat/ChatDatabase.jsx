@@ -12,26 +12,21 @@ const ChatDatabase = ({user}) => {
     useEffect(() => {
         if(user){
             let isSubscribed = true;
-            const userCollection = database.collection(collection.messages);
-            userCollection.onSnapshot(snapshot => {
+            const userCollection = database.collection(collection.messages).where('ids', 'array-contains', user.uid);
+            userCollection.onSnapshot(snapshot => { 
                 if (isSubscribed) {
                     const list = [];
                     snapshot.forEach(doc => {
                         let docData = doc.data();
                         let obj= {
                             id: doc.id,
-                            user1: docData.user1,
-                            user2: docData.user2,
-                            user1Name: docData.user1Name,
-                            user2Name: docData.user2Name,
+                            users: [],
                             messages: [],
-                            senderUser: []
                         }
-                        if (obj.user1 === user.uid || obj.user2 === user.uid) {
-                            docData.messages.forEach(message => obj.messages.push(message));
-                            docData.senderUser.forEach(send => obj.senderUser.push(send));
-                            list.push(obj);
-                        }
+                        docData.messages.forEach(message => obj.messages.push(message));
+                        docData.users.forEach(user => obj.users.push(user));
+                        list.push(obj);
+                        
                     });
                     setMessages(list)
                 }  
