@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {database} from '../../shared/Firebase';
 import collection from '../../shared/dbCollection'
 import UserListItem from './UserListItem';
+import SendNewMessageComponent from './SendNewMessageComponent';
 
 const SendMessages = ({user}) => {
     const [userData, setUserData] = useState(null);
-    const [list, setList] = useState(null);
+    const [listOfUsers, setListOfUsers] = useState(null);
     const [sendMessageState, setSendMessageState] = useState(false);
     const [sendToUser, setSendToUser] = useState(null);
     const [messageToUser, setMessageToUser] = useState('');
+    const [newMessageState, setNewMessageState] = useState(false);
 
     useEffect(() => {
         let isSubscribed = true;
@@ -28,7 +30,7 @@ const SendMessages = ({user}) => {
 
     const renderSearch = (search) => {
 	    if( userData ) {
-            setList(userData
+            setListOfUsers(userData
             .filter(data => data.userName.toLowerCase().includes(search.toLowerCase()))
             .map(data => (
                 <UserListItem key= {data.id} data={data} sendMessage={setSendToUserFunction}/>
@@ -71,7 +73,8 @@ const SendMessages = ({user}) => {
             });
             userCollection.doc(id).update({
                 messages: senderUserInfo.messages
-            }).then(setSendToUser(null))
+            }).then(setSendToUser(null));
+            setNewMessageState(false);
         } else {
             let obj = {
                 ids: [user.uid, sendToUser.id],
@@ -81,25 +84,19 @@ const SendMessages = ({user}) => {
                     {username: sendToUser.userName, id: sendToUser.id}
                 ]
             }
-            userCollection.add(obj).then(setSendToUser(null))
+            userCollection.add(obj).then(setSendToUser(null));
+            setNewMessageState(false);
         }
     }
-    let listContent =  
-        <div>
-            <input type="text" onChange={e => renderSearch(e.target.value)}/>
-            <ul>
-                {list}
-            </ul>
-        </div>;
-    let sendMessageContent = 
-    <div>
-        <textarea onChange={e => setMessage(e.target.value)} rows="4" cols="50"></textarea>
-        <button onClick={sendMessage}>Skicka till {sendToUser? sendToUser.userName:'användare'}</button>
-    </div>;
+    const switchNewMessageState = () => {
+        setNewMessageState(true);
+    }
+  
     return (
         <div>
-            <p>sendMessages</p>
-            {sendMessageState? sendMessageContent:listContent}
+            {newMessageState? <SendNewMessageComponent renderSearch={renderSearch} listOfUsers={listOfUsers} setMessage={setMessage} 
+            sendMessage={sendMessage} sendToUser={sendToUser} sendMessageState={sendMessageState} /> :
+            <button onClick={switchNewMessageState}>Send brand new message</button>}
         </div>
     )
 }
