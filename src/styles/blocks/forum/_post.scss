@@ -13,13 +13,15 @@
     width: 100%;
     background: $color-blue;
     //margin-top: 10px;
-    box-shadow: 5px 5px rgba(49, 219, 122, 0.4);
+    box-shadow: 5px 5px rgba(78, 136, 221,0.4);
     @media screen and (min-width: 800px) {
         width: 40%;
     }
 
     &:nth-child(odd) {
         background: $color-green;
+        box-shadow: 5px 5px rgba(49, 219, 122, 0.4);
+
     }
 
     &_container {

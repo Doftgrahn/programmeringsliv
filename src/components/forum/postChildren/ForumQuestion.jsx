@@ -128,8 +128,12 @@ const ForumQuestion = ({user, forumData}) => {
 
     return (
         <div className="post_container-question">
-            <h3 className="title">{forumData.title}</h3>
-            <p className="content_c">{forumData.content}</p>
+            <div className="title_container">
+                <h3 className="title">{forumData.title}</h3>
+            </div>
+            <div className="content_c">
+                <p className="content_c-content">{forumData.content}</p>
+            </div>
             <div className="votes-container">
                 <img
                     onClick={() => upVote(forumData)}
@@ -149,15 +153,16 @@ const ForumQuestion = ({user, forumData}) => {
                     src={voteArrow}
                     alt="DownVote"
                 />
+                {user && forumData.userID === user.uid ? (
+                    <button
+                        className="deleteButton"
+                        onClick={() => deletePost(forumData)}
+                    >
+                        Delete
+                    </button>
+                ) : null}
             </div>
-            {user && forumData.userID === user.uid ? (
-                <button
-                    className="deleteButton"
-                    onClick={() => deletePost(forumData)}
-                >
-                    Delete
-                </button>
-            ) : null}
+
             <button
                 className={`showPictureBtn ${
                     forumData.pictureURL ? "show" : "hidden"
