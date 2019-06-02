@@ -4,7 +4,7 @@ import FormPost from "./FormPost"
 const AddPostPage = ({user}) => {
 
   return (
-    <div>
+    <div className="fade">
     <FormPost user={user}/>
     </div>
   )

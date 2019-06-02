@@ -91,7 +91,7 @@ const Answer = ({answer, forumQuestion, user}) => {
                         "background: #222; color: red"
                     )
                 );
-/*
+            /*
             voteAnsweriD.forEach(e => {
                 const anVoteCollection = database.collection(
                     collection.votes_answer
