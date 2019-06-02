@@ -39,15 +39,16 @@
     }
 
     .votes-container {
-        background: #ffffffd4;
-        padding: 10px;
+        width: 100px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px 10px;
         margin-bottom: 20px;
         //height: 33%;
         display: flex;
         flex-direction: column;
         margin-left: auto;
         align-items: center;
-        border-bottom-left-radius: 20px;
+        border-bottom-left-radius: 6px;
 
         img {
             height: 20px;
@@ -80,10 +81,11 @@
 
     .showAnswers {
         //margin-right: auto;
-        width: 100%;
-        border-radius: 20px;
+        line-height: 90%;
+        width: 70px;
+        border-radius: 10px;
         margin: 10px;
-        padding: 5px;
+        padding: 10px 0;
         outline: none;
         cursor: pointer;
         transition: 0.3s;

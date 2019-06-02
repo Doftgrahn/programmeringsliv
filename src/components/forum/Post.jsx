@@ -19,6 +19,7 @@ const Post = ({user, forumData, match}) => {
                 <ForumQuestion
                     forumData={forumData}
                     user={user}
+                    isAnVisible={isAnVisible}
                     toggleAnswers={toggleAnswers}
                 />
                 {!isAnVisible ? null : (

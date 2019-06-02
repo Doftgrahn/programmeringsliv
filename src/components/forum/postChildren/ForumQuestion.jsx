@@ -6,14 +6,13 @@ import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
-const ForumQuestion = ({user, forumData, toggleAnswers}) => {
+const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
     const [votePostId, setPostId] = useState([]);
     const [answers, setAnswers] = useState([]);
 
     const [isPictureVisible, setPictureVisible] = useState(false);
 
     const togglePicture = () => setPictureVisible(!isPictureVisible);
-
 
     useEffect(
         () => {
@@ -173,7 +172,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers}) => {
                     ""
                 ) : (
                     <button className="showAnswers" onClick={toggleAnswers}>
-                        hide answers
+                        {isAnVisible ? "Hide answers" : "Show answers"}
                     </button>
                 )}
             </div>
