@@ -131,7 +131,9 @@ class FormPost extends Component {
         return (
           <div className="message">
           <h2>You post has been successfully sent!</h2>
-          <button onClick={this.BackToForm} className="btns newPost">New post</button>
+          <div id="newPost">
+          <button onClick={this.BackToForm} className="btns">New post</button>
+          </div>
           </div>
         )
       }

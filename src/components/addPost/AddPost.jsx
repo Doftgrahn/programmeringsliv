@@ -14,7 +14,7 @@ const AddPostPage = ({user}) => {
   }
 
   return (
-<<<<<<< HEAD
+    
     <div className="wrapEverything">
       <h2>Add post</h2>
       <div className="mainGrid">
@@ -28,10 +28,6 @@ const AddPostPage = ({user}) => {
         <LastPosts/>
         </div>
       </div>
-=======
-    <div className="fade">
-    <FormPost user={user}/>
->>>>>>> 21670eeb2403b8cb17110f7c34440b43668a31f3
     </div>
   )
 

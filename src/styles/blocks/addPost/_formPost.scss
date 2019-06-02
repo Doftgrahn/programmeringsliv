@@ -11,6 +11,10 @@ img.uploadedImage {
   margin-left: 4em;
 }
 
+#newPost {
+  margin-left: 40%;
+}
+
 #newForm {
   margin-left: 1em;
   width: 80%;
@@ -41,13 +45,17 @@ input[type=text], select, textarea {
 }
 
 .btns {
-  width: 4em;
+  width: 7em;
   height: auto;
   color: black!important;
-  background-color: #a8edea;
   cursor: pointer;
   display: block;
-  border-radius: 5px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin: 0 10px;
+  background: $color-orange;
 }
 
 .pictureUpload {
