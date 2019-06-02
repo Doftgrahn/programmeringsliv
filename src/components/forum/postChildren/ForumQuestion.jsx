@@ -6,7 +6,7 @@ import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
-const ForumQuestion = ({user, forumData}) => {
+const ForumQuestion = ({user, forumData, toggleAnswers}) => {
     const [votePostId, setPostId] = useState([]);
     const [answers, setAnswers] = useState([]);
 
@@ -121,6 +121,13 @@ const ForumQuestion = ({user, forumData}) => {
                     .delete()
                     .then(e => console.log("answers deleted"));
             });
+            votePostId.forEach(e => {
+                const vCollection = database.collection(collection.votes_posts);
+                vCollection
+                    .doc(e.id)
+                    .delete()
+                    .then(() => console.log("Deleted votes connected to post"));
+            });
         }
     };
 
@@ -158,11 +165,13 @@ const ForumQuestion = ({user, forumData}) => {
                         className="deleteButton"
                         onClick={() => deletePost(forumData)}
                     >
-                        Delete
+                        <i className="fas fa-trash" />
                     </button>
                 ) : null}
+                <button className="showAnswers" onClick={toggleAnswers}>
+                    Show answers
+                </button>
             </div>
-
             <button
                 className={`showPictureBtn ${
                     forumData.pictureURL ? "show" : "hidden"
@@ -190,16 +199,3 @@ const ForumQuestion = ({user, forumData}) => {
 };
 
 export default ForumQuestion;
-
-/*
-useEffect(() => {
-    const vCollection = database.collection(collection.votes);
-    vCollection.onSnapshot(snapshot => {
-        const votesList = [];
-        snapshot.forEach(doc => {
-            votesList.push({...doc.data(), voteId: doc.id});
-        });
-        setVotes(votesList);
-    });
-}, []);
-*/

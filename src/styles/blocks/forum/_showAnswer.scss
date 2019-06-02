@@ -46,7 +46,7 @@
             .deleteButton {
                 //margin: 5px auto 0;
                 height: 30px;
-                //width: 80px;
+                width: 60px;
                 border-radius: 20px;
                 //margin-right: 8px;
                 //padding: 0 10px;
@@ -55,6 +55,10 @@
                 transition: 0.3s;
                 border: blue;
                 background: $color-orange;
+
+                &:hover {
+                    background: $color-blue;
+                }
             }
         }
 

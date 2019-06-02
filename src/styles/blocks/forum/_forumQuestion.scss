@@ -1,29 +1,43 @@
 .post_container-question {
-    text-align: center;
-    padding: 20px;
+    //text-align: center;
+    //padding: 20px;
     width: 100%;
-    background: $color-white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
+    text-align: left;
 
     .title_container {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.27);
+        padding: 0 10px;
+        border-bottom: 1px solid black;
+
         .title {
-            //padding: 0 12px;
+            //text-decoration: underline;
             //margin: 0;
-            text-transform: uppercase;
+            //text-transform: uppercase;
         }
     }
 
-    .content_container {
-        &-title {
+    .content_c {
+        background: rgba(255, 255, 255,0.3);
+//        border-radius: 0 0 20px 0;
+        flex: 1;
+        height: 180px;
+        width: 100%;
+        padding: 10px;
+
+        &-content {
+            height: 100%;
             margin: 0;
         }
     }
 
     .votes-container {
-        height: 100%;
+        padding: 20px;
+        height: 33%;
         display: flex;
         flex-direction: column;
         margin-left: auto;
@@ -44,7 +58,7 @@
 
     .deleteButton {
         margin-top: 18px;
-        width: 60px;
+        width: 100%;
         border-radius: 20px;
         padding: 5px;
         outline: none;
@@ -52,11 +66,15 @@
         transition: 0.3s;
         //border: none;
         background: $color-orange;
+
+        &:hover {
+            background: $color-purple;
+        }
     }
 
-    .showPictureBtn {
-        margin-right: auto;
-        //width: 80px;
+    .showAnswers {
+        //margin-right: auto;
+        width: 100%;
         border-radius: 20px;
         margin: 10px;
         padding: 5px;
@@ -65,12 +83,27 @@
         transition: 0.3s;
         border: none;
         background: $color-blue;
+
+        &:hover {
+            background: $color-purple;
+        }
+    }
+
+    .showPictureBtn {
+        margin-right: auto;
+        //width: 80px;
+        border-radius: 20px;
+        margin: 10px;
+        padding: 10px;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s;
+        border: none;
+        background: $color-blue;
     }
 
     .postPicture-container {
-        margin: 0 auto;
-        //position: relative;
-        margin-top: 10px;
+        margin: 10px auto 0;
 
         .postPicture {
             //position: relative;

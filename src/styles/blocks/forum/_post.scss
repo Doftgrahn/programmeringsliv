@@ -9,7 +9,7 @@
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 20px auto 0;
+    margin: 0 auto 10px;
     width: 100%;
     background: $color-blue;
     //margin-top: 10px;
@@ -21,15 +21,14 @@
     &:nth-child(odd) {
         background: $color-green;
         box-shadow: 5px 5px rgba(49, 219, 122, 0.4);
-
     }
 
     &_container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: flex-start;
-        flex-wrap: wrap;
+        //display: flex;
+        //flex-direction: column;
+        //justify-content: space-around;
+        //align-items: flex-start;
+        //flex-wrap: wrap;
         animation: fadeForumPost 0.4s linear;
     }
     @keyframes fadeForumPost {

@@ -3,7 +3,7 @@ import {database} from "../../shared/Firebase";
 import collection from "../../shared/dbCollection";
 import Post from "./Post";
 
-const Forum = ({user}) => {
+const Forum = ({user, match}) => {
     const [forum, setForum] = useState(null);
 
     useEffect(() => {
@@ -18,14 +18,18 @@ const Forum = ({user}) => {
                 setForum(list);
             }
         });
-
         return () => (isSubscribed = false);
     }, []);
 
     let posts;
     if (forum) {
         posts = forum.map((post, index) => (
-            <Post key={` ${index}`} user={user} forumData={post} />
+            <Post
+                key={post.postiD}
+                user={user}
+                forumData={post}
+                match={match}
+            />
         ));
     }
 

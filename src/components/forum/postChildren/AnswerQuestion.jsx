@@ -45,7 +45,9 @@ const AnswerQuestion = ({user, forumData}) => {
     return (
         <div className="post_container-answerWrapper">
             <div className="post_container-answerWrapper-button">
-                <button onClick={showAnswerInput}>Answer</button>
+                <button className="showBtn" onClick={showAnswerInput}>
+                    Answer
+                </button>
             </div>
             <div
                 className={`post_container-answerWrapper-container ${
@@ -70,10 +72,12 @@ const AnswerQuestion = ({user, forumData}) => {
                     onChange={event => setQuestionInput(event.target.value)}
                 />
                 <div className="button_container">
-                    <button onClick={hideAnswerInput}>Discard</button>
+                    <button onClick={hideAnswerInput}>
+                        <i className="fas fa-trash" />
+                    </button>
 
                     <button onClick={() => sendQuestion(forumData)}>
-                        Send
+                        <i className="fas fa-paper-plane" />
                     </button>
                 </div>
             </div>

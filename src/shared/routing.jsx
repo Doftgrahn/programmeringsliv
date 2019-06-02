@@ -25,7 +25,9 @@ const ContentRouting = ({user, logIn}) => {
             key={index}
             exact={route.exact}
             path={route.path}
-            render={() => <route.component user={user} logIn={logIn} />}
+            render={({match}) => (
+                <route.component user={user} match={match} logIn={logIn} />
+            )}
         />
     ));
 

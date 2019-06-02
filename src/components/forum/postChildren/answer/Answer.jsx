@@ -91,6 +91,18 @@ const Answer = ({answer, forumQuestion, user}) => {
                         "background: #222; color: red"
                     )
                 );
+/*
+            voteAnsweriD.forEach(e => {
+                const anVoteCollection = database.collection(
+                    collection.votes_answer
+                );
+                anVoteCollection
+                    .doc(e.id)
+                    .delete()
+                    .then(() => {
+                        console.log("%c Votes to answers deleted");
+                    }).catch(error => console.log('Error', error))
+            });*/
         }
     };
 
@@ -135,7 +147,7 @@ const Answer = ({answer, forumQuestion, user}) => {
                             className="deleteButton"
                             onClick={() => deleteAnswer(answer)}
                         >
-                            delete
+                            <i className="fas fa-trash" />
                         </button>
                     ) : null}
                 </div>
