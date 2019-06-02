@@ -46,6 +46,13 @@ const SendMessages = ({user}) => {
         setMessageToUser(value);
     }
 
+    const abortSendMessage = () => {
+        setSendMessageState(false);
+        setSendToUser(null);
+        setMessageToUser('');
+        setNewMessageState(false);
+    }
+
     const sendMessage = () => {
         setSendMessageState(false);
         setMessageToUser(null);
@@ -73,8 +80,7 @@ const SendMessages = ({user}) => {
             });
             userCollection.doc(id).update({
                 messages: senderUserInfo.messages
-            }).then(setSendToUser(null));
-            setNewMessageState(false);
+            }).then(abortSendMessage());
         } else {
             let obj = {
                 ids: [user.uid, sendToUser.id],
@@ -84,8 +90,7 @@ const SendMessages = ({user}) => {
                     {username: sendToUser.userName, id: sendToUser.id, picture: sendToUser.userPhotoURL}
                 ]
             }
-            userCollection.add(obj).then(setSendToUser(null));
-            setNewMessageState(false);
+            userCollection.add(obj).then(abortSendMessage());
         }
     }
     const switchNewMessageState = () => {
@@ -95,8 +100,8 @@ const SendMessages = ({user}) => {
     return (
         <div className="chatNewMessageDiv">
             {newMessageState? <SendNewMessageComponent renderSearch={renderSearch} listOfUsers={listOfUsers} setMessage={setMessage} 
-            sendMessage={sendMessage} sendToUser={sendToUser} sendMessageState={sendMessageState} /> :
-            <button className="chatButton" onClick={switchNewMessageState}>Send brand new message</button>}
+            sendMessage={sendMessage} sendToUser={sendToUser} sendMessageState={sendMessageState} abortSendMessage={abortSendMessage} /> :
+            <button className="chatButton largeButton" onClick={switchNewMessageState}>Send brand new message</button>}
         </div>
     )
 }

@@ -8,6 +8,7 @@ import SendMessages from './SendMessages';
 
 const ChatDatabase = ({user}) => {
     let [messages, setMessages] = useState(null);
+    
 
     useEffect(() => {
         if(user){
@@ -35,9 +36,10 @@ const ChatDatabase = ({user}) => {
         }
     }, [user]);
     
+ 
     let displayMessages = null;
     if (messages) {
-        displayMessages = messages.map( (message, index) => (<MessageLayout key={index} message={message} user={user}/>))
+        displayMessages = messages.map( (message, index) => (<MessageLayout key={index} message={message} user={user} />))
     }
     
     return (
@@ -48,7 +50,7 @@ const ChatDatabase = ({user}) => {
             <div className="ChatConversationWrapper">
                 {displayMessages? displayMessages : <div className="loader"></div>}
             </div>
-            <button className="chatButton" onClick={initializeApp}>Activate push-messages and recieve the latest news</button>
+            <button className="chatButton secondLargeButton" onClick={initializeApp}>Activate push-messages and recieve the latest news</button>
         </div>
     );
 };
