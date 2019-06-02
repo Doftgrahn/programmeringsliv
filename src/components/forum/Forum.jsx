@@ -35,6 +35,10 @@ const Forum = ({user, match}) => {
 
     return (
         <main className="forum">
+            <div>
+                <button>Higest Votes</button>
+                <button>newest!</button>
+            </div>
             {!forum ? <div className="loader" /> : posts}
         </main>
     );
