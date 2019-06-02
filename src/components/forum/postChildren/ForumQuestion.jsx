@@ -200,7 +200,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers}) => {
             </div>
             <div
                 className={`postPicture-container ${
-                    isPictureVisible ? "show" : "hidden"
+                    !isPictureVisible ? "show" : "hidden"
                 }`}
             >
                 {forumData.pictureURL ? (
