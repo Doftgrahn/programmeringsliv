@@ -34,7 +34,7 @@
             height: 100%;
             margin: 0;
             line-height: 160%;
-            padding:10px;
+            padding: 10px;
         }
     }
 
@@ -88,7 +88,8 @@
         cursor: pointer;
         transition: 0.3s;
         border: none;
-        background: $color-pink;
+        background: $color-black;
+        color: white;
 
         &:hover {
             background: $color-purple;
@@ -100,9 +101,7 @@
         width: 100%;
 
         .showPictureBtn {
-            //margin-right: auto;
             width: 100%;
-            //border-radius: 20px;
             //margin: 10px;
             padding: 10px;
             outline: none;
@@ -114,10 +113,11 @@
     }
 
     .postPicture-container {
+        display: block;
+        width: 100%;
         //margin: 10px auto 0;
-
         .postPicture {
-            //position: relative;
+            position: relative;
             object-position: center;
             object-fit: contain;
             height: 100%;
