@@ -168,19 +168,36 @@ const ForumQuestion = ({user, forumData, toggleAnswers}) => {
                         <i className="fas fa-trash" />
                     </button>
                 ) : null}
-                <button className="showAnswers" onClick={toggleAnswers}>
-                    Show answers
+                {answers.length < 1 ? (
+                    ""
+                ) : (
+                    <button className="showAnswers" onClick={toggleAnswers}>
+                        Show answers
+                    </button>
+                )}
+            </div>
+            <div className="showpicture_wrapper">
+                <button
+                    className={`showPictureBtn ${
+                        forumData.pictureURL ? "show" : "hidden"
+                    }`}
+                    onClick={togglePicture}
+                >
+                    {isPictureVisible ? (
+                        <i
+                            className={`fas fa-images ${
+                                isPictureVisible ? "orange" : ""
+                            }`}
+                        />
+                    ) : (
+                        <i
+                            className={`fas fa-images ${
+                                !isPictureVisible ? "white" : ""
+                            }`}
+                        />
+                    )}
                 </button>
             </div>
-            <button
-                className={`showPictureBtn ${
-                    forumData.pictureURL ? "show" : "hidden"
-                }`}
-                onClick={togglePicture}
-            >
-                {isPictureVisible ? "Hide Picture" : "Show picture"}
-            </button>
-
             <div
                 className={`postPicture-container ${
                     isPictureVisible ? "show" : "hidden"

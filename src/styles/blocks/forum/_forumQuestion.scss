@@ -22,8 +22,7 @@
     }
 
     .content_c {
-        background: rgba(255, 255, 255,0.3);
-//        border-radius: 0 0 20px 0;
+        background: rgba(255, 255, 255,0.3); //        border-radius: 0 0 20px 0;
         flex: 1;
         height: 180px;
         width: 100%;
@@ -89,17 +88,22 @@
         }
     }
 
-    .showPictureBtn {
-        margin-right: auto;
-        //width: 80px;
-        border-radius: 20px;
-        margin: 10px;
-        padding: 10px;
-        outline: none;
-        cursor: pointer;
-        transition: 0.3s;
-        border: none;
-        background: $color-blue;
+    .showpicture_wrapper {
+        display: block;
+        width: 100%;
+
+        .showPictureBtn {
+            margin-right: auto;
+            //width: 100;
+            border-radius: 20px;
+            margin: 10px;
+            padding: 10px;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            background: $color-blue;
+        }
     }
 
     .postPicture-container {
@@ -115,9 +119,21 @@
 
     .show {
         display: block;
+
+        i {
+            //color: white;
+        }
     }
 
     .hidden {
         display: none;
+    }
+
+    .orange {
+        color: orange;
+    }
+
+    .white {
+        color: white;
     }
 }

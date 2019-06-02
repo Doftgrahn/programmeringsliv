@@ -27,8 +27,8 @@ const AnswerQuestion = ({user, forumData}) => {
                     username: user.displayName,
                     photoURL: user.photoURL,
                     userId: user.uid,
-                    timestamp: new Date(), // postI
-                    postIdRef: post.postiD, // TODO!!!!!: Fix id, connect with post.
+                    timestamp: new Date(), 
+                    postIdRef: post.postiD,
                     votes: 0
                 })
                 .then(() =>
