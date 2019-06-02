@@ -1,32 +1,54 @@
 .post_container-question {
-    text-align: left;
-    padding: 10px 0;
+    //text-align: center;
+    //padding: 20px;
     width: 100%;
-    background: $color-white;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
     flex-wrap: wrap;
+    text-align: left;
 
-    .title {
-        padding: 10px;
-        margin: 0;
+    .title_container {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.27);
+        padding: 0 10px;
         text-transform: uppercase;
+        border-bottom: 6px solid #000000a1;
+
+        .title {
+            text-align: center;
+            //margin: 0;
+            text-transform: uppercase;
+        }
     }
 
     .content_c {
+        //background: rgba(255, 255, 255,0.3); //        border-radius: 0 0 20px 0;
+        flex: 1;
+        max-height: 320px;
+        overflow: scroll;
+        max-width: 100%;
         padding: 10px;
-        margin: 0;
-        //padding: 0 10px;
+
+        &-content {
+            height: 100%;
+            margin: 0;
+            line-height: 160%;
+            padding: 10px;
+        }
     }
 
     .votes-container {
-        padding: 10px;
-        height: 100%;
+        width: 100px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 10px 10px;
+        margin-bottom: 20px;
+        //height: 33%;
         display: flex;
         flex-direction: column;
         margin-left: auto;
         align-items: center;
+        border-bottom-left-radius: 6px;
 
         img {
             height: 20px;
@@ -42,49 +64,88 @@
     }
 
     .deleteButton {
-        margin-left: auto;
-        //width: 80px;
+        margin-top: 18px;
+        width: 100%;
         border-radius: 20px;
-        margin-right: 12px;
         padding: 5px;
         outline: none;
         cursor: pointer;
         transition: 0.3s;
         //border: none;
         background: $color-orange;
+
+        &:hover {
+            background: $color-purple;
+        }
     }
 
-    .showPictureBtn {
-        margin-right: auto;
-        //width: 80px;
-        border-radius: 20px;
+    .showAnswers {
+        //margin-right: auto;
+        line-height: 90%;
+        width: 70px;
+        border-radius: 10px;
         margin: 10px;
-        padding: 5px;
+        padding: 10px 0;
         outline: none;
         cursor: pointer;
         transition: 0.3s;
-        //border: none;
-        background: $color-blue;
+        border: none;
+        background: $color-black;
+        color: white;
+
+        &:hover {
+            background: $color-purple;
+        }
+    }
+
+    .showpicture_wrapper {
+        display: block;
+        width: 100%;
+
+        .showPictureBtn {
+            width: 100%;
+            //margin: 10px;
+            padding: 10px;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            background: #374558;
+        }
     }
 
     .postPicture-container {
-        margin: 0 auto;
-        //position: relative;
-        margin-top: 10px;
-
+        display: block;
+        width: 100%;
+        //margin: 10px auto 0;
         .postPicture {
-            //position: relative;
+            position: relative;
+            object-position: center;
             object-fit: contain;
             height: 100%;
             width: 100%;
+            //border:1px solid black;
+            box-shadow: 2px 2px black;
         }
     }
 
     .show {
         display: block;
+
+        i {
+            //color: white;
+        }
     }
 
     .hidden {
         display: none;
+    }
+
+    .orange {
+        color: orange;
+    }
+
+    .white {
+        color: white;
     }
 }

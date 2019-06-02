@@ -5,14 +5,17 @@ import {database} from "../../../shared/Firebase";
 import collection from "../../../shared/dbCollection";
 
 const AnswerQuestion = ({user, forumData}) => {
+    const textareaRef = React.createRef();
     const [questionInput, setQuestionInput] = useState("");
     const [isAnswering, setIsAnswering] = useState(false);
 
     const showAnswerInput = () => {
         setIsAnswering(true);
+        textareaRef.current.select();
     };
     const hideAnswerInput = () => {
         setIsAnswering(false);
+        setQuestionInput("");
     };
 
     const sendQuestion = post => {
@@ -22,12 +25,18 @@ const AnswerQuestion = ({user, forumData}) => {
                 .set({
                     answer: questionInput,
                     username: user.displayName,
+                    photoURL: user.photoURL,
                     userId: user.uid,
-                    timestamp: new Date(), // postI
-                    postIdRef: post.postiD, // TODO!!!!!: Fix id, connect with post.
+                    timestamp: new Date(), 
+                    postIdRef: post.postiD,
                     votes: 0
                 })
-                .then(() => console.log("Success"));
+                .then(() =>
+                    console.log(
+                        "%c successfully sent question",
+                        "background: #222; color: #bada55"
+                    )
+                );
             setQuestionInput("");
             hideAnswerInput();
         }
@@ -36,7 +45,9 @@ const AnswerQuestion = ({user, forumData}) => {
     return (
         <div className="post_container-answerWrapper">
             <div className="post_container-answerWrapper-button">
-                <button onClick={showAnswerInput}>Answer</button>
+                <button className="showBtn" onClick={showAnswerInput}>
+                    Answer
+                </button>
             </div>
             <div
                 className={`post_container-answerWrapper-container ${
@@ -54,16 +65,20 @@ const AnswerQuestion = ({user, forumData}) => {
                     ""
                 )}
                 <textarea
+                    ref={textareaRef}
                     placeholder="Answer Question..."
                     type="text"
                     value={questionInput}
                     onChange={event => setQuestionInput(event.target.value)}
                 />
                 <div className="button_container">
-                    <button onClick={() => sendQuestion(forumData)}>
-                        Send
+                    <button onClick={hideAnswerInput}>
+                        <i className="fas fa-trash" />
                     </button>
-                    <button onClick={hideAnswerInput}>Cancel</button>
+
+                    <button onClick={() => sendQuestion(forumData)}>
+                        <i className="fas fa-paper-plane" />
+                    </button>
                 </div>
             </div>
         </div>

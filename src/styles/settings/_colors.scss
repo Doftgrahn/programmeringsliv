@@ -8,13 +8,21 @@ $color-background: linear-gradient(to top, #a8edea 0%, #fed6e3 100%);
 /*--
 General Colors
 --*/
-$color-purple: linear-gradient(to right top, #9464d2, #9869d6, #9d6eda, #a173de, #a678e2);
+$color-purple: linear-gradient(to right top, #9464d2, #9869d6, #9d6eda, #a173de, );
+$color-purple-solid: #9464d2;
 $color-orange: linear-gradient(to right top, #e7632f, #ec6a37, #f0713e, #f57746, #f97e4d);
+$color-orange-solid: #e7632f;
 $color-blue: linear-gradient(to right top, #4e88dd, #578fe2, #6096e7, #699eec, #72a5f1);
+$color-blue-solid: #4e88dd;
 $color-green: linear-gradient(to right top, #31db7a, #35de75, #3be070, #40e36b, #46e565);
+$color-green-solid: #31db7a;
+
+$color-pink:#871F6D;
 /*--
+
 Black and white
 --*/
 $color-black: linear-gradient(to right top, #141e1e, #0f1e21, #0a1e26, #0a1d2a, #101b2d);
 $color-white: linear-gradient(to right top, #f6f2ef, #f8f2f0, #f9f2f2, #faf3f4, #faf3f6);
+$color-grey: linear-gradient(to bottom, #b7abbc, #beb2c2, #c5b9c8, #ccc0cf, #d3c7d5);
 $color-textBlack: #141e1e;

@@ -11,7 +11,7 @@ const Answer = ({ answer }) => {
     <div className="answer"> {answer.answer} </div>
     <div className="postMetadata">
       <span className="date">{date} {time}</span>
-      <span className="votes">{0} votes</span>
+      {/*<span className="votes">{0} votes</span>*/}
     </div>
   </div>
 );

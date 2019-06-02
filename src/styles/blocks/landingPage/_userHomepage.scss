@@ -1,0 +1,33 @@
+.memes > img {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    background: none;
+}
+
+.welcomingText {
+    font-size: 2em;
+    font-weight: bold;
+    padding: 50px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.moreAboutUs {
+    height: 500px;
+    width: auto;
+    background: $color-background;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 1000px) {
+    .memes > img {
+        width: 70%;
+        height: auto;
+        padding: 50px;
+    }
+}

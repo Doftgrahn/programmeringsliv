@@ -3,9 +3,8 @@ import {database} from "../../shared/Firebase";
 import collection from "../../shared/dbCollection";
 import Post from "./Post";
 
-const Forum = ({user}) => {
+const Forum = ({user, match}) => {
     const [forum, setForum] = useState(null);
-    const [answers, setAnswer] = useState(null);
 
     useEffect(() => {
         let isSubscribed = true;
@@ -19,22 +18,6 @@ const Forum = ({user}) => {
                 setForum(list);
             }
         });
-
-        return () => (isSubscribed = false);
-    }, []);
-
-    useEffect(() => {
-        let isSubscribed = true;
-        const answerCollection = database.collection(collection.answer);
-        answerCollection.onSnapshot(snapshot => {
-            if (isSubscribed) {
-                const list = [];
-                snapshot.forEach(doc => {
-                    list.push({...doc.data(), id: doc.id});
-                });
-                setAnswer(list);
-            }
-        });
         return () => (isSubscribed = false);
     }, []);
 
@@ -42,16 +25,20 @@ const Forum = ({user}) => {
     if (forum) {
         posts = forum.map((post, index) => (
             <Post
-                key={` ${index}`}
+                key={post.postiD}
                 user={user}
                 forumData={post}
-                answers={answers}
+                match={match}
             />
         ));
     }
 
     return (
         <main className="forum">
+            <div>
+                <button>Higest Votes</button>
+                <button>newest!</button>
+            </div>
             {!forum ? <div className="loader" /> : posts}
         </main>
     );

@@ -18,7 +18,7 @@ const Header = ({user, logIn, logOut}) => {
 
     return (
         <header>
-            <Link className="header_Link" to="/home">
+            <Link className="header_Link typewriter anim-typewriter" to="/home">
                 <h1>ProgrammingLajf</h1>
             </Link>
             <NavLinks

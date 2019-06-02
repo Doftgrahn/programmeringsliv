@@ -1,0 +1,28 @@
+.typewriter {
+    width: 17em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+/* Animation */
+.anim-typewriter {
+    animation: type 1s steps(40) 1s 1 normal both, blinkTextCursor 500ms steps(40) infinite normal;
+}
+@keyframes type {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 17em;
+    }
+}
+@keyframes blinkTextCursor {
+    from {
+        //border-right-color: rgba(255,255,255,0.75);
+    }
+
+    to {
+        //border-right-color: transparent;
+        //border-right: 0px solid rgba(255,255,255, 0.75);
+    }
+}
