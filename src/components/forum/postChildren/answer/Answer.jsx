@@ -112,11 +112,12 @@ const Answer = ({answer, forumQuestion, user}) => {
                 <div className="answer-photo">
                     <img src={answer.photoURL} alt="userPhoto" />
                 </div>
-                <span>Username: {answer.username}</span>
-                <span>
-                    posted:
-                    {date} {time}
-                </span>
+                <div className="user_container">
+                    <span>{answer.username}</span>
+                    <span>
+                        {date} {time}
+                    </span>
+                </div>
                 <div className="vote">
                     <img
                         onClick={() => upVote(answer)}
@@ -139,7 +140,7 @@ const Answer = ({answer, forumQuestion, user}) => {
 
                 <div className="answerAndDeletel-container">
                     <p>
-                        Answer:
+
                         {answer.answer}
                     </p>
                     {user && answer.userId === user.uid ? (

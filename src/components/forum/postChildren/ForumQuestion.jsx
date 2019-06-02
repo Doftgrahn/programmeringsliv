@@ -14,6 +14,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers}) => {
 
     const togglePicture = () => setPictureVisible(!isPictureVisible);
 
+
     useEffect(
         () => {
             const vCollection = database.collection(collection.votes_posts);
@@ -172,7 +173,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers}) => {
                     ""
                 ) : (
                     <button className="showAnswers" onClick={toggleAnswers}>
-                        Show answers
+                        hide answers
                     </button>
                 )}
             </div>

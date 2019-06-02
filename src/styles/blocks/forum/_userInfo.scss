@@ -9,30 +9,35 @@
     //background-color: white;
     border-radius: 20px 20px 0 0;
 
+    .userinfo_wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
     h3 {
         font-weight: bold;
-        //    margin: 0;
-        padding: 0 10px;
+        margin-top: 0;
+        margin-bottom: 5px;
     }
 
     img {
+        margin-right: 20px;
         height: 100px;
         object-fit: contain;
         border-radius: 50%;
     }
 
     .time {
+        opacity: 0.6;
         display: flex;
         align-items: center;
-        //margin: 10px;
         span {
             font-family: 'Open Sans', sans-serif;
-            padding: 0 6px;
             font-weight: bold;
             flex: 1;
 
             &:first-child {
-                //margin-right: 10px;
+                margin-right: 6px;
             }
         }
     }

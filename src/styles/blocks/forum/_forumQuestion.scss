@@ -12,36 +12,42 @@
         width: 100%;
         background: rgba(255, 255, 255, 0.27);
         padding: 0 10px;
-        border-bottom: 1px solid black;
+        text-transform: uppercase;
+        border-bottom: 6px solid #000000a1;
 
         .title {
-            //text-decoration: underline;
+            text-align: center;
             //margin: 0;
-            //text-transform: uppercase;
+            text-transform: uppercase;
         }
     }
 
     .content_c {
-        background: rgba(255, 255, 255,0.3); //        border-radius: 0 0 20px 0;
+        //background: rgba(255, 255, 255,0.3); //        border-radius: 0 0 20px 0;
         flex: 1;
-        height: 180px;
+        max-height: 320px;
         overflow: scroll;
-        width: 100%;
+        max-width: 100%;
         padding: 10px;
 
         &-content {
             height: 100%;
             margin: 0;
+            line-height: 160%;
+            padding:10px;
         }
     }
 
     .votes-container {
-        padding: 20px;
-        height: 33%;
+        background: #ffffffd4;
+        padding: 10px;
+        margin-bottom: 20px;
+        //height: 33%;
         display: flex;
         flex-direction: column;
         margin-left: auto;
         align-items: center;
+        border-bottom-left-radius: 20px;
 
         img {
             height: 20px;
@@ -82,7 +88,7 @@
         cursor: pointer;
         transition: 0.3s;
         border: none;
-        background: $color-blue;
+        background: $color-pink;
 
         &:hover {
             background: $color-purple;
@@ -94,24 +100,25 @@
         width: 100%;
 
         .showPictureBtn {
-            margin-right: auto;
-            //width: 100;
-            border-radius: 20px;
-            margin: 10px;
+            //margin-right: auto;
+            width: 100%;
+            //border-radius: 20px;
+            //margin: 10px;
             padding: 10px;
             outline: none;
             cursor: pointer;
             transition: 0.3s;
             border: none;
-            background: $color-blue;
+            background: #374558;
         }
     }
 
     .postPicture-container {
-        margin: 10px auto 0;
+        //margin: 10px auto 0;
 
         .postPicture {
             //position: relative;
+            object-position: center;
             object-fit: contain;
             height: 100%;
             width: 100%;

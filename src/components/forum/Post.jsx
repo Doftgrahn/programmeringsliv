@@ -6,7 +6,7 @@ import ShowAnswer from "./postChildren/ShowAnswers";
 import AnswerQuestion from "./postChildren/AnswerQuestion";
 
 const Post = ({user, forumData, match}) => {
-    const [isAnVisible, setIsAnVisible] = useState(false);
+    const [isAnVisible, setIsAnVisible] = useState(true);
 
     const toggleAnswers = () => {
         setIsAnVisible(!isAnVisible);
