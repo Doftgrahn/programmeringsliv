@@ -1,21 +1,46 @@
-.wrapper {
-  margin: 2em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
 .writerProfile {
-  width: 50%;
-}
+  justify-content: center;
+  display: flex;
 
-.mainForm {
-  width: 50%;
-  background: $color-white;
-  box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
 }
 
 .lastPosts {
+  grid-column: 1 / span 3;
+  justify-self: stretch;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.mainForm {
+  grid-column: 2 / span 2;
+  width: auto;
+}
+
+.lastPosts {
+  margin-top: 5em;
+  grid-column: 1 / span 3;
   width: 100%;
 }
+
+h2 {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+#notLoggedIn {
+  margin-top: 8em;
+}
+
+
+
+  @media (max-width: 625px) {
+    .writerProfile {
+      grid-column: 1 / span 3;
+    }
+    .mainForm {
+      grid-column: 1 / span 3;
+    }
+  }

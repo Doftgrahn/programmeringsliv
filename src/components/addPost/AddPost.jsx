@@ -7,12 +7,14 @@ const AddPostPage = ({user}) => {
 
   if(!user){
     return(
-      <div>Please, log in to write a post</div>
+      <div id="notLoggedIn">
+      <h2>Please, log in to write a post</h2>
+      </div>
     )
   }
-  
+
   return (
-    <div className="wrapEverything wrapper">
+    <div className="wrapEverything">
       <h2>Add post</h2>
       <div className="mainGrid">
         <div className="writerProfile">

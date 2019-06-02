@@ -69,7 +69,7 @@ class FormPost extends Component {
     return (
       <div>
       <img className="uploadedImage" src={url} alt="" />
-      <button onClick={this.cancelImage}>Delete</button>
+      <button className="btns" onClick={this.cancelImage}>Delete</button>
       </div>
     )
   }
@@ -80,35 +80,37 @@ class FormPost extends Component {
         picture: "",
         pictureURL: ""
     })
-    console.log('url', this.state.pictureURL);
   }
 
   render() {
     if(!this.state.postSent){
       return (
-          <div className="wrapper">
+          <div className="formWrapper">
             <div id="newForm">
-            <span className="title">
-            <label>Title:</label>
+            <div>
+            <label className="labels">Title:</label><br/>
             <input
+            className="inputs"
             type="text"
             value={this.state.title}
             name="title"
             onChange={this.handleChangeTitle}
-            /></span><br/>
-            <span className="questionText">
-            <label>Your question:</label>
+            /></div><br/>
+            <div>
+            <label className="labels">Your question:</label><br/>
             <textarea
+            className="inputs"
             type="text"
             value={this.state.content}
             name="content"
             onChange={this.handleChangeContent}>
-            </textarea></span><br/>
-            <span className="pictureUpload">
-            <label>Picture:</label>
+            </textarea></div><br/>
+            <div className="pictureUpload">
+            <label className="labels">Picture:</label><br/>
             {this.state.isUploading && <p>Progress: {this.state.progress}</p>}
             {this.showImage(this.state.pictureURL)}
             <FileUploader
+            className="inputs"
             accept="picture/*"
             name="picture"
             randomizeFilename
@@ -117,17 +119,19 @@ class FormPost extends Component {
             onUploadError={this.handleUploadError}
             onUploadSuccess={this.handleUploadSuccess}
             onProgress={this.handleProgress}
-            /></span><br/>
+            /></div><br/>
             </div>
-            <button onClick={this.SubmitPost} className="SubmitPost">Post</button>
+            <div className="submitBtn">
+            <button onClick={this.SubmitPost} className="btns">Post</button>
+            </div>
           </div>
       )
 
     } else {
         return (
-          <div>
+          <div className="message">
           <h2>You post has been successfully sent!</h2>
-          <button onClick={this.BackToForm}>New post</button>
+          <button onClick={this.BackToForm} className="btns newPost">New post</button>
           </div>
         )
       }
