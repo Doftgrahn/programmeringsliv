@@ -7,9 +7,9 @@ const SendNewMessageComponent = ({renderSearch, listOfUsers, setMessage, sendMes
             {listOfUsers}
         </ul>
     </div>;
-    let sendMessageContent = <div>
+    let sendMessageContent = <div className="chatNewMessageDiv">
         <textarea onChange={e => setMessage(e.target.value)} rows="4" cols="50"></textarea>
-        <button onClick={sendMessage}>Send to {sendToUser? sendToUser.userName:'användare'}</button>
+        <button className="chatButton" onClick={sendMessage}>Send to {sendToUser? sendToUser.userName:'användare'}</button>
     </div>;
     return(
         sendMessageState?sendMessageContent:listContent

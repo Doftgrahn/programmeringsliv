@@ -93,10 +93,10 @@ const SendMessages = ({user}) => {
     }
   
     return (
-        <div>
+        <div className="chatNewMessageDiv">
             {newMessageState? <SendNewMessageComponent renderSearch={renderSearch} listOfUsers={listOfUsers} setMessage={setMessage} 
             sendMessage={sendMessage} sendToUser={sendToUser} sendMessageState={sendMessageState} /> :
-            <button onClick={switchNewMessageState}>Send brand new message</button>}
+            <button className="chatButton" onClick={switchNewMessageState}>Send brand new message</button>}
         </div>
     )
 }
