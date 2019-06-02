@@ -8,6 +8,7 @@ import SendMessages from './SendMessages';
 
 const ChatDatabase = ({user}) => {
     let [messages, setMessages] = useState(null);
+    
 
     useEffect(() => {
         if(user){
@@ -35,21 +36,21 @@ const ChatDatabase = ({user}) => {
         }
     }, [user]);
     
+ 
     let displayMessages = null;
     if (messages) {
-        displayMessages = messages.map( (message, index) => (<MessageLayout key={index} message={message} user={user}/>))
+        displayMessages = messages.map( (message, index) => (<MessageLayout key={index} message={message} user={user} />))
     }
     
     return (
-            <div>
-            <h1>Chat</h1>
-            <button onClick={initializeApp}>Aktivera push-notiser</button>
-            <div>
-                {displayMessages? displayMessages : 'Waiting for server...'}
-            </div>
+        <div className="Chat">
             <div>
                 <SendMessages user={user} />
             </div>
+            <div className="ChatConversationWrapper">
+                {displayMessages? displayMessages : <div className="loader"></div>}
+            </div>
+            <button className="chatButton secondLargeButton" onClick={initializeApp}>Activate push-messages and recieve the latest news</button>
         </div>
     );
 };
