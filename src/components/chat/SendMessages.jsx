@@ -80,8 +80,8 @@ const SendMessages = ({user}) => {
                 ids: [user.uid, sendToUser.id],
                 messages:[{content: messageToUser, idSender: user.uid}],
                 users: [
-                    {username: user.displayName, id: user.uid},
-                    {username: sendToUser.userName, id: sendToUser.id}
+                    {username: user.displayName, id: user.uid, picture: user.photoURL},
+                    {username: sendToUser.userName, id: sendToUser.id, picture: sendToUser.userPhotoURL}
                 ]
             }
             userCollection.add(obj).then(setSendToUser(null));

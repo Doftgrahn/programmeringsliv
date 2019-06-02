@@ -2,7 +2,7 @@ import React from 'react';
 
 const SendNewMessageComponent = ({renderSearch, listOfUsers, setMessage, sendMessage, sendToUser, sendMessageState}) => {
     let listContent = <div>
-        <input type="text" label="Search for user" onChange={e => renderSearch(e.target.value)}/>
+        <input type="text" placeholder="Search for user" onChange={e => renderSearch(e.target.value)}/>
         <ul>
             {listOfUsers}
         </ul>

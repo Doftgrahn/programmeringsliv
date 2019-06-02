@@ -1,9 +1,54 @@
-.messageLayoutUser{
-    color: red;
+.Chat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
-.messageLayoutSender {
-    color: green;
+.ChatConversationWrapper{
+    padding: 20px;
+    width: 350px;
+    margin: auto;
 }
+.chatProfilePic {
+    border-radius: 50%;
+    width: 40px;
+}
+.messageLayoutWrapper{
+    width:100%;
+    position: relative;
+    .messageLayoutUser {
+        background: $color-purple;
+        max-width: 40%;
+        margin-left: 60%;
+        border-radius: 20px;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+    .messageLayoutSender {
+        background: $color-orange;
+        max-width: 40%;
+        margin-left: 0%;
+        border-radius: 20px;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: relative;
+    }
+}
+
 .messageLayoutConversation {
-    border: 2px solid black;
+    border-radius: 20px;
+    background: $color-blue;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+    h3 {
+        margin: 0px;
+        font-size: 1em;
+        text-align: left;
+        display: block;
+        width: 80%;
+        float: right;
+    }
 }
+

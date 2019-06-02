@@ -41,11 +41,10 @@ const ChatDatabase = ({user}) => {
     }
     
     return (
-            <div>
-            <h1>Chat</h1>
-            <button onClick={initializeApp}>Aktivera push-notiser</button>
-            <div>
-                {displayMessages? displayMessages : 'Waiting for server...'}
+        <div className="Chat">
+            <button onClick={initializeApp}>Activate push-messages and recieve the latest news</button>
+            <div className="ChatConversationWrapper">
+                {displayMessages? displayMessages : <div className="loader"></div>}
             </div>
             <div>
                 <SendMessages user={user} />
