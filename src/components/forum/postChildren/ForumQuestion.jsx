@@ -51,17 +51,12 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
     let hasVoted;
     if (user) hasVoted = votePostId.find(post => post.userId === user.uid);
 
-    const upVote = postData => {
+    const willVote = (postData, value) => {
         if (user && !hasVoted) {
-            const votes = votePostId
-                .filter(f => f.postId === forumData.postiD)
-                .map(e => e.vote)
-                .reduce((a, b) => a + b, 0);
-
             const vote = {
                 userId: user.uid,
                 postId: postData.postiD,
-                vote: votes + 1
+                vote: value
             };
 
             const votePathiD = `${vote.userId}_###_${vote.postId}`;
@@ -72,34 +67,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                 .set(vote)
                 .then(() =>
                     console.log(
-                        "%c successfully upvoted ",
-                        "background: #222; color: #bada55"
-                    )
-                );
-        }
-    };
-
-    const downVote = postData => {
-        if (user && !hasVoted) {
-            const votes = votePostId
-                .filter(f => f.postId === forumData.postiD)
-                .map(e => e.vote)
-                .reduce((a, b) => a + b, 0);
-
-            const vote = {
-                userId: user.uid,
-                postId: postData.postiD,
-                vote: votes - 1
-            };
-            const votePath = `${vote.userId}###${vote.postId}`;
-            const dbCollection = database
-                .collection(collection.votes_posts)
-                .doc(votePath);
-            dbCollection
-                .set(vote)
-                .then(() =>
-                    console.log(
-                        "%c successfully upvoted ",
+                        "%c successfully voted ",
                         "background: #222; color: #bada55"
                     )
                 );
@@ -142,24 +110,20 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                 <p className="content_c-content">{forumData.content}</p>
             </div>
             <div className="votes-container">
-                <img
-                    onClick={() => upVote(forumData)}
-                    className="upvote"
-                    src={voteArrow}
-                    alt="upvote"
-                />
+                <div onClick={() => willVote(forumData, 1)}>
+                    <img className="upvote" src={voteArrow} alt="upvote" />
+                </div>
                 <span className="votes">
                     Votes:
                     {filterVotes.length === 0
                         ? 0
-                        : filterVotes.map(e => e.vote)}
+                        : filterVotes
+                              .map(e => e.vote)
+                              .reduce((a, b) => a + b, 0)}
                 </span>
-                <img
-                    onClick={() => downVote(forumData)}
-                    className="downVote"
-                    src={voteArrow}
-                    alt="DownVote"
-                />
+                <div onClick={() => willVote(forumData, -1)}>
+                    <img className="downVote" src={voteArrow} alt="DownVote" />
+                </div>
                 {user && forumData.userID === user.uid ? (
                     <button
                         className="deleteButton"

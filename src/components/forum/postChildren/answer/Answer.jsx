@@ -29,15 +29,15 @@ const Answer = ({answer, forumQuestion, user}) => {
     if (user)
         hasVoted = voteAnsweriD.find(answer => answer.userId === user.uid);
 
-    const upVote = answerData => {
+    const willVote = (answerData, value) => {
         if (user && !hasVoted) {
-            const votes = voteAnsweriD
+            /*const votes = voteAnsweriD
                 .map(e => e.vote)
-                .reduce((a, b) => a + b, 0);
+                .reduce((a, b) => a + b, 0);*/
             const vote = {
                 userId: user.uid,
                 answerId: answerData.id,
-                vote: votes + 1
+                vote: value
             };
             const votePathiD = `${vote.userId}###${vote.answerId}`;
             const dbCollection = database
@@ -47,33 +47,8 @@ const Answer = ({answer, forumQuestion, user}) => {
                 .set(vote)
                 .then(() =>
                     console.log(
-                        "%c successfully upvoted ",
+                        "%c successfully voted ",
                         "background: #222; color: green"
-                    )
-                );
-        }
-    };
-
-    const downVote = answerData => {
-        if (user && !hasVoted) {
-            const votes = voteAnsweriD
-                .map(e => e.vote)
-                .reduce((a, b) => a + b, 0);
-            const vote = {
-                userId: user.uid,
-                answerId: answerData.id,
-                vote: votes - 1
-            };
-            const votePathiD = `${vote.userId}###${vote.answerId}`;
-            const dbCollection = database
-                .collection(collection.votes_answers)
-                .doc(votePathiD);
-            dbCollection
-                .set(vote)
-                .then(() =>
-                    console.log(
-                        "%c successfully downvoted ",
-                        "background: #222; color: red"
                     )
                 );
         }
@@ -91,18 +66,22 @@ const Answer = ({answer, forumQuestion, user}) => {
                         "background: #222; color: red"
                     )
                 );
-            /*
+
             voteAnsweriD.forEach(e => {
                 const anVoteCollection = database.collection(
-                    collection.votes_answer
+                    collection.votes_answers
                 );
                 anVoteCollection
                     .doc(e.id)
                     .delete()
                     .then(() => {
-                        console.log("%c Votes to answers deleted");
-                    }).catch(error => console.log('Error', error))
-            });*/
+                        console.log(
+                            "%c Votes connected to answers deleted",
+                            "background: #222; color: red"
+                        )
+                    })
+                    .catch(error => console.log("Error", error));
+            });
         }
     };
 
@@ -120,7 +99,7 @@ const Answer = ({answer, forumQuestion, user}) => {
                 </div>
                 <div className="vote">
                     <img
-                        onClick={() => upVote(answer)}
+                        onClick={() => willVote(answer, 1)}
                         className="upvote"
                         src={voteArrow}
                         alt="upvote"
@@ -129,20 +108,19 @@ const Answer = ({answer, forumQuestion, user}) => {
                         votes:
                         {voteAnsweriD.length === 0
                             ? 0
-                            : voteAnsweriD.map(e => e.vote)}
+                            : voteAnsweriD
+                                  .map(e => e.vote)
+                                  .reduce((a, b) => a + b, 0)}
                     </span>
                     <img
-                        onClick={() => downVote(answer)}
+                        onClick={() => willVote(answer, -1)}
                         src={voteArrow}
                         alt="downVote"
                     />
                 </div>
 
                 <div className="answerAndDeletel-container">
-                    <p>
-
-                        {answer.answer}
-                    </p>
+                    <p>{answer.answer}</p>
                     {user && answer.userId === user.uid ? (
                         <button
                             className="deleteButton"
