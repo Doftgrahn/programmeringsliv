@@ -5,11 +5,9 @@ import Post from "./Post";
 
 const Forum = ({user, match}) => {
     const [forum, setForum] = useState([]);
-    /*
     const [pVotes, setpVotes] = useState([]);
-
     const [sortKey, setSortKey] = useState("");
-*/
+
     useEffect(() => {
         const userCollection = database.collection(collection.post);
         const unsubscribe = userCollection.onSnapshot(snapshot => {
@@ -22,7 +20,6 @@ const Forum = ({user, match}) => {
         return unsubscribe;
     }, []);
 
-    /*
     useEffect(() => {
         const votePostCollection = database.collection(collection.votes_posts);
         const unsubscribe = votePostCollection.onSnapshot(snapshot => {
@@ -34,7 +31,34 @@ const Forum = ({user, match}) => {
         });
         return unsubscribe;
     }, []);
-    */
+
+    const sortByNewest = () => {
+        const newest = forum.sort(
+            (a, b) => b.timestamp.seconds - a.timestamp.seconds
+        );
+        setForum(newest);
+        setSortKey("newest");
+    };
+
+    const sortByOldest = () => {
+        const oldest = forum.sort(
+            (a, b) => a.timestamp.seconds - b.timestamp.seconds
+        );
+        setForum(oldest);
+        setSortKey("oldest");
+    };
+
+    const sortByHighestVotes = () => {
+        const f2 = forum.map(post => {
+            let filtered = pVotes.filter(vote => vote.postId === post.postiD);
+            let sum = filtered.reduce((e, y) => e + y.vote, 0);
+            return {...post, voteSum: sum};
+        });
+        const byHigest = f2.sort((a, b) => b.voteSum - a.voteSum);
+
+        setForum(byHigest);
+        setSortKey("highest");
+    };
 
     let posts = forum.map(post => (
         <Post key={post.postiD} user={user} forumData={post} match={match} />
@@ -42,36 +66,35 @@ const Forum = ({user, match}) => {
 
     return (
         <main className="forum fade">
+            {forum.length === 0 ? null : (
+                <div className="fBtn">
+                    <button
+                        onClick={sortByNewest}
+                        disabled={sortKey === "newest" ? true : false}
+                        className={sortKey === "newest" ? "activeBtn" : ""}
+                    >
+                        Newest
+                    </button>
+                    <button
+                        onClick={sortByOldest}
+                        disabled={sortKey === "oldest" ? true : false}
+                        className={sortKey === "oldest" ? "activeBtn" : ""}
+                    >
+                        Oldest
+                    </button>
+                    <button
+                        onClick={sortByHighestVotes}
+                        disabled={sortKey === "highest" ? true : false}
+                        className={sortKey === "highest" ? "activeBtn" : ""}
+                    >
+                        Highest Votes
+                    </button>
+                </div>
+            )}
+
             {forum.length === 0 ? <div className="loader" /> : posts}
         </main>
     );
 };
 
 export default Forum;
-
-/*
-    <select className="filter-options fade">
-        <option />
-        <option onClick={sortByNewest}>Newest</option>
-        <option onClick={sortByHighestVotes}>
-            Highest Votes
-        </option>
-        <option>Best</option>
-    </select>
-
-
-
-    const sortByNewest = () => {
-        const newest = forum.sort(
-            (a, b) => a.timestamp.seconds - b.timestamp.seconds
-        );
-        setForum(newest);
-        setSortKey("newest");
-    };
-    const sortByHighestVotes = () => {
-        const sortVotes = forum.filter(e => e.PostiD === pVotes.postId)
-        console.log(sortVotes);
-
-        const highestVotes = forum.sort((a, b) => a);
-    };
-*/
