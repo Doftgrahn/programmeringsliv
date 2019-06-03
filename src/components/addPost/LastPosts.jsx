@@ -27,7 +27,7 @@ const LastPosts = () => {
       return(
         <div key={post.id} className="postContainer">
           <div className="questionTitle">{post.title}</div>
-          <div className="questionContent">{post.content}</div>
+          <div className="postContent">{post.content}</div>
           <div className="usernameInPost">{post.username}</div>
           <div className="floatRight">{date} {time}</div>
         </div>
