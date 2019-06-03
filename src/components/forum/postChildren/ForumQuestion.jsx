@@ -102,15 +102,12 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
         }
     };
 
-    /*if(hasVoted) {
-    const voted = votePostId.filter(post => post.userId === user.uid).map(e=>e.vote);
-    if(whatDidVote !== voted)
-        setWhatDidVote(voted)
-}*/
-    const whatVoted = votePostId
-        .filter(post => post.userId === user.uid)
-        .map(e => e.vote)
-        .join();
+    let whatVoted;
+    if (user)
+        whatVoted = votePostId
+            .filter(post => post.userId === user.uid)
+            .map(e => e.vote)
+            .join();
 
     return (
         <div className="post_container-question">
@@ -134,7 +131,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                               .reduce((a, b) => a + b, 0)}
                 </span>
                 <div
-                    className={whatVoted === "-1" ? "red" : ""}
+                    /*className={whatVoted === "-1" ? "red" : ""}*/
                     onClick={() => willVote(forumData, -1)}
                 >
                     {/*<img className="downVote" src={voteArrow} alt="DownVote" />*/}

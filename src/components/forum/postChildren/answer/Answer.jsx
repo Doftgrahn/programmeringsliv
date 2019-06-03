@@ -85,11 +85,12 @@ const Answer = ({answer, forumQuestion, user}) => {
         }
     };
 
-    const whatVoted = voteAnsweriD
-        .filter(ans => ans.userId === user.uid)
-        .map(e => e.vote)
-        .join();
-    console.log(whatVoted);
+    let whatVoted;
+    if (user)
+        whatVoted = voteAnsweriD
+            .filter(ans => ans.userId === user.uid)
+            .map(e => e.vote)
+            .join();
 
     return (
         <div className="answer">
