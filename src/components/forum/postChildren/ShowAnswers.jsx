@@ -8,8 +8,6 @@ import collection from "../../../shared/dbCollection";
 const ShowAnswers = ({forumQuestion, user}) => {
     const [answers, setAnswer] = useState([]);
 
-
-
     useEffect(() => {
         let isSubscribed = true;
         const answerCollection = database.collection(collection.answer);

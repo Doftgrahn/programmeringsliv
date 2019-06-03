@@ -130,8 +130,8 @@ const Profile = ({user}) => {
               <div className="email">{!user ? 'email@gmail.com' : user.email}</div>
             </div>
             <div className="extraProfileInfo">
-              <span className="posts"><i className="far fa-comment"></i> {postsNumber} posts</span>
-              <span className="karma"><i className="far fa-heart"></i> {karmaPoints} karma points</span>
+              <span className="posts"><i className="fas fa-comments"></i> {postsNumber} posts</span>
+              <span className="karma"><i className="fas fa-heart"></i> {karmaPoints} karma points</span>
             </div>
             </div>
             </div>

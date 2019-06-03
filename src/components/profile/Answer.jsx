@@ -8,7 +8,7 @@ const Answer = ({ answer }) => {
 
  return (
   <div className="postDiv"> Answer:
-    <div className="answer"> {answer.answer} </div>
+    <div className="profileAnswer"> {answer.answer} </div>
     <div className="postMetadata">
       <span className="date">{date} {time}</span>
       {/*<span className="votes">{0} votes</span>*/}
