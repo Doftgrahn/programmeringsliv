@@ -8,15 +8,15 @@ const LastPosts = () => {
 
   useEffect(() => {
     const listOfPosts = db.collection('posts').orderBy("timestamp", "desc").limit(5);
-    listOfPosts.onSnapshot(snapshot => {
+    const unsubsribe = listOfPosts.onSnapshot(snapshot => {
       const list = [];
       snapshot.forEach(doc=> {
         list.push({id: doc.id, ...doc.data()})
       });
       setPostsData(list)
     });
-
-  }, []);
+    return unsubsribe;
+  }, [db]);
 
   let allPosts = null;
 
