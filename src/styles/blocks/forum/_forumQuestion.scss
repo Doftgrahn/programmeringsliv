@@ -41,7 +41,7 @@
     .votes-container {
         width: 100px;
         background: rgba(255, 255, 255, 0.8);
-        padding: 10px 10px;
+        padding: 10px;
         margin-bottom: 20px;
         //height: 33%;
         display: flex;
@@ -131,10 +131,6 @@
 
     .show {
         display: block;
-
-        i {
-            //color: white;
-        }
     }
 
     .hidden {
@@ -148,4 +144,12 @@
     .white {
         color: white;
     }
+}
+
+.blue {
+    background: $color-blue;
+}
+
+.red {
+    background: $color-orange;
 }

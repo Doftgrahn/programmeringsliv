@@ -99,7 +99,15 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
         }
     };
 
-    const filterVotes = votePostId;
+    /*if(hasVoted) {
+    const voted = votePostId.filter(post => post.userId === user.uid).map(e=>e.vote);
+    if(whatDidVote !== voted)
+        setWhatDidVote(voted)
+}*/
+    const whatVoted = votePostId
+        .filter(post => post.userId === user.uid)
+        .map(e => e.vote)
+        .join();
 
     return (
         <div className="post_container-question">
@@ -110,18 +118,24 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                 <p className="content_c-content">{forumData.content}</p>
             </div>
             <div className="votes-container">
-                <div onClick={() => willVote(forumData, 1)}>
+                <div
+                    className={whatVoted === "1" ? "blue" : ""}
+                    onClick={() => willVote(forumData, 1)}
+                >
                     <img className="upvote" src={voteArrow} alt="upvote" />
                 </div>
                 <span className="votes">
                     Votes:
-                    {filterVotes.length === 0
+                    {votePostId.length === 0
                         ? 0
-                        : filterVotes
+                        : votePostId
                               .map(e => e.vote)
                               .reduce((a, b) => a + b, 0)}
                 </span>
-                <div onClick={() => willVote(forumData, -1)}>
+                <div
+                    className={whatVoted === "-1" ? "red" : ""}
+                    onClick={() => willVote(forumData, -1)}
+                >
                     <img className="downVote" src={voteArrow} alt="DownVote" />
                 </div>
                 {user && forumData.userID === user.uid ? (

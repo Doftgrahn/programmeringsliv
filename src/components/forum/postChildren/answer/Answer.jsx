@@ -78,12 +78,18 @@ const Answer = ({answer, forumQuestion, user}) => {
                         console.log(
                             "%c Votes connected to answers deleted",
                             "background: #222; color: red"
-                        )
+                        );
                     })
                     .catch(error => console.log("Error", error));
             });
         }
     };
+
+    const whatVoted = voteAnsweriD
+        .filter(ans => ans.userId === user.uid)
+        .map(e => e.vote)
+        .join();
+    console.log(whatVoted);
 
     return (
         <div className="answer">
@@ -98,12 +104,12 @@ const Answer = ({answer, forumQuestion, user}) => {
                     </span>
                 </div>
                 <div className="vote">
-                    <img
+                    <div
+                        className={whatVoted === "1" ? "blue" : ""}
                         onClick={() => willVote(answer, 1)}
-                        className="upvote"
-                        src={voteArrow}
-                        alt="upvote"
-                    />
+                    >
+                        <img className="upvote" src={voteArrow} alt="upvote" />
+                    </div>
                     <span>
                         votes:
                         {voteAnsweriD.length === 0
@@ -112,11 +118,12 @@ const Answer = ({answer, forumQuestion, user}) => {
                                   .map(e => e.vote)
                                   .reduce((a, b) => a + b, 0)}
                     </span>
-                    <img
+                    <div
+                        className={whatVoted === "-1" ? "red" : ""}
                         onClick={() => willVote(answer, -1)}
-                        src={voteArrow}
-                        alt="downVote"
-                    />
+                    >
+                        <img src={voteArrow} alt="downVote" />
+                    </div>
                 </div>
 
                 <div className="answerAndDeletel-container">
