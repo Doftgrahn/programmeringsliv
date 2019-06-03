@@ -3,10 +3,9 @@ import {database} from "../../shared/Firebase";
 import collection from "../../shared/dbCollection";
 import Post from "./Post";
 
-
 const Forum = ({user, match}) => {
     const [forum, setForum] = useState([]);
-/*
+    /*
     const [pVotes, setpVotes] = useState([]);
 
     const [sortKey, setSortKey] = useState("");
@@ -23,7 +22,7 @@ const Forum = ({user, match}) => {
         return unsubscribe;
     }, []);
 
-/*
+    /*
     useEffect(() => {
         const votePostCollection = database.collection(collection.votes_posts);
         const unsubscribe = votePostCollection.onSnapshot(snapshot => {
@@ -37,23 +36,18 @@ const Forum = ({user, match}) => {
     }, []);
     */
 
-
     let posts = forum.map(post => (
         <Post key={post.postiD} user={user} forumData={post} match={match} />
     ));
 
     return (
         <main className="forum fade">
-
-
             {forum.length === 0 ? <div className="loader" /> : posts}
         </main>
     );
 };
 
 export default Forum;
-
-
 
 /*
     <select className="filter-options fade">
