@@ -6,6 +6,9 @@ import collection from "../../../shared/dbCollection";
 
 import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
 
+import Upvote from "../../../shared/voteArrows/UpVote";
+import DownVote from "../../../shared/voteArrows/DownVote";
+
 const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
     const [votePostId, setPostId] = useState([]);
     const [answers, setAnswers] = useState([]);
@@ -118,11 +121,9 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                 <p className="content_c-content">{forumData.content}</p>
             </div>
             <div className="votes-container">
-                <div
-                    className={whatVoted === "1" ? "blue" : ""}
-                    onClick={() => willVote(forumData, 1)}
-                >
-                    <img className="upvote" src={voteArrow} alt="upvote" />
+                <div onClick={() => willVote(forumData, 1)}>
+                    {/*<img className="upvote" src={voteArrow} alt="upvote" />*/}
+                    <Upvote whatVoted={whatVoted} />
                 </div>
                 <span className="votes">
                     Votes:
@@ -136,7 +137,8 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                     className={whatVoted === "-1" ? "red" : ""}
                     onClick={() => willVote(forumData, -1)}
                 >
-                    <img className="downVote" src={voteArrow} alt="DownVote" />
+                    {/*<img className="downVote" src={voteArrow} alt="DownVote" />*/}
+                    <DownVote whatVoted={whatVoted} />
                 </div>
                 {user && forumData.userID === user.uid ? (
                     <button

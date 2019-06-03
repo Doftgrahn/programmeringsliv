@@ -3,6 +3,7 @@ import {database} from "../../shared/Firebase";
 import collection from "../../shared/dbCollection";
 import Post from "./Post";
 
+
 const Forum = ({user, match}) => {
     const [forum, setForum] = useState([]);
     const [pVotes, setpVotes] = useState([]);
