@@ -1,5 +1,8 @@
 textarea {
   resize: none;
+  min-height: 300px;
+  font-size: 18px;
+  margin: 10px 0;
 }
 
 img.uploadedImage {
@@ -20,10 +23,12 @@ img.uploadedImage {
   width: 80%;
 }
 
-input[type=text], select, textarea {
+input[type=text], textarea {
   border: none;
   border-bottom: 1px solid #ccc;
   background: $color-white;
+  font-size: 18px;
+  padding: 10px;
   &:focus{
     outline: none;
   }
@@ -31,6 +36,7 @@ input[type=text], select, textarea {
     background-color: 1px solid #ccc;
   }
 }
+
 
 
 .labels {
