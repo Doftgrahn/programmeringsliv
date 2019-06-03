@@ -14,7 +14,10 @@ const AddPostPage = ({user}) => {
   }
 
   return (
+<<<<<<< HEAD
     
+=======
+>>>>>>> dev
     <div className="wrapEverything">
       <h2>Add post</h2>
       <div className="mainGrid">
