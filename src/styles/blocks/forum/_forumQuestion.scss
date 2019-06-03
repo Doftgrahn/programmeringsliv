@@ -57,10 +57,14 @@
         }
 
         .upvote {
+            cursor: pointer;
             transform: rotate(180deg);
+            background: none;
         }
 
-        .downVote {}
+        .downVote {
+            background: none;
+        }
     }
 
     .deleteButton {
@@ -147,9 +151,9 @@
 }
 
 .blue {
-    background: $color-blue;
+    fill: $color-purple-solid;
 }
 
 .red {
-    background: $color-orange;
+    fill:$color-orange-solid;
 }
