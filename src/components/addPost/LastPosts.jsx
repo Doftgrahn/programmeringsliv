@@ -29,7 +29,7 @@ const LastPosts = () => {
           <div className="questionTitle">{post.title}</div>
           <div className="questionContent">{post.content}</div>
           <div className="usernameInPost">{post.username}</div>
-          <div className="postMetadata">{date} {time}</div>
+          <div className="floatRight">{date} {time}</div>
         </div>
       )
     })

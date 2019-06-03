@@ -37,7 +37,7 @@ state = {
     ],
     
     callbacks: {
-      signInSuccess: (user) => {
+      signInSuccessWithAuthResult: (user, redirectUrl) => {
         this.setState({
             signedIn: true, 
             user: user, 
@@ -48,6 +48,9 @@ state = {
             karma: 0
         });
         return false; 
+      },
+      signInFailure: (error) => {
+        console.log(error);
       }
     }
   };

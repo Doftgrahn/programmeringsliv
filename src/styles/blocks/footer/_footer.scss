@@ -1,13 +1,5 @@
 footer {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
-}
-
-footer {
-    display: flex;
     align-items: center;
     justify-content: center;
     //background: $color-white;
@@ -17,6 +9,8 @@ footer {
     position: relative;
     padding-top: 40px;
     font-family: 'Open Sans', sans-serif;
+    flex-direction: row;
+    padding: 0 20px;
   }
 
   .footerContacts {
@@ -47,6 +41,7 @@ footer {
     h2 {
         text-align: center;
         padding-top: 0;
+        margin: 20px 0;
     }
 
     img {
@@ -68,3 +63,7 @@ footer {
     height:194px;
     width:308px;
   }
+
+.footerLink {
+  cursor: pointer;
+}
