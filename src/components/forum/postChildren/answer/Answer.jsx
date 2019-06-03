@@ -53,32 +53,6 @@ const Answer = ({answer, forumQuestion, user}) => {
                 );
         }
     };
-    /*
-    const downVote = answerData => {
-        if (user && !hasVoted) {
-            const votes = voteAnsweriD
-                .map(e => e.vote)
-                .reduce((a, b) => a + b, 0);
-            const vote = {
-                userId: user.uid,
-                answerId: answerData.id,
-                vote: votes - 1
-            };
-            const votePathiD = `${vote.userId}###${vote.answerId}`;
-            const dbCollection = database
-                .collection(collection.votes_answers)
-                .doc(votePathiD);
-            dbCollection
-                .set(vote)
-                .then(() =>
-                    console.log(
-                        "%c successfully downvoted ",
-                        "background: #222; color: red"
-                    )
-                );
-        }
-    };
-    */
 
     const deleteAnswer = data => {
         if (data.userId === user.uid) {
@@ -92,18 +66,19 @@ const Answer = ({answer, forumQuestion, user}) => {
                         "background: #222; color: red"
                     )
                 );
-            /*
+
             voteAnsweriD.forEach(e => {
                 const anVoteCollection = database.collection(
-                    collection.votes_answer
+                    collection.votes_answers
                 );
                 anVoteCollection
                     .doc(e.id)
                     .delete()
                     .then(() => {
                         console.log("%c Votes to answers deleted");
-                    }).catch(error => console.log('Error', error))
-            });*/
+                    })
+                    .catch(error => console.log("Error", error));
+            });
         }
     };
 
