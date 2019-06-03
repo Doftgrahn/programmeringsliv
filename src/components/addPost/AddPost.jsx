@@ -26,9 +26,8 @@ const AddPostPage = ({user}) => {
         <div className="lastPosts">
         <LastPosts/>
         </div>
-        </div>
-        </div>
-
+      </div>
+    </div>
   )
 
 }
