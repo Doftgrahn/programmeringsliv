@@ -7,11 +7,11 @@ const SendNewMessageComponent = ({renderSearch, listOfUsers, setMessage, sendMes
         <ul>
             {listOfUsers}
         </ul>
-        <button className="chatButton firstAbortButton" onClick={abortSendMessage}>Avbryt</button>
+        <button className="chatButton firstAbortButton" onClick={abortSendMessage}>Back</button>
     </div>;
     let sendMessageContent = <div className="chatNewMessageDiv">
         <textarea onChange={e => setMessage(e.target.value)} rows="4" cols="50"></textarea>
-        <button className="chatButton secondAbortButton" onClick={abortSendMessage}>Avbryt</button>
+        <button className="chatButton secondAbortButton" onClick={abortSendMessage}>Back</button>
         <button className="chatButton sendButton" onClick={sendMessage}>Send to {sendToUser? sendToUser.userName:'användare'}</button>
     </div>;
     return(
