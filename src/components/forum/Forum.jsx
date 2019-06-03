@@ -4,44 +4,75 @@ import collection from "../../shared/dbCollection";
 import Post from "./Post";
 
 const Forum = ({user, match}) => {
-    const [forum, setForum] = useState(null);
+    const [forum, setForum] = useState([]);
+    const [pVotes, setpVotes] = useState([]);
+    const [sortKey, setSortKey] = useState("");
 
     useEffect(() => {
-        let isSubscribed = true;
         const userCollection = database.collection(collection.post);
-        userCollection.onSnapshot(snapshot => {
-            if (isSubscribed) {
-                const list = [];
-                snapshot.forEach(doc => {
-                    list.push({...doc.data(), postiD: doc.id});
-                });
-                setForum(list);
-            }
+        const unsubscribe = userCollection.onSnapshot(snapshot => {
+            const list = [];
+            snapshot.forEach(doc => {
+                list.push({...doc.data(), postiD: doc.id});
+            });
+            setForum(list);
         });
-        return () => (isSubscribed = false);
+        return unsubscribe;
     }, []);
 
-    let posts;
-    if (forum) {
-        posts = forum.map((post, index) => (
-            <Post
-                key={post.postiD}
-                user={user}
-                forumData={post}
-                match={match}
-            />
-        ));
-    }
+    useEffect(() => {
+        const votePostCollection = database.collection(collection.votes_posts);
+        const unsubscribe = votePostCollection.onSnapshot(snapshot => {
+            const list = [];
+            snapshot.forEach(doc => {
+                list.push({...doc.data(), id: doc.id});
+            });
+            setpVotes(list);
+        });
+        return unsubscribe;
+    }, []);
+
+
+    let posts = forum.map(post => (
+        <Post key={post.postiD} user={user} forumData={post} match={match} />
+    ));
 
     return (
-        <main className="forum">
-            <div>
-                <button>Higest Votes</button>
-                <button>newest!</button>
-            </div>
-            {!forum ? <div className="loader" /> : posts}
+        <main className="forum fade">
+
+
+            {forum.length === 0 ? <div className="loader" /> : posts}
         </main>
     );
 };
 
 export default Forum;
+
+
+
+/*
+    <select className="filter-options fade">
+        <option />
+        <option onClick={sortByNewest}>Newest</option>
+        <option onClick={sortByHighestVotes}>
+            Highest Votes
+        </option>
+        <option>Best</option>
+    </select>
+
+
+
+    const sortByNewest = () => {
+        const newest = forum.sort(
+            (a, b) => a.timestamp.seconds - b.timestamp.seconds
+        );
+        setForum(newest);
+        setSortKey("newest");
+    };
+    const sortByHighestVotes = () => {
+        const sortVotes = forum.filter(e => e.PostiD === pVotes.postId)
+        console.log(sortVotes);
+
+        const highestVotes = forum.sort((a, b) => a);
+    };
+*/

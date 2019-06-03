@@ -9,7 +9,6 @@ import SendMessages from './SendMessages';
 const ChatDatabase = ({user}) => {
     let [messages, setMessages] = useState(null);
     
-
     useEffect(() => {
         if(user){
             let isSubscribed = true;
@@ -36,13 +35,13 @@ const ChatDatabase = ({user}) => {
         }
     }, [user]);
     
- 
     let displayMessages = null;
     if (messages) {
         displayMessages = messages.map( (message, index) => (<MessageLayout key={index} message={message} user={user} />))
     }
-    
-    return (
+    let pageContent;
+    if (user) {
+        pageContent = 
         <div className="Chat">
             <div>
                 <SendMessages user={user} />
@@ -52,6 +51,17 @@ const ChatDatabase = ({user}) => {
             </div>
             <button className="chatButton secondLargeButton" onClick={initializeApp}>Activate push-messages and recieve the latest news</button>
         </div>
+    } else {
+        pageContent = 
+        <div className="userNotLoggedIn">
+            <p className="">You need to login to see your messages.</p>
+        </div>
+    }
+    return (
+        <div>
+            {pageContent}
+        </div>
+        
     );
 };
 

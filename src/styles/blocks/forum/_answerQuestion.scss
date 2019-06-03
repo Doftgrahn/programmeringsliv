@@ -4,12 +4,12 @@
     margin: 0 auto;
 
     span {
-
         .linktoProfile {
             text-decoration: underline;
             color: $color-textBlack;
             transition: 0.4s;
             padding: 0 5px;
+
             &:hover {
                 background: $color-orange;
                 -webkit-background-clip: text;
@@ -34,6 +34,10 @@
             transition: 0.3s;
             border: none;
             background: $color-orange;
+
+            &:hover {
+                background: $color-purple;
+            }
 
             i {}
         }
@@ -82,14 +86,14 @@
                 border-radius: 20px;
                 border: none;
                 outline: none;
-            padding: 10px;
+                padding: 10px;
                 cursor: pointer;
                 margin: 0 10px;
                 background: $color-orange;
 
                 &:nth-child(even) {
                     background: $color-pink;
-                    color:white;
+                    color: white;
                 }
 
                 &:hover {
