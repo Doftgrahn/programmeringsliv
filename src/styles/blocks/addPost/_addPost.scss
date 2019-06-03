@@ -54,3 +54,15 @@ h2 {
       grid-column: 1 / span 3;
     }
   }
+
+  .outsideWrapEverything {
+    padding: 20px;
+  }
+
+  .wrapEverything {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    margin: 0px;
+    background: $color-white;
+  }

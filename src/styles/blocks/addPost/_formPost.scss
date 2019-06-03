@@ -6,7 +6,7 @@ textarea {
 }
 
 img.uploadedImage {
-  width: 10em;
+  width: 75%;
   height: auto;
 }
 
@@ -24,9 +24,8 @@ img.uploadedImage {
 }
 
 input[type=text], textarea {
-  border: none;
   border-bottom: 1px solid #ccc;
-  background: $color-white;
+  background: white;
   font-size: 18px;
   padding: 10px;
   &:focus{
@@ -61,7 +60,7 @@ input[type=text], textarea {
   outline: none;
   padding: 10px;
   margin: 0 10px;
-  background: $color-orange;
+  background: $color-green;
 }
 
 .pictureUpload {
@@ -71,6 +70,20 @@ input[type=text], textarea {
 
 .submitBtn {
   margin-left: 60%;
+}
+
+.deleteBtn {
+  background-color: $color-orange-solid;
+  width: 7em;
+  height: auto;
+  color: black!important;
+  cursor: pointer;
+  display: block;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin: 0 10px;
 }
 
 // /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
