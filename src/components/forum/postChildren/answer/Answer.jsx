@@ -75,7 +75,10 @@ const Answer = ({answer, forumQuestion, user}) => {
                     .doc(e.id)
                     .delete()
                     .then(() => {
-                        console.log("%c Votes to answers deleted");
+                        console.log(
+                            "%c Votes connected to answers deleted",
+                            "background: #222; color: red"
+                        )
                     })
                     .catch(error => console.log("Error", error));
             });
