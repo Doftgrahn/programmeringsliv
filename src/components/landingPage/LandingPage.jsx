@@ -4,11 +4,11 @@ import UserHomepage from './UserHomepage';
 
 const LandingPage = props => {
     return (
-      <div className="outsideLBackground">
+      <div className="outsideLBackground fade">
         <div className="backgroundL">
           <div className="contentL">
             <div className="firstBaner">
-              {props.user 
+              {props.user
               ? <UserHomepage />
                : <Homepage logIn={props.logIn} />
               }

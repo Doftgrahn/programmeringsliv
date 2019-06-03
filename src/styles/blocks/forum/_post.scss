@@ -4,18 +4,19 @@
 @import './showAnswer.scss';
 
 .post {
-    border-bottom: 5px solid black;
-    border-top: 5px solid black;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 20px auto 0;
-    width: 100%;
+    margin: 0 auto 40px;
+    width: 95%;
     background: $color-blue;
     //margin-top: 10px;
+    box-shadow: 5px 5px rgba(0, 0, 0,0.6);
     @media screen and (min-width: 800px) {
-        width: 40%;
+        width: 100%;
+        max-width: 620px;
     }
 
     &:nth-child(odd) {
@@ -23,13 +24,11 @@
     }
 
     &_container {
-        //border-bottom: 10px solid black;
-        //padding: 20px 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: flex-start;
-        flex-wrap: wrap;
+        //display: flex;
+        //flex-direction: column;
+        //justify-content: space-around;
+        //align-items: flex-start;
+        //flex-wrap: wrap;
         animation: fadeForumPost 0.4s linear;
     }
     @keyframes fadeForumPost {

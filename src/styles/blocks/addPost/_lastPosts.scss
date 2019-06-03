@@ -1,0 +1,33 @@
+.postContainer {
+  border-top: 1px solid rgba(0,0,0,.05);
+  margin: 1em;
+  background: $color-white;
+}
+
+.questionTitle {
+  font-weight: bold;
+  margin: 0.5em;
+  text-align: center;
+}
+
+.questionContent{
+  margin: 0.7em;
+
+}
+
+.usernameInPost {
+  text-align: right;
+  color: grey;
+  margin: 0.5em;
+}
+
+.postMetadata {
+  text-align: right;
+  color: grey;
+  margin: 0.5em;
+}
+
+h3,
+h2 {
+  text-align: center;
+}

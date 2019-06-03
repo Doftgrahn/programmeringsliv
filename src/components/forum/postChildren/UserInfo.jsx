@@ -8,12 +8,12 @@ const UserInfo = ({forumData}) => {
     return (
         <div className="post_container-userInfo">
             <img src={forumData.profilePic} alt="ProfilePic" />
+            <div className="userinfo_wrapper">
             <h3>{forumData.username}</h3>
-            <span>{forumData.userEmail}</span>
             <div className="time">
-                <span>posted: </span>
                 <span>{date}</span>
                 <span>{time}</span>
+            </div>
             </div>
         </div>
     );

@@ -1,0 +1,68 @@
+textarea {
+  resize: none;
+}
+
+img.uploadedImage {
+  width: 10em;
+  height: auto;
+}
+
+.formWrapper {
+  margin-left: 4em;
+}
+
+#newForm {
+  margin-left: 1em;
+  width: 80%;
+}
+
+input[type=text], select, textarea {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background: $color-white;
+  &:focus{
+    outline: none;
+  }
+  &:hover {
+    background-color: 1px solid #ccc;
+  }
+}
+
+
+.labels {
+  text-align: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.inputs {
+  width: 75%;
+  margin-top: 6px;
+}
+
+.btns {
+  width: 4em;
+  height: auto;
+  color: black!important;
+  background-color: #a8edea;
+  cursor: pointer;
+  display: block;
+  border-radius: 5px;
+}
+
+.pictureUpload {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.submitBtn {
+  margin-left: 60%;
+}
+
+// /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+// @media screen and (max-width: 600px) {
+//   .labels, .inputs, input[type=submit] {
+//     width: 100%;
+//     margin-top: 0;
+//   }
+// }

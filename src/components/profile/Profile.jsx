@@ -113,7 +113,7 @@ const Profile = ({user}) => {
   }
 
     return (
-      <div className="outsideBackground">
+      <div className="outsideBackground fade">
         <div className="background">
           <div className="content">
             <div className="containerOfProfile">

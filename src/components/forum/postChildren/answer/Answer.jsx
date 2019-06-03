@@ -91,6 +91,18 @@ const Answer = ({answer, forumQuestion, user}) => {
                         "background: #222; color: red"
                     )
                 );
+            /*
+            voteAnsweriD.forEach(e => {
+                const anVoteCollection = database.collection(
+                    collection.votes_answer
+                );
+                anVoteCollection
+                    .doc(e.id)
+                    .delete()
+                    .then(() => {
+                        console.log("%c Votes to answers deleted");
+                    }).catch(error => console.log('Error', error))
+            });*/
         }
     };
 
@@ -100,11 +112,12 @@ const Answer = ({answer, forumQuestion, user}) => {
                 <div className="answer-photo">
                     <img src={answer.photoURL} alt="userPhoto" />
                 </div>
-                <span>Username: {answer.username}</span>
-                <span>
-                    posted:
-                    {date} {time}
-                </span>
+                <div className="user_container">
+                    <span>{answer.username}</span>
+                    <span>
+                        {date} {time}
+                    </span>
+                </div>
                 <div className="vote">
                     <img
                         onClick={() => upVote(answer)}
@@ -127,7 +140,7 @@ const Answer = ({answer, forumQuestion, user}) => {
 
                 <div className="answerAndDeletel-container">
                     <p>
-                        Answer:
+
                         {answer.answer}
                     </p>
                     {user && answer.userId === user.uid ? (
@@ -135,7 +148,7 @@ const Answer = ({answer, forumQuestion, user}) => {
                             className="deleteButton"
                             onClick={() => deleteAnswer(answer)}
                         >
-                            delete
+                            <i className="fas fa-trash" />
                         </button>
                     ) : null}
                 </div>
