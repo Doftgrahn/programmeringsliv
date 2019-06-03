@@ -1,5 +1,5 @@
 @import './post.scss';
-/**/
+
 .forum {
     display: flex;
     flex-direction: column;
@@ -8,12 +8,14 @@
     //padding: 20px 0;
     .fBtn {
         padding: 10px 0;
+        display: flex;
+        flex-direction: row;
 
         button {
             margin: 0 10px;
-            //width: 100%;
+            width: 100%;
             border-radius: 20px;
-            padding: 15px 20px; //display: block;
+            padding: 15px 20px;
             outline: none;
             cursor: pointer;
             font-weight: 600;
