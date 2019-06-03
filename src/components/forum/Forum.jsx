@@ -6,9 +6,11 @@ import Post from "./Post";
 
 const Forum = ({user, match}) => {
     const [forum, setForum] = useState([]);
+/*
     const [pVotes, setpVotes] = useState([]);
-    const [sortKey, setSortKey] = useState("");
 
+    const [sortKey, setSortKey] = useState("");
+*/
     useEffect(() => {
         const userCollection = database.collection(collection.post);
         const unsubscribe = userCollection.onSnapshot(snapshot => {
@@ -21,6 +23,7 @@ const Forum = ({user, match}) => {
         return unsubscribe;
     }, []);
 
+/*
     useEffect(() => {
         const votePostCollection = database.collection(collection.votes_posts);
         const unsubscribe = votePostCollection.onSnapshot(snapshot => {
@@ -32,6 +35,7 @@ const Forum = ({user, match}) => {
         });
         return unsubscribe;
     }, []);
+    */
 
 
     let posts = forum.map(post => (
