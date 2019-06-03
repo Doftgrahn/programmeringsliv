@@ -26,9 +26,10 @@ img.uploadedImage {
 input[type=text], textarea {
   border: none;
   border-bottom: 1px solid #ccc;
-  background: $color-white;
+  //background: $color-white;
   font-size: 18px;
   padding: 10px;
+  background-color: #871f6d40;
   &:focus{
     outline: none;
   }

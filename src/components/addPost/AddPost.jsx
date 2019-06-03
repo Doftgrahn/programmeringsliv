@@ -19,7 +19,7 @@ const AddPostPage = ({user}) => {
   }
 
   return (
-
+<div className="outsideWrapEverything">
     <div className="wrapEverything">
       <h2>Add post</h2>
       <div className="mainGrid">
@@ -33,6 +33,7 @@ const AddPostPage = ({user}) => {
         <LastPosts/>
         </div>
       </div>
+    </div>
     </div>
   )
 
