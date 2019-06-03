@@ -4,8 +4,6 @@ import {database} from "../../../shared/Firebase";
 
 import collection from "../../../shared/dbCollection";
 
-import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
-
 import Upvote from "../../../shared/voteArrows/UpVote";
 import DownVote from "../../../shared/voteArrows/DownVote";
 
@@ -119,7 +117,6 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
             </div>
             <div className="votes-container">
                 <div onClick={() => willVote(forumData, 1)}>
-                    {/*<img className="upvote" src={voteArrow} alt="upvote" />*/}
                     <Upvote whatVoted={whatVoted} />
                 </div>
                 <span className="votes">
@@ -130,11 +127,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                               .map(e => e.vote)
                               .reduce((a, b) => a + b, 0)}
                 </span>
-                <div
-                    /*className={whatVoted === "-1" ? "red" : ""}*/
-                    onClick={() => willVote(forumData, -1)}
-                >
-                    {/*<img className="downVote" src={voteArrow} alt="DownVote" />*/}
+                <div onClick={() => willVote(forumData, -1)}>
                     <DownVote whatVoted={whatVoted} />
                 </div>
                 {user && forumData.userID === user.uid ? (

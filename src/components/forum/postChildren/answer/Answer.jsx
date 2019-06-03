@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {database} from "../../../../shared/Firebase";
 import collection from "../../../../shared/dbCollection";
-import voteArrow from "../../../../assets/icons/upVoteDownVote.svg";
+
+import Upvote from "../../../../shared/voteArrows/UpVote";
+import DownVote from "../../../../shared/voteArrows/DownVote";
 
 const Answer = ({answer, forumQuestion, user}) => {
     const [voteAnsweriD, setVoteAnswerId] = useState([]);
@@ -109,7 +111,7 @@ const Answer = ({answer, forumQuestion, user}) => {
                         className={whatVoted === "1" ? "blue" : ""}
                         onClick={() => willVote(answer, 1)}
                     >
-                        <img className="upvote" src={voteArrow} alt="upvote" />
+                        <Upvote whatVoted={whatVoted} />
                     </div>
                     <span>
                         votes:
@@ -123,7 +125,7 @@ const Answer = ({answer, forumQuestion, user}) => {
                         className={whatVoted === "-1" ? "red" : ""}
                         onClick={() => willVote(answer, -1)}
                     >
-                        <img src={voteArrow} alt="downVote" />
+                        <DownVote whatVoted={whatVoted} />
                     </div>
                 </div>
 
