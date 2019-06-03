@@ -181,6 +181,25 @@
         background-color: #96baf0;
     }
 }
+.userNotLoggedIn {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    text-emphasis: center;
+    margin-left: 1em;
+    margin-top: 1.5em;
+    background: $color-purple;
+    padding: 10px;
+    width: 350px;
+    text-align: center;
+    border-radius: 50px;
+    @media (min-width: $breakpoint-laptop) {
+        font-size: 1.2em;
+        margin-left: 10em;
+        margin-top: 3em;
+        width: 500px;
+    }
+}
 
 
 

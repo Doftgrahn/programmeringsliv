@@ -14,8 +14,19 @@ const AddPostPage = ({user}) => {
   }
 
   return (
-    <div className="fade">
-    <FormPost user={user}/>
+    <div className="wrapEverything">
+      <h2>Add post</h2>
+      <div className="mainGrid">
+        <div className="writerProfile">
+        <Writer user={user}/>
+        </div>
+        <div className="mainForm">
+        <FormPost user={user}/>
+        </div>
+        <div className="lastPosts">
+        <LastPosts/>
+        </div>
+      </div>
     </div>
   )
 
