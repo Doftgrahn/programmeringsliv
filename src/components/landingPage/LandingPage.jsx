@@ -1,6 +1,5 @@
 import React from "react";
 import Homepage from './Homepage';
-import UserHomepage from './UserHomepage';
 
 const LandingPage = props => {
     return (
@@ -8,10 +7,7 @@ const LandingPage = props => {
         <div className="backgroundL">
           <div className="contentL">
             <div className="firstBaner">
-              {props.user
-              ? <UserHomepage />
-               : <Homepage logIn={props.logIn} />
-              }
+              <Homepage logIn={props.logIn} user={props.user}/>
             </div>
           </div>
         </div>

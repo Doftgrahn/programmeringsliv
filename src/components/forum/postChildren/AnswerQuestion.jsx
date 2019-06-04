@@ -66,7 +66,7 @@ const AnswerQuestion = ({user, forumData}) => {
                 )}
                 <span>
                     {questionInput.length}
-                    /120
+                    /240
                 </span>
                 {questionInput.length > 240 ? (
                     <span className="errorMessage">

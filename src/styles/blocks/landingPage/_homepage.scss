@@ -17,6 +17,13 @@
     padding: 20px;
 }
 
+.bannerHeaderName {
+    color: white;
+    text-align: center;
+    padding: 50px;
+    font-size: 40px;
+    font-weight: bold;
+}
 
 .pageLandingInfo {
     margin: 4em 0;
@@ -66,6 +73,7 @@
     color: white;
     cursor: pointer;
     transition: background 0.7s;
+    border: 1px solid white;
 }
 .logInBtn {
     background-color: #9464d2;
