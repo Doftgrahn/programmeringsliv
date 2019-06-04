@@ -9,8 +9,7 @@ Import Parts of page here
 --*/
 main {
     min-height: 100vh;
-    animation
-    : routingAnimation 1s linear alternate;
+    animation: routingAnimation 1s linear alternate;
 }
 @keyframes routingAnimation {
     0% {
@@ -43,7 +42,10 @@ ul {
     transition: 0.4s;
 }
 
-
 button {
     font-size: 14px;
+}
+
+svg {
+    cursor: pointer;
 }
