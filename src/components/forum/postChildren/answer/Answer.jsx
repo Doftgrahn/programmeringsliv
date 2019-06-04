@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {database} from "../../../../shared/Firebase";
 import collection from "../../../../shared/dbCollection";
-import voteArrow from "../../../../assets/icons/upVoteDownVote.svg";
+
+import Upvote from "../../../../shared/voteArrows/UpVote";
+import DownVote from "../../../../shared/voteArrows/DownVote";
 
 const Answer = ({answer, forumQuestion, user}) => {
     const [voteAnsweriD, setVoteAnswerId] = useState([]);
@@ -78,12 +80,19 @@ const Answer = ({answer, forumQuestion, user}) => {
                         console.log(
                             "%c Votes connected to answers deleted",
                             "background: #222; color: red"
-                        )
+                        );
                     })
                     .catch(error => console.log("Error", error));
             });
         }
     };
+
+    let whatVoted;
+    if (user)
+        whatVoted = voteAnsweriD
+            .filter(ans => ans.userId === user.uid)
+            .map(e => e.vote)
+            .join();
 
     return (
         <div className="answer">
@@ -98,12 +107,12 @@ const Answer = ({answer, forumQuestion, user}) => {
                     </span>
                 </div>
                 <div className="vote">
-                    <img
+                    <div
+                        className={whatVoted === "1" ? "blue" : ""}
                         onClick={() => willVote(answer, 1)}
-                        className="upvote"
-                        src={voteArrow}
-                        alt="upvote"
-                    />
+                    >
+                        <Upvote whatVoted={whatVoted} />
+                    </div>
                     <span>
                         votes:
                         {voteAnsweriD.length === 0
@@ -112,11 +121,12 @@ const Answer = ({answer, forumQuestion, user}) => {
                                   .map(e => e.vote)
                                   .reduce((a, b) => a + b, 0)}
                     </span>
-                    <img
+                    <div
+                        className={whatVoted === "-1" ? "red" : ""}
                         onClick={() => willVote(answer, -1)}
-                        src={voteArrow}
-                        alt="downVote"
-                    />
+                    >
+                        <DownVote whatVoted={whatVoted} />
+                    </div>
                 </div>
 
                 <div className="answerAndDeletel-container">

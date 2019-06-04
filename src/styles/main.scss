@@ -42,7 +42,11 @@ ul {
     transition: 0.4s;
 }
 
-button,
-textarea {
-    font-size: 18px;
+button {
+    cursor: pointer;
+    font-size: 14px;
+}
+
+svg {
+    cursor: pointer;
 }

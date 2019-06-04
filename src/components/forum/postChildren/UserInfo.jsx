@@ -7,13 +7,13 @@ const UserInfo = ({forumData}) => {
 
     return (
         <div className="post_container-userInfo">
-            <img src={forumData.profilePic} alt="ProfilePic" />
+                <img src={forumData.profilePic} alt="user_Picture" />
             <div className="userinfo_wrapper">
-            <h3>{forumData.username}</h3>
-            <div className="time">
-                <span>{date}</span>
-                <span>{time}</span>
-            </div>
+                    <h3>{forumData.username}</h3>
+                <div className="time">
+                    <span>{date}</span>
+                    <span>{time}</span>
+                </div>
             </div>
         </div>
     );

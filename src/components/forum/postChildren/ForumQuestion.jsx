@@ -4,7 +4,8 @@ import {database} from "../../../shared/Firebase";
 
 import collection from "../../../shared/dbCollection";
 
-import voteArrow from "../../../assets/icons/upVoteDownVote.svg";
+import Upvote from "../../../shared/voteArrows/UpVote";
+import DownVote from "../../../shared/voteArrows/DownVote";
 
 const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
     const [votePostId, setPostId] = useState([]);
@@ -99,7 +100,12 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
         }
     };
 
-    const filterVotes = votePostId;
+    let whatVoted;
+    if (user)
+        whatVoted = votePostId
+            .filter(post => post.userId === user.uid)
+            .map(e => e.vote)
+            .join();
 
     return (
         <div className="post_container-question">
@@ -111,18 +117,18 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
             </div>
             <div className="votes-container">
                 <div onClick={() => willVote(forumData, 1)}>
-                    <img className="upvote" src={voteArrow} alt="upvote" />
+                    <Upvote whatVoted={whatVoted} />
                 </div>
                 <span className="votes">
                     Votes:
-                    {filterVotes.length === 0
+                    {votePostId.length === 0
                         ? 0
-                        : filterVotes
+                        : votePostId
                               .map(e => e.vote)
                               .reduce((a, b) => a + b, 0)}
                 </span>
                 <div onClick={() => willVote(forumData, -1)}>
-                    <img className="downVote" src={voteArrow} alt="DownVote" />
+                    <DownVote whatVoted={whatVoted} />
                 </div>
                 {user && forumData.userID === user.uid ? (
                     <button
