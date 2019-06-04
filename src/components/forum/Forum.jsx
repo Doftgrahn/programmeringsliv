@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {database} from "../../shared/Firebase";
 import collection from "../../shared/dbCollection";
-import SortButtons from './postSortButton/SortButtons';
+import SortButtons from "./postSortButton/SortButtons";
 import Post from "./Post";
 
 const Forum = ({user, match}) => {
@@ -79,8 +79,9 @@ const Forum = ({user, match}) => {
 
     return (
         <main className="forum fade">
-        <h1>Check out the forum!</h1>
+            <h1>Check out the forum!</h1>
             {forum.length === 0 ? null : (
+                <>
                 <SortButtons
                     sortKey={sortKey}
                     sortByNewest={sortByNewest}
@@ -88,6 +89,7 @@ const Forum = ({user, match}) => {
                     sortByHighestVotes={sortByHighestVotes}
                     sortByLowest={sortByLowest}
                 />
+                </>
             )}
             {forum.length === 0 ? <div className="loader" /> : posts}
         </main>

@@ -9,9 +9,11 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    margin-bottom: 10px;
+    align-items: center;
+    margin: 6px 0;
 
     button {
+        text-align: center;
         border-radius: 20px;
         margin: 0 4px;
         padding: 3px 10px;

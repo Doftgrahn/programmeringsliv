@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 const SortButtons = ({
     sortKey,
@@ -7,9 +7,16 @@ const SortButtons = ({
     sortByHighestVotes,
     sortByLowest
 }) => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    const toggleButtons = () => {
+        setIsVisible(!isVisible);
+    };
+
     return (
         <div className="fBtn">
-            <button
+            <button onClick={toggleButtons}>{!isVisible ?  'sort' : 'clear' }</button>
+            { !isVisible ? null :<> <button
                 onClick={sortByNewest}
                 disabled={sortKey === "newest" ? true : false}
                 className={sortKey === "newest" ? "activeBtn" : ""}
@@ -36,7 +43,7 @@ const SortButtons = ({
                 className={sortKey === "lowest" ? "activeBtn" : ""}
             >
                 Lowest Votes
-            </button>
+            </button></>}
         </div>
     );
 };

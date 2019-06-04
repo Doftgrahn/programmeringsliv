@@ -12,9 +12,11 @@
         margin: 0 10px;
         justify-content: center;
         flex-direction: row;
+        flex-wrap: wrap;
         margin-bottom: 10px;
 
         button {
+            //    flex: 1;
             //margin: 0 10px;
             //width: %;
             border-radius: 20px;
