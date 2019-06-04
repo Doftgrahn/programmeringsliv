@@ -27,7 +27,7 @@ const AnswerQuestion = ({user, forumData}) => {
                     username: user.displayName,
                     photoURL: user.photoURL,
                     userId: user.uid,
-                    timestamp: new Date(), 
+                    timestamp: new Date(),
                     postIdRef: post.postiD,
                     votes: 0
                 })
@@ -64,10 +64,15 @@ const AnswerQuestion = ({user, forumData}) => {
                 ) : (
                     ""
                 )}
+                <p>
+                    {questionInput.length}
+                    /120
+                </p>
                 <textarea
                     ref={textareaRef}
                     placeholder="Answer Question..."
                     type="text"
+                    maxlength="120"
                     value={questionInput}
                     onChange={event => setQuestionInput(event.target.value)}
                 />

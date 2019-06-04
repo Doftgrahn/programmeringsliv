@@ -9,7 +9,8 @@ Import Parts of page here
 --*/
 main {
     min-height: 100vh;
-    animation: routingAnimation 1s linear alternate;
+    animation
+    : routingAnimation 1s linear alternate;
 }
 @keyframes routingAnimation {
     0% {
