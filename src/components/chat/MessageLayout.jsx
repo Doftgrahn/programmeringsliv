@@ -13,10 +13,15 @@ const MessageLayout = ({message, user}) => {
         setDisplayFullConversation(!status);
     }
     let profilePic = <img src={sender[0].picture} alt="Profile user" onClick={switchLayout} className="chatProfilePic" />
+    const date = message.lastUpdated.toLocaleDateString();
+    const time = message.lastUpdated.toLocaleTimeString();
     return (
        <div className={displayFullConversation?"messageLayoutConversation ChatLayoutFullView": "messageLayoutConversation"}>
            {sender? profilePic: '' }<h3 onClick={switchLayout} >{sender? sender[0].username : 'Okänd'}</h3>
+           <div className="chatContentWrapper">
             {content}
+           </div>
+            <span className="chatDateAndTime">Last message delivered at: <br></br>{date} {time}</span>
            <RespondInConversation user={user} message={message} />
        </div>
     );

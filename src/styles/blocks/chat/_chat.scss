@@ -72,12 +72,6 @@
             width: 350px;
         }
     }
-    .secondLargeButton {
-        background: $color-green;
-        @media (min-width: $breakpoint-laptop) {
-            width: 400px;
-        }
-    }
 }
 .ChatConversationWrapper{
     padding: 20px;
@@ -116,43 +110,50 @@
     .chatProfilePic:hover {
         cursor: pointer;
     }
-
+    .chatDateAndTime {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.7em;
+    }
     
 }
 .ChatLayoutFullView {
     height: auto;
 }
+.chatContentWrapper {
 
-.messageLayoutWrapper{
-    width:100%;
-    position: relative;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 0.8em;
-    .messageLayoutUser {
-        background: $color-purple;
-        max-width: 45%;
-        margin-left: 60%;
-        border-radius: 20px;
-        padding: 10px;
-        margin-top: 8px;
+    .messageLayoutWrapper{
+        width:100%;
         position: relative;
-        -webkit-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
-        -moz-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
-        box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
-    }
-    .messageLayoutSender {
-        background: $color-green;
-        max-width: 45%;
-        margin-left: 0%;
-        border-radius: 20px;
-        padding: 10px;
-        margin-top: 8px;
-        position: relative;
-        -webkit-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
-        -moz-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
-        box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.8em;
+        .messageLayoutUser {
+            background: $color-purple;
+            max-width: 45%;
+            margin-left: 60%;
+            border-radius: 20px;
+            padding: 10px;
+            margin-top: 8px;
+            position: relative;
+            -webkit-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
+            -moz-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
+            box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
+        }
+        .messageLayoutSender {
+            background: $color-green;
+            max-width: 45%;
+            margin-left: 0%;
+            border-radius: 20px;
+            padding: 10px;
+            margin-top: 8px;
+            position: relative;
+            -webkit-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
+            -moz-box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
+            box-shadow: 2px 2px 5px 0px rgba(16,27,45,0.31);
+        }
+        
     }
 }
+
 .chatRespondDiv {
     display: flex;
     flex-direction: row;

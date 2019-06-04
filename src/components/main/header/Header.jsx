@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import NavLinks from "./NavLinks";
 import Hamburger from "./Hamburger";
 
-const Header = ({user, logIn, logOut}) => {
+const Header = ({user, logIn, logOut, unreadMessages, switchNewMessage}) => {
     const [showMeny, setShowMeny] = useState(false);
 
     const toggleMeny = () => {
@@ -27,6 +27,8 @@ const Header = ({user, logIn, logOut}) => {
                 user={user}
                 logIn={logIn}
                 logOut={logOut}
+                unreadMessages={unreadMessages}
+                switchNewMessage={switchNewMessage}
             />
             <Hamburger toggleMeny={toggleMeny} showMeny={showMeny} />
         </header>

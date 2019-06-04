@@ -76,7 +76,8 @@ const SendMessages = ({user}) => {
         if(id){
             senderUserInfo.messages.push({
                 content: messageToUser,
-                idSender: user.uid
+                idSender: user.uid,
+                lastUpdated: new Date()
             });
             userCollection.doc(id).update({
                 messages: senderUserInfo.messages
@@ -88,7 +89,8 @@ const SendMessages = ({user}) => {
                 users: [
                     {username: user.displayName, id: user.uid, picture: user.photoURL},
                     {username: sendToUser.userName, id: sendToUser.id, picture: sendToUser.userPhotoURL}
-                ]
+                ],
+                lastUpdated: new Date()
             }
             userCollection.add(obj).then(abortSendMessage());
         }

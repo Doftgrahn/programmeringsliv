@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from "react";
-import {initializeApp} from '../../shared/FirebaseMessaging';
 import {database} from '../../shared/Firebase';
 import collection from '../../shared/dbCollection'
 import MessageLayout from './MessageLayout';
 import SendMessages from './SendMessages';
 
 
-const ChatDatabase = ({user}) => {
+const ChatDatabase = ({user, switchNewMessageState}) => {
     let [messages, setMessages] = useState(null);
     
     useEffect(() => {
         if(user){
             let isSubscribed = true;
             const userCollection = database.collection(collection.messages).where('ids', 'array-contains', user.uid);
+            let readMessages = 0;
             userCollection.onSnapshot(snapshot => { 
                 if (isSubscribed) {
                     const list = [];
@@ -22,18 +22,21 @@ const ChatDatabase = ({user}) => {
                             id: doc.id,
                             users: [],
                             messages: [],
+                            lastUpdated: docData.lastUpdated.toDate()
                         }
                         docData.messages.forEach(message => obj.messages.push(message));
                         docData.users.forEach(user => obj.users.push(user));
+                        readMessages += docData.messages.length;
                         list.push(obj);
-                        
                     });
                     setMessages(list)
+                    localStorage.setItem('lastReadMessages', readMessages)
+                    return () => (switchNewMessageState());
                 }  
             });
             return () => (isSubscribed = false);
         }
-    }, [user]);
+    }, []);
     
     let displayMessages = null;
     if (messages) {
@@ -49,7 +52,6 @@ const ChatDatabase = ({user}) => {
             <div className="ChatConversationWrapper">
                 {displayMessages? displayMessages : <div className="loader"></div>}
             </div>
-            <button className="chatButton secondLargeButton" onClick={initializeApp}>Activate push-messages and recieve the latest news</button>
         </div>
     } else {
         pageContent = 
@@ -57,6 +59,7 @@ const ChatDatabase = ({user}) => {
             <p className="">You need to login to see your messages.</p>
         </div>
     }
+ 
     return (
         <div>
             {pageContent}
