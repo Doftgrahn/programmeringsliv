@@ -7,15 +7,18 @@
     justify-content: center;
     //padding: 20px 0;
     .fBtn {
-        padding: 10px 0;
+        padding: 10px;
         display: flex;
+        margin: 0 10px;
+        justify-content: center;
         flex-direction: row;
+        margin-bottom: 10px;
 
         button {
-            margin: 0 10px;
-            width: 100%;
+            //margin: 0 10px;
+            //width: %;
             border-radius: 20px;
-            padding: 15px 20px;
+            padding: 10px 20px;
             outline: none;
             cursor: pointer;
             font-weight: 600;

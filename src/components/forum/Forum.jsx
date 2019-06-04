@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {database} from "../../shared/Firebase";
 import collection from "../../shared/dbCollection";
+import SortButtons from "./SortButtons";
 import Post from "./Post";
 
 const Forum = ({user, match}) => {
@@ -60,6 +61,18 @@ const Forum = ({user, match}) => {
         setSortKey("highest");
     };
 
+    const sortByLowest = () => {
+        const f2 = forum.map(post => {
+            let filtered = pVotes.filter(vote => vote.postId === post.postiD);
+            let sum = filtered.reduce((e, y) => e + y.vote, 0);
+            return {...post, voteSum: sum};
+        });
+        const byLowest = f2.sort((a, b) => a.voteSum - b.voteSum);
+
+        setForum(byLowest);
+        setSortKey("lowest");
+    };
+
     let posts = forum.map(post => (
         <Post key={post.postiD} user={user} forumData={post} match={match} />
     ));
@@ -67,31 +80,14 @@ const Forum = ({user, match}) => {
     return (
         <main className="forum fade">
             {forum.length === 0 ? null : (
-                <div className="fBtn">
-                    <button
-                        onClick={sortByNewest}
-                        disabled={sortKey === "newest" ? true : false}
-                        className={sortKey === "newest" ? "activeBtn" : ""}
-                    >
-                        Newest
-                    </button>
-                    <button
-                        onClick={sortByOldest}
-                        disabled={sortKey === "oldest" ? true : false}
-                        className={sortKey === "oldest" ? "activeBtn" : ""}
-                    >
-                        Oldest
-                    </button>
-                    <button
-                        onClick={sortByHighestVotes}
-                        disabled={sortKey === "highest" ? true : false}
-                        className={sortKey === "highest" ? "activeBtn" : ""}
-                    >
-                        Highest Votes
-                    </button>
-                </div>
+                <SortButtons
+                    sortKey={sortKey}
+                    sortByNewest={sortByNewest}
+                    sortByOldest={sortByOldest}
+                    sortByHighestVotes={sortByHighestVotes}
+                    sortByLowest={sortByLowest}
+                />
             )}
-
             {forum.length === 0 ? <div className="loader" /> : posts}
         </main>
     );
