@@ -68,16 +68,16 @@ const AnswerQuestion = ({user, forumData}) => {
                     {questionInput.length}
                     /120
                 </span>
-                {questionInput.length > 120 ? (
+                {questionInput.length > 240 ? (
                     <span className="errorMessage">
-                        Can't enter more than 120 characters
+                        Can't enter more than 240 characters...
                     </span>
                 ) : null}
                 <textarea
                     ref={textareaRef}
                     placeholder="Answer Question..."
                     type="text"
-                    maxLength="120"
+                    maxLength="240"
                     value={questionInput}
                     onChange={event => setQuestionInput(event.target.value)}
                 />
