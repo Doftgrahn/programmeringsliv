@@ -66,11 +66,11 @@ const AnswerQuestion = ({user, forumData}) => {
                 )}
                 <span>
                     {questionInput.length}
-                    /120
+                    /500
                 </span>
-                {questionInput.length > 120 ? (
+                {questionInput.length > 500 ? (
                     <span className="errorMessage">
-                        Can't enter more than 120 characters
+                        Can't enter more than 500 characters
                     </span>
                 ) : null}
                 <textarea
