@@ -26,7 +26,7 @@ nav {
         display: flex;
         flex-direction: column;
         list-style-type: none;
-        overflow: hidden;
+        //overflow: hidden;
         white-space: nowrap;
         @media screen and (min-width: 800px) {
             flex-direction: row;
