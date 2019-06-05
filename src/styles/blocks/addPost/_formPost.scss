@@ -24,8 +24,9 @@ img.uploadedImage {
 }
 
 input[type=text], textarea {
+  border-radius: 20px;
   border-bottom: 1px solid #ccc;
-  background: white;
+  background: #31db7a45;
   font-size: 18px;
   padding: 10px;
   &:focus{
