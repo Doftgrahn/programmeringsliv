@@ -14,7 +14,7 @@ const NavLinks = ({toggleOff, showMeny, user, logIn, logOut, unreadMessages, swi
     const navBar = links.map((link, index) => (
         <li key={index} onClick={link.name === 'Chat'? e => switchNewMessage(e): e => fakeFunction() }>
             <Link className="routerLinks" to={link.to} onClick={toggleOff}>
-                {link.name} {link.name === 'Chat' && unreadMessages? <i class=" alertNewMessage far fa-envelope"></i> : ''}
+                {link.name} {link.name === 'Chat' && unreadMessages? <i className=" alertNewMessage far fa-envelope"></i> : ''}
             </Link>
         </li>
     ));
