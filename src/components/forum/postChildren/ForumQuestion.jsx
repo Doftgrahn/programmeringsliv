@@ -30,8 +30,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
             return unsubscribe;
         },
         [forumData.postiD]
-    );
-
+    );    
     useEffect(
         () => {
             const aCollection = database.collection(collection.answer);
@@ -84,6 +83,17 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                 .then(() => console.log("Deleted successfully"));
 
             answers.forEach(e => {
+                const vCollection = database.collection(collection.votes_answers).where('answerId', '==', e.id);
+                vCollection
+                    .get()
+                    .then(function (snapshot) {
+                        snapshot.forEach(function(doc) {
+                            console.log('raderat dokument: ',doc.id)
+                            database.collection(collection.votes_answers).doc(doc.id).delete()
+                        })
+                    })
+            });    
+            answers.forEach(e => {
                 const aCollection = database.collection(collection.answer);
                 aCollection
                     .doc(e.id)
@@ -97,6 +107,7 @@ const ForumQuestion = ({user, forumData, toggleAnswers, isAnVisible}) => {
                     .delete()
                     .then(() => console.log("Deleted votes connected to post"));
             });
+            
         }
     };
 

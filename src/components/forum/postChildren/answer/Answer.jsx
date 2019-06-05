@@ -72,26 +72,13 @@ const Answer = ({answer, forumQuestion, user}) => {
                 secondCall
                     .get()
                     .then(function (snapshot) {
-                        let removingid = null;
                         snapshot.forEach(function(doc) {
-                            removingid = doc.id
+                            database.collection(collection.votes_answers).doc(doc.id).delete()
                         })
-                        return deleteVote(removingid)
                      }) 
         }
                
     };
-    const deleteVote = (id) => {
-        if(id){
-            let removeThatShit = database.collection(collection.votes_answers);
-            removeThatShit
-            .doc(id)
-            .delete()
-            .catch(function(error) {
-                console.log('error: ', error)
-            })
-        }
-    }
             /*
 
             voteAnsweriD.forEach(e => {
