@@ -67,12 +67,10 @@ nav {
                     -webkit-text-fill-color: transparent;
                 }
                 .alertNewMessage {
-                    font-size: 0.8em;
                     margin-left: 3px;
-                    background: none;
-                    img {
-                        color: $color-blue;
-                    }
+                }
+                .fa-envelope:before {
+                    font-size: 1em;
                 }
             }
         }
