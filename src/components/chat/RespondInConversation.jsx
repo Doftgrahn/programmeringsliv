@@ -15,7 +15,8 @@ const RespondInConversation = ({user, message}) => {
                 let document = doc.data().messages;
                 document.push({content: RespondingMessage, idSender: user.uid});
                 return userCollection.update({
-                    messages: document
+                    messages: document,
+                    lastUpdated: new Date()
                 }).then(setMessage(''));
             }
         })

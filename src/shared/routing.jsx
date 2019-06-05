@@ -9,7 +9,7 @@ import ChatDatabase from "../components/chat/ChatDatabase";
 import Profile from "../components/profile/Profile";
 import ForoFor from "../components/main/forOFour/ForoFour";
 
-const ContentRouting = ({user, logIn}) => {
+const ContentRouting = ({user, logIn, switchNewMessageState}) => {
     const [routes] = useState([
         {exact: true, path: "/", component: LandingPage},
         {exact: false, path: "/home", component: LandingPage},
@@ -26,7 +26,7 @@ const ContentRouting = ({user, logIn}) => {
             exact={route.exact}
             path={route.path}
             render={({match}) => (
-                <route.component user={user} match={match} logIn={logIn} />
+                <route.component user={user} match={match} logIn={logIn} switchNewMessageState={switchNewMessageState}/>
             )}
         />
     ));

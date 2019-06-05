@@ -57,17 +57,42 @@ const Answer = ({answer, forumQuestion, user}) => {
     };
 
     const deleteAnswer = data => {
+        console.log(data.id)
         if (data.userId === user.uid) {
             const dbCollection = database.collection(collection.answer);
             dbCollection
                 .doc(data.id)
                 .delete()
-                .then(() =>
-                    console.log(
-                        "%c Deleted Question",
-                        "background: #222; color: red"
-                    )
-                );
+                .then( secondCallback(data.id));       
+        };
+    };
+    const secondCallback = (id) => {
+        if (id) {
+            let secondCall = database.collection(collection.votes_answers).where('answerId', '==', id);
+                secondCall
+                    .get()
+                    .then(function (snapshot) {
+                        let removingid = null;
+                        snapshot.forEach(function(doc) {
+                            removingid = doc.id
+                        })
+                        return deleteVote(removingid)
+                     }) 
+        }
+               
+    };
+    const deleteVote = (id) => {
+        if(id){
+            let removeThatShit = database.collection(collection.votes_answers);
+            removeThatShit
+            .doc(id)
+            .delete()
+            .catch(function(error) {
+                console.log('error: ', error)
+            })
+        }
+    }
+            /*
 
             voteAnsweriD.forEach(e => {
                 const anVoteCollection = database.collection(
@@ -77,15 +102,10 @@ const Answer = ({answer, forumQuestion, user}) => {
                     .doc(e.id)
                     .delete()
                     .then(() => {
-                        console.log(
-                            "%c Votes connected to answers deleted",
-                            "background: #222; color: red"
-                        );
-                    })
-                    .catch(error => console.log("Error", error));
-            });
-        }
-    };
+                        console.log("%c Votes to answers deleted");
+                    }).catch(error => console.log('Error', error))
+            });*/
+        
 
     let whatVoted;
     if (user)
