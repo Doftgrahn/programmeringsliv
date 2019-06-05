@@ -17,6 +17,13 @@
     padding: 20px;
 }
 
+.bannerHeaderName {
+    color: white;
+    text-align: center;
+    padding: 50px;
+    font-size: 40px;
+    font-weight: bold;
+}
 
 .pageLandingInfo {
     margin: 4em 0;
@@ -30,6 +37,21 @@
 
 .fa-comments:before, .fa-envelope:before, .fa-user:before, .fa-question-circle:before  {
     font-size: 100px;
+}
+
+.singlePageInfoDiv .fa-comments:before {
+    color: $color-purple-solid;
+    font-size: 100px;
+}
+
+.fa-envelope:before {
+    color: $color-green-solid;
+}
+.fa-user:before {
+    color: $color-blue-solid;
+}
+.fa-question-circle:before {
+    color: $color-pink;
 }
 
 .singlePageInfoDiv {
@@ -51,6 +73,7 @@
     color: white;
     cursor: pointer;
     transition: background 0.7s;
+    border: 1px solid white;
 }
 .logInBtn {
     background-color: #9464d2;

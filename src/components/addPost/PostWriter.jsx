@@ -2,11 +2,7 @@ import React from "react";
 
 
 const Writer = ({user}) => {
-  let userId;
-  if(user) {
-    userId = user.uid;
-  }
-
+  
   return (
     <div className="profileInfo postWriter">
       <img src={!user ? "https://cdn.impactinit.com/cdn/x/x@ac8c3fd87c/smss53/smsimg28/pv/ingimagecontributors/ing_47129_07704.jpg" : user.photoURL}

@@ -101,15 +101,13 @@ const Profile = ({user}) => {
   }
 
   let karmaPoints;
-  if (postsVotes) {
-    let numberOfVotes = postsVotes.length;
-    //console.log('number of question points: ', postsVotes.length);
-    karmaPoints = postsNumber + numberOfVotes;
-  }
-  if (answerVotes) {
-    let numberOfVotes = answerVotes.length;
-    //console.log('number of answer points: ', answerVotes.length);
-    karmaPoints = postsNumber + numberOfVotes;
+ 
+
+  if (postsVotes && answerVotes) {
+    let listOfQuestionVotes = postsVotes.map(post => post.vote).reduce((a, b) => a + b, 0);
+    let listOfAnswerVotes = answerVotes.map(answer => answer.vote).reduce((a, b) => a + b, 0);
+    
+    karmaPoints = postsNumber + listOfQuestionVotes + listOfAnswerVotes;
   }
 
     return (
@@ -130,14 +128,14 @@ const Profile = ({user}) => {
               <div className="email">{!user ? 'email@gmail.com' : user.email}</div>
             </div>
             <div className="extraProfileInfo">
-              <span className="posts"><i className="far fa-comment"></i> {postsNumber} posts</span>
-              <span className="karma"><i className="far fa-heart"></i> {karmaPoints} karma points</span>
+              <span className="posts"><i className="fas fa-comments"></i> {postsNumber} posts</span>
+              <span className="karma"><i className="fas fa-heart"></i> {karmaPoints} karma points</span>
             </div>
             </div>
             </div>
             <div className="postWrapper">
-              {!questionData ? <div>no question data</div> : questionData}
-              {!answerData ? <div>no answer data</div> : answerData}
+              {!questionData ? <div className="loader"></div> : questionData}
+              {!answerData ? <div className="loader"></div> : answerData}
             </div>
           </div>
         </div>

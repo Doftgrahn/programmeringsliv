@@ -16,70 +16,80 @@ import Dialog from './components/landingPage/Dialog';
 import {database} from './shared/Firebase';
 import collection from './shared/dbCollection';
 
+
 class Programmerlingsliv extends Component {
+    state = {
+        signedIn: false,
+        user: null || JSON.parse(localStorage.getItem("user")),
+        userName: null,
+        userEmail: null,
+        userPhotoURL: null,
+        id: null,
+        isOpen: false,
+        unreadMessages: false,
+        lastReadMessages: null || localStorage.getItem('lastReadMessages')
+    };
 
-state = {
-    signedIn: false, 
-    user: null || JSON.parse(localStorage.getItem('user')),
-    userName: null,
-    userEmail: null,
-    userPhotoURL: null,
-    id: null,
-    isOpen: false,
-    unreadMessages: false,
-    lastReadMessages: null || localStorage.getItem('lastReadMessages')
-};
 
-  uiConfig = {
-    signInFlow: 'popup',
+    uiConfig = {
+        signInFlow: "popup",
 
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      firebase.auth.GithubAuthProvider.PROVIDER_ID
-    ],
-    
-    callbacks: {
-      signInSuccess: (user) => {
-        this.setState({
-            signedIn: true, 
-            user: user, 
-            userName: user.displayName,
-            userEmail: user.email,
-            userPhotoURL: user.photoURL,
-            id: user.uid,
-            karma: 0
-        });
-        return false; 
-      }
-    }
-  };
+
+        signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.GithubAuthProvider.PROVIDER_ID
+        ],
+
+        callbacks: {
+            signInSuccessWithAuthResult: (user, redirectUrl) => {
+                this.setState({
+                    signedIn: true,
+                    user: user,
+                    userName: user.displayName,
+                    userEmail: user.email,
+                    userPhotoURL: user.photoURL,
+                    id: user.uid,
+                    karma: 0
+                });
+                return false;
+            },
+            signInFailure: error => {
+                console.log(error);
+            }
+        }
+    };
 
   componentDidMount = () => {
       this.authListener();
       this.checkForNewMessages();
-  }
-
-  authListener = () => {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            this.setState({ user });
-            localStorage.setItem('user', JSON.stringify(user));
-        } else {
-            this.setState({ user: null });
-            localStorage.removeItem('user');
-        }
-    })
-  }
-
-  logout = (e) => {
-    firebase.auth().signOut().then(() => {
-        console.log('Signed Out');
-        this.setState({signedIn: false, isOpen: false });
-    }).catch((error) => {
-        console.log('Sign Out Error', error);
-    });
   };
+
+
+    authListener = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                this.setState({user});
+                localStorage.setItem("user", JSON.stringify(user));
+            } else {
+                this.setState({user: null});
+                localStorage.removeItem("user");
+            }
+        });
+    };
+
+    logout = e => {
+        firebase
+            .auth()
+            .signOut()
+            .then(() => {
+                console.log("Signed Out");
+                this.setState({signedIn: false, isOpen: false});
+            })
+            .catch(error => {
+                console.log("Sign Out Error", error);
+            });
+    };
 
   logIn = (e) => {
       this.setState({isOpen: true})
@@ -137,6 +147,7 @@ state = {
             </main>
             <Footer/>
         </Router>);
+
     }
 }
 

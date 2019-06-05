@@ -61,16 +61,20 @@
 }
 .questionContent {
     font-weight: normal;
+    margin: 0.7em 0;
 }
 
 .postDiv {
     padding-bottom: 20px;
+    .profileAnswer {
+        margin: 0.7em 0;
+    }
     .postMetadata {
         font-size: 1em;
         color: rgba(0, 0, 0, 0.4);
-        .votes {
-            float: right;
-        }
+        margin: 0.5em 0;
+        //text-align: left;
+        
     }
 }
 
@@ -80,6 +84,12 @@
 
 
 @media (min-width: 1000px) {
+    .postWrapper {
+        text-align: center;
+    }
+   .postMetadata .date, .postDiv .date {
+       text-align: center;
+   }
     .containerOfProfile {
         display: flex;
         justify-content: center;
@@ -91,7 +101,7 @@
         text-align: center;
         .avatar {
             display: inline-block;
-            height: 45vh;
+            height: 350px;
             width: auto;
         }
     }
@@ -100,7 +110,7 @@
         font-size: 1.2em;
         letter-spacing: 1px; 
         padding-left: 30px;
-        text-align: end;
+        text-align: left;
     }
     
     .profileInfo {
@@ -113,9 +123,21 @@
         float: none;
         padding: 1.2em;
     }
-    .fa-comment:before, .fa-heart:before {
-        font-size: 22px;
+    .extraProfileInfo .fa-comments:before, .fa-heart:before {
+        font-size: 2em;
     }
+}
+
+.extraProfileInfo .fa-comments:before {
+    color: $color-pink;
+} 
+
+.fa-heart:before {
+    color: $color-orange-solid;
+}
+
+.extraProfileInfo .fa-comments:before, .fa-heart:before {
+    font-size: 2em;
 }
 
 

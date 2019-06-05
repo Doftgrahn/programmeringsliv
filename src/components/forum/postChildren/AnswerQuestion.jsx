@@ -27,7 +27,7 @@ const AnswerQuestion = ({user, forumData}) => {
                     username: user.displayName,
                     photoURL: user.photoURL,
                     userId: user.uid,
-                    timestamp: new Date(), 
+                    timestamp: new Date(),
                     postIdRef: post.postiD,
                     votes: 0
                 })
@@ -64,13 +64,24 @@ const AnswerQuestion = ({user, forumData}) => {
                 ) : (
                     ""
                 )}
+                <span>
+                    {questionInput.length}
+                    /240
+                </span>
+                {questionInput.length > 240 ? (
+                    <span className="errorMessage">
+                        Can't enter more than 240 characters...
+                    </span>
+                ) : null}
                 <textarea
                     ref={textareaRef}
                     placeholder="Answer Question..."
                     type="text"
+                    maxLength="240"
                     value={questionInput}
                     onChange={event => setQuestionInput(event.target.value)}
                 />
+
                 <div className="button_container">
                     <button onClick={hideAnswerInput}>
                         <i className="fas fa-trash" />

@@ -6,10 +6,12 @@ const Footer = () => {
       <footer>
         <div className="footerContacts">
           <div className="map">
-            <h2>Visit us here!</h2>
+            <h2 className="footerHeader">Visit us here!</h2>
             <div className="mapouter">
                 <div className="gmap_canvas">
+                <a href="/" className="footerLink">
                   <img src={map} alt="map" />
+                </a>
                 </div>
             </div>
           </div>

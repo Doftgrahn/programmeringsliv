@@ -4,6 +4,10 @@
 
 }
 
+.wrapEverything {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .lastPosts {
   grid-column: 1 / span 3;
   justify-self: stretch;
@@ -34,6 +38,12 @@ h2 {
   margin-top: 8em;
 }
 
+.computerSaysNo{
+  margin-left: 25%;
+  width: 50%;
+  height: auto;
+
+}
 
 
   @media (max-width: 625px) {
@@ -43,4 +53,16 @@ h2 {
     .mainForm {
       grid-column: 1 / span 3;
     }
+  }
+
+  .outsideWrapEverything {
+    padding: 20px;
+  }
+
+  .wrapEverything {
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    margin: 0px;
+    background: $color-white;
   }

@@ -1,3 +1,37 @@
+.sortP {
+    padding: 10px;
+    font-weight: 800;
+    margin: 10 0;
+}
+
+.fBtnA {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+    margin: 6px 0;
+
+    button {
+        text-align: center;
+        border-radius: 20px;
+        margin: 0 4px;
+        padding: 3px 10px;
+        outline: none;
+        cursor: pointer;
+        font-weight: 500;
+        //text-transform: uppercase;
+        transition: 0.3s;
+        border: none;
+        background: $color-orange;
+    }
+
+    .activeBtn {
+        background: $color-green-solid;
+        color: black;
+    }
+}
+
 .answer {
     width: 100%;
     background: rgba(255, 255, 255, 0.34);
@@ -34,7 +68,7 @@
                 margin: 0 10px;
 
                 &:first-child {
-                    text-transform: uppercase;
+                    text-transform: capitalize;
                     //font-weight: 800;
                     margin-bottom: 5px;
                 }
@@ -98,4 +132,12 @@
             transform: rotate(180deg);
         }
     }
+}
+
+.ablue {
+    background: $color-purple-solid;
+}
+
+.ared {
+    background: $color-orange;
 }

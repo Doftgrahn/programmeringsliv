@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import {database} from "../../../../shared/Firebase";
 import collection from "../../../../shared/dbCollection";
-import voteArrow from "../../../../assets/icons/upVoteDownVote.svg";
+
+import Upvote from "../../../../shared/voteArrows/UpVote";
+import DownVote from "../../../../shared/voteArrows/DownVote";
 
 const Answer = ({answer, forumQuestion, user}) => {
     const [voteAnsweriD, setVoteAnswerId] = useState([]);
@@ -29,15 +31,15 @@ const Answer = ({answer, forumQuestion, user}) => {
     if (user)
         hasVoted = voteAnsweriD.find(answer => answer.userId === user.uid);
 
-    const upVote = answerData => {
+    const willVote = (answerData, value) => {
         if (user && !hasVoted) {
-            const votes = voteAnsweriD
+            /*const votes = voteAnsweriD
                 .map(e => e.vote)
-                .reduce((a, b) => a + b, 0);
+                .reduce((a, b) => a + b, 0);*/
             const vote = {
                 userId: user.uid,
                 answerId: answerData.id,
-                vote: votes + 1
+                vote: value
             };
             const votePathiD = `${vote.userId}###${vote.answerId}`;
             const dbCollection = database
@@ -47,33 +49,8 @@ const Answer = ({answer, forumQuestion, user}) => {
                 .set(vote)
                 .then(() =>
                     console.log(
-                        "%c successfully upvoted ",
+                        "%c successfully voted ",
                         "background: #222; color: green"
-                    )
-                );
-        }
-    };
-
-    const downVote = answerData => {
-        if (user && !hasVoted) {
-            const votes = voteAnsweriD
-                .map(e => e.vote)
-                .reduce((a, b) => a + b, 0);
-            const vote = {
-                userId: user.uid,
-                answerId: answerData.id,
-                vote: votes - 1
-            };
-            const votePathiD = `${vote.userId}###${vote.answerId}`;
-            const dbCollection = database
-                .collection(collection.votes_answers)
-                .doc(votePathiD);
-            dbCollection
-                .set(vote)
-                .then(() =>
-                    console.log(
-                        "%c successfully downvoted ",
-                        "background: #222; color: red"
                     )
                 );
         }
@@ -116,9 +93,10 @@ const Answer = ({answer, forumQuestion, user}) => {
         }
     }
             /*
+
             voteAnsweriD.forEach(e => {
                 const anVoteCollection = database.collection(
-                    collection.votes_answer
+                    collection.votes_answers
                 );
                 anVoteCollection
                     .doc(e.id)
@@ -128,7 +106,13 @@ const Answer = ({answer, forumQuestion, user}) => {
                     }).catch(error => console.log('Error', error))
             });*/
         
-  
+
+    let whatVoted;
+    if (user)
+        whatVoted = voteAnsweriD
+            .filter(ans => ans.userId === user.uid)
+            .map(e => e.vote)
+            .join();
 
     return (
         <div className="answer">
@@ -143,30 +127,30 @@ const Answer = ({answer, forumQuestion, user}) => {
                     </span>
                 </div>
                 <div className="vote">
-                    <img
-                        onClick={() => upVote(answer)}
-                        className="upvote"
-                        src={voteArrow}
-                        alt="upvote"
-                    />
+                    <div
+                        className={whatVoted === "1" ? "blue" : ""}
+                        onClick={() => willVote(answer, 1)}
+                    >
+                        <Upvote whatVoted={whatVoted} />
+                    </div>
                     <span>
                         votes:
                         {voteAnsweriD.length === 0
                             ? 0
-                            : voteAnsweriD.map(e => e.vote)}
+                            : voteAnsweriD
+                                  .map(e => e.vote)
+                                  .reduce((a, b) => a + b, 0)}
                     </span>
-                    <img
-                        onClick={() => downVote(answer)}
-                        src={voteArrow}
-                        alt="downVote"
-                    />
+                    <div
+                        className={whatVoted === "-1" ? "red" : ""}
+                        onClick={() => willVote(answer, -1)}
+                    >
+                        <DownVote whatVoted={whatVoted} />
+                    </div>
                 </div>
 
                 <div className="answerAndDeletel-container">
-                    <p>
-
-                        {answer.answer}
-                    </p>
+                    <p>{answer.answer}</p>
                     {user && answer.userId === user.uid ? (
                         <button
                             className="deleteButton"

@@ -1,21 +1,34 @@
 import React from "react";
 
 const Homepage = props => {
+  let landingPageContent;
+  if (!props.user) {
+  landingPageContent = (<div className="landingPageContent">
+  <div className="bannerHeader">WE HELP YOU FIND ANSWERS</div>
+  <div className="bannerText">
+    Don't wait any longer and join our question-answer network now!
+  </div>
+  <div className="logInButtons">
+    <button className="logInBtn" onClick={props.logIn}>
+      Log in
+    </button>
+    <button className="signUpBtn" onClick={props.logIn}>
+      Sign up
+    </button>
+  </div>
+  </div>);
+  } else {
+    landingPageContent = (
+      <div className="bannerHeaderName">
+        Welcome {props.user.displayName}
+      </div>
+    );
+  }
+
   return (
     <div>
       <div className="landingBanner">
-        <div className="bannerHeader">WE HELP YOU FIND ANSWERS</div>
-        <div className="bannerText">
-          Don't wait any longer and join our question-answer network now!
-        </div>
-        <div className="logInButtons">
-          <button className="logInBtn" onClick={props.logIn}>
-            Log in
-          </button>
-          <button className="signUpBtn" onClick={props.logIn}>
-            Sign up
-          </button>
-        </div>
+       {landingPageContent}
       </div>
 
       <div className="pageLandingInfo">

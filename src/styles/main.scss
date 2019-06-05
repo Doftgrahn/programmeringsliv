@@ -33,7 +33,7 @@ h3 {
 
 li,
 ul {
-    font-size: 14px;
+    //font-size: 14px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     background: $color-black;
@@ -42,7 +42,11 @@ ul {
     transition: 0.4s;
 }
 
-button,
-textarea {
+button {
+    cursor: pointer;
     font-size: 14px;
+}
+
+svg {
+    cursor: pointer;
 }
