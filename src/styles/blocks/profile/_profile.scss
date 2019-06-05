@@ -1,0 +1,144 @@
+.outsideBackground {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    margin: 0px;
+    //background: $color-background;
+}
+.background {
+    background: $color-white;
+    margin: 0px;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.avatar {
+    border-radius: 100%;
+    width: auto;
+    height: 70vw;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profileInfo {
+    padding: 1em 1em;
+    font-size: 1em;
+    border-top: 1px solid rgba(0,0,0,.05);
+    .name {
+        font-weight: bold;
+        font-size: 1.2em;
+        margin: 0.8em 0em;
+    }
+    .email {
+        font-size: 1em;
+        color: rgba(0,0,0,.4);
+    }
+}
+    
+.extraProfileInfo {
+    padding: 1em 1em;
+    font-size: 1em;
+    border-top: 1px solid rgba(0,0,0,.05);
+    .karma {
+        float: right;
+    }
+}
+
+.postWrapper {
+    padding: 1em 1em;
+    font-size: 1em;
+    border-top: 1px solid rgba(0,0,0,.05);
+    margin: 0 20px;
+}
+.question {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.questionContent {
+    font-weight: normal;
+    margin: 0.7em 0;
+}
+
+.postDiv {
+    padding-bottom: 20px;
+    .profileAnswer {
+        margin: 0.7em 0;
+    }
+    .postMetadata {
+        font-size: 1em;
+        color: rgba(0, 0, 0, 0.4);
+        margin: 0.5em 0;
+        //text-align: left;
+        
+    }
+}
+
+.far {
+    display: inline;
+}
+
+
+@media (min-width: 1000px) {
+    .postWrapper {
+        text-align: center;
+    }
+   .postMetadata .date, .postDiv .date {
+       text-align: center;
+   }
+    .containerOfProfile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .picContainer {
+        width: 50%;
+        text-align: center;
+        .avatar {
+            display: inline-block;
+            height: 350px;
+            width: auto;
+        }
+    }
+    .profileInfoContainer {
+        width: 50%; 
+        font-size: 1.2em;
+        letter-spacing: 1px; 
+        padding-left: 30px;
+        text-align: left;
+    }
+    
+    .profileInfo {
+        padding: 2em;
+        border: none;
+    }
+
+    .extraProfileInfo .karma, .extraProfileInfo .posts {
+        display: block;
+        float: none;
+        padding: 1.2em;
+    }
+    .extraProfileInfo .fa-comments:before, .fa-heart:before {
+        font-size: 2em;
+    }
+}
+
+.extraProfileInfo .fa-comments:before {
+    color: $color-pink;
+} 
+
+.fa-heart:before {
+    color: $color-orange-solid;
+}
+
+.extraProfileInfo .fa-comments:before, .fa-heart:before {
+    font-size: 2em;
+}
+
+
+

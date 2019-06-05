@@ -1,0 +1,18 @@
+@import './dialog';
+@import './homepage';
+
+.outsideLBackground {
+    font-family: 'Open Sans', sans-serif;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 20px;
+}
+.backgroundL {
+    background: $color-white;
+    margin: 0 auto;
+}
+.contentL {
+    display: flex;
+    flex-direction: column;
+}

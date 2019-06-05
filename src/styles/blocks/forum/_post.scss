@@ -1,0 +1,43 @@
+@import './userInfo.scss';
+@import './forumQuestion.scss';
+@import './answerQuestion.scss';
+@import './showAnswer.scss';
+
+.post {
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto 40px;
+    width: 95%;
+    background: $color-blue;
+    //margin-top: 10px;
+    box-shadow: 5px 5px rgba(0, 0, 0,0.6);
+    @media screen and (min-width: 800px) {
+        width: 100%;
+        max-width: 840px;
+    }
+
+    &:nth-child(odd) {
+        background: $color-green;
+    }
+
+    &_container {
+        //display: flex;
+        //flex-direction: column;
+        //justify-content: space-around;
+        //align-items: flex-start;
+        //flex-wrap: wrap;
+        animation: fadeForumPost 0.4s linear;
+    }
+    @keyframes fadeForumPost {
+        0% {
+            opacity: 0;
+        };
+
+        100% {
+            opacity: 1;
+        };
+    }
+}

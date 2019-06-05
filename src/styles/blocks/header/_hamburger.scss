@@ -1,0 +1,54 @@
+.hamburger {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-left: auto;
+    margin-top: 20px;
+    @media screen and (min-width: 800px) {
+        opacity: 0;
+        position: absolute;
+        left: 5000px;
+    }
+
+    span {
+        z-index: 10;
+        width: 34px;
+        height: 4px;
+        display: block;
+        background: $color-black;
+        margin-bottom: 8px;
+        transition: 0.4s;
+
+        &:nth-child(1) {
+            transform-origin: center;
+        }
+
+        &:nth-child(2) {
+            transform-origin: right;
+        }
+
+        &:nth-child(3) {
+            transform-origin: left;
+        }
+    }
+
+    &.active span {
+        background: $color-white;
+
+        &:nth-child(1) {
+            left: 2px;
+            transform: translateY(20px)rotate(360deg);
+        }
+
+        &:nth-child(2) {
+            right: 2px;
+            transform: rotate(135deg);
+            transform: scaleX(0);
+        }
+
+        &:nth-child(3) {
+            transform: scaleX(0);
+        }
+    }
+}

@@ -1,0 +1,123 @@
+.post_container-answerWrapper {
+    padding: 20px;
+    width: 100%;
+    margin: 0 auto;
+
+    span {
+        .linktoProfile {
+            text-decoration: underline;
+            color: $color-textBlack;
+            transition: 0.4s;
+            padding: 0 5px;
+
+            &:hover {
+                background: $color-orange;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    &-button {
+        padding: 0;
+        text-align: center;
+
+        .showBtn {
+            //width: 100%;
+            border-radius: 20px;
+            padding: 15px 20px;
+            //display: block;
+            outline: none;
+            cursor: pointer;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: 0.3s;
+            border: none;
+            background: $color-orange;
+
+            &:hover {
+                background: $color-purple;
+            }
+
+            i {}
+        }
+    }
+
+    &-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+        transition: 0.2s;
+        transform-origin: left;
+
+        span {
+            display: block;
+            padding: 0;
+        }
+
+        textarea {
+            padding: 10px;
+            font-size: 18px;
+            width: 100%;
+            min-height: 300px;
+            color: $color-textBlack;
+            background: rgba(235, 230, 230, 0.58);
+            resize: none;
+            outline: none;
+            overflow: auto;
+            border: none;
+            margin: 10px 0;
+
+            &::placeholder {
+                //color: black;
+            }
+
+            &:focus {}
+        }
+
+        .button_container {
+            display: flex;
+
+            button {
+                flex: 1;
+                border-radius: 20px;
+                border: none;
+                outline: none;
+                padding: 10px;
+                cursor: pointer;
+                margin: 0 10px;
+                background: $color-orange;
+
+                &:nth-child(even) {
+                    background: $color-pink;
+                    color: white;
+                }
+
+                &:hover {
+                    background: $color-purple;
+                }
+            }
+        }
+    }
+
+    .show {
+        position: relative;
+        display: block;
+        transform: scale(1);
+    }
+
+    .hide {
+        position: absolute;
+        left: 3000px;
+        transition: 0.4s;
+        transform: scale(0);
+    }
+}
+
+.errorMessage {
+    color:red;
+    text-decoration: underline;
+}

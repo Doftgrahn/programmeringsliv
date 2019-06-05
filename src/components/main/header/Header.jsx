@@ -1,15 +1,45 @@
 import React, {useState} from "react";
 
-import NavLinks from "./NavLinks";
+import {Link} from "react-router-dom";
 
-const Header = () => {
-    //const [toggle, setToggle] = useState(false);
+import NavLinks from "./NavLinks";
+import Hamburger from "./Hamburger";
+
+const Header = ({user, logIn, logOut, unreadMessages, switchNewMessage}) => {
+    const [showMeny, setShowMeny] = useState(false);
+
+    const toggleMeny = () => {
+        setShowMeny(!showMeny);
+    };
+
+    const toggleOff = () => {
+        setShowMeny(false);
+    };
 
     return (
         <header>
-            <NavLinks />
+            <Link className="header_Link typewriter anim-typewriter" to="/home">
+                <h1>ProgrammingLajf</h1>
+            </Link>
+            <NavLinks
+                toggleOff={toggleOff}
+                showMeny={showMeny}
+                user={user}
+                logIn={logIn}
+                logOut={logOut}
+                unreadMessages={unreadMessages}
+                switchNewMessage={switchNewMessage}
+            />
+            <Hamburger toggleMeny={toggleMeny} showMeny={showMeny} />
         </header>
     );
 };
 
 export default Header;
+
+/*
+<p>hej</p>
+<p>{user ? `Hi, ${user.displayName}!` : "hi!"}</p>
+<button onClick={this.logIn}>Log in with facebook</button>
+<button onClick={this.logOut}>Log out</button>
+*/

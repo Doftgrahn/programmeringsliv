@@ -1,11 +1,11 @@
 import React from "react";
 
-const Chat = () => {
+const ForoFour = () => {
     return (
         <div>
-            <h1>This is a chat</h1>
+            <h1>404</h1>
         </div>
     );
 };
 
-export default Chat;
+export default ForoFour;

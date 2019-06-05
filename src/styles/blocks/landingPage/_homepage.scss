@@ -1,0 +1,98 @@
+.landingBanner {
+    background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+    background-size: cover;
+    height: 400px;
+}
+
+.bannerHeader {
+    font-size: 40px;
+    font-weight: bold;
+}
+.bannerText {
+    font-size: 25px;
+}
+.bannerHeader, .bannerText {
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.bannerHeaderName {
+    color: white;
+    text-align: center;
+    padding: 50px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.pageLandingInfo {
+    margin: 4em 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    line-height: 28px;
+    justify-content: space-evenly;
+}
+
+.fa-comments:before, .fa-envelope:before, .fa-user:before, .fa-question-circle:before  {
+    font-size: 100px;
+}
+
+.singlePageInfoDiv .fa-comments:before {
+    color: $color-purple-solid;
+    font-size: 100px;
+}
+
+.fa-envelope:before {
+    color: $color-green-solid;
+}
+.fa-user:before {
+    color: $color-blue-solid;
+}
+.fa-question-circle:before {
+    color: $color-pink;
+}
+
+.singlePageInfoDiv {
+    width: 200px;
+}
+
+
+//SIGN IN AND LOG IN BUTTONS
+.logInBtn, .signUpBtn {
+    border-radius: 50px;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 12px 40px;
+    letter-spacing: 1px;
+    border: 0px;
+    text-align: center;
+    margin: 10px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.7s;
+    border: 1px solid white;
+}
+.logInBtn {
+    background-color: #9464d2;
+}
+.signUpBtn {
+    background-color: #4e88dd;
+}
+.signUpBtn:hover {
+    background: #1a6ae0;
+}
+.logInBtn:hover {
+    background: blueviolet;
+}
+.logInButtons {
+    text-align: center;
+}
+
+@media (min-width: 1000px) {
+    .logInButtons {
+        padding: 20px;
+    }
+}

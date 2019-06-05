@@ -1,0 +1,96 @@
+textarea {
+  resize: none;
+  min-height: 300px;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+img.uploadedImage {
+  width: 75%;
+  height: auto;
+}
+
+.formWrapper {
+  margin-left: 4em;
+}
+
+#newPost {
+  margin-left: 40%;
+}
+
+#newForm {
+  margin-left: 1em;
+  width: 80%;
+}
+
+input[type=text], textarea {
+  border-radius: 20px;
+  border-bottom: 1px solid #ccc;
+  background: #31db7a45;
+  font-size: 18px;
+  padding: 10px;
+  &:focus{
+    outline: none;
+  }
+  &:hover {
+    background-color: 1px solid #ccc;
+  }
+}
+
+
+
+.labels {
+  text-align: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.inputs {
+  width: 75%;
+  margin-top: 6px;
+}
+
+.btns {
+  width: 7em;
+  height: auto;
+  color: black!important;
+  cursor: pointer;
+  display: block;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin: 0 10px;
+  background: $color-green;
+}
+
+.pictureUpload {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.submitBtn {
+  margin-left: 60%;
+}
+
+.deleteBtn {
+  background-color: $color-orange-solid;
+  width: 7em;
+  height: auto;
+  color: black!important;
+  cursor: pointer;
+  display: block;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+// /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+// @media screen and (max-width: 600px) {
+//   .labels, .inputs, input[type=submit] {
+//     width: 100%;
+//     margin-top: 0;
+//   }
+// }
